@@ -14,6 +14,9 @@ class InitialScreenViewController: UIViewController, UITextFieldDelegate{
     var titleLabel: UILabel = UILabel()
     let userTextField = UITextField(frame: CGRect(x: 20, y: 100, width: 300, height: 40))
     let passwordTextField = UITextField(frame: CGRect(x: 20, y: 100, width: 300, height: 40))
+   
+    let enterButton = UIButton ()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor(red: 254.0/255.0, green: 254.0/255.0, blue: 254.0/255.0, alpha: 1.0)
@@ -31,8 +34,9 @@ class InitialScreenViewController: UIViewController, UITextFieldDelegate{
         userTextField.keyboardType = UIKeyboardType.default
         userTextField.returnKeyType = UIReturnKeyType.done
         userTextField.clearButtonMode = UITextField.ViewMode.whileEditing
-        //userTextField.contentVerticalAlignment = UIControl.ContentVerticalAlignment.center
         userTextField.delegate = self
+        
+        
         
         passwordTextField.placeholder = "Senha"
         passwordTextField.font = UIFont.systemFont(ofSize: 15)
@@ -41,15 +45,22 @@ class InitialScreenViewController: UIViewController, UITextFieldDelegate{
         passwordTextField.keyboardType = UIKeyboardType.default
         passwordTextField.returnKeyType = UIReturnKeyType.done
         passwordTextField.clearButtonMode = UITextField.ViewMode.whileEditing
-        //passwordTextField.contentVerticalAlignment = UIControl.ContentVerticalAlignment.center
         passwordTextField.delegate = self
+
         
         
-    
+        
+        enterButton.backgroundColor = UIColor(red: 246.0/255.0, green: 219.0/255.0, blue: 147.0/255.0, alpha: 1.0)
+        enterButton.layer.cornerRadius = 14
+        enterButton.setTitle("Entrar", for: .normal)
+        enterButton.setTitleColor(UIColor(red: 60.0/255.0, green: 60.0/255.0, blue: 67.0/255.0, alpha: 1.0), for: .normal)
+        
+
         view.addSubview(userTextField)
         view.addSubview(passwordTextField)
         view.addSubview(logoImage)
         view.addSubview(titleLabel)
+        view.addSubview(enterButton)
         addConstraints()
     }
     
@@ -75,9 +86,16 @@ class InitialScreenViewController: UIViewController, UITextFieldDelegate{
         
         passwordTextField.translatesAutoresizingMaskIntoConstraints = false
         passwordTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        passwordTextField.topAnchor.constraint(equalTo: userTextField.bottomAnchor).isActive = true
+        passwordTextField.topAnchor.constraint(equalTo: userTextField.bottomAnchor, constant: 10).isActive = true
         passwordTextField.heightAnchor.constraint(equalToConstant: 56).isActive = true
         passwordTextField.widthAnchor.constraint(equalToConstant: 343).isActive = true
+        
+        enterButton.translatesAutoresizingMaskIntoConstraints = false
+        enterButton.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: view.frame.height/8).isActive = true
+        enterButton.heightAnchor.constraint(equalToConstant: 56).isActive = true
+        enterButton.widthAnchor.constraint(equalToConstant: 288).isActive = true
+        enterButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        
     
     }
     
@@ -126,5 +144,5 @@ class InitialScreenViewController: UIViewController, UITextFieldDelegate{
            // may be useful: textField.resignFirstResponder()
            return true
        }
-
+  
 }
