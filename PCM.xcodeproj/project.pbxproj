@@ -13,6 +13,7 @@
 		173CDB1B2714B740003CE150 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 173CDB192714B740003CE150 /* Main.storyboard */; };
 		173CDB1D2714B744003CE150 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 173CDB1C2714B744003CE150 /* Assets.xcassets */; };
 		173CDB202714B744003CE150 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 173CDB1E2714B744003CE150 /* LaunchScreen.storyboard */; };
+		173CDB292714BCB1003CE150 /* Simple QR Reader in Frameworks */ = {isa = PBXBuildFile; productRef = 173CDB282714BCB1003CE150 /* Simple QR Reader */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +32,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				173CDB292714BCB1003CE150 /* Simple QR Reader in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -83,6 +85,9 @@
 			dependencies = (
 			);
 			name = PCM;
+			packageProductDependencies = (
+				173CDB282714BCB1003CE150 /* Simple QR Reader */,
+			);
 			productName = PCM;
 			productReference = 173CDB102714B740003CE150 /* PCM.app */;
 			productType = "com.apple.product-type.application";
@@ -111,6 +116,9 @@
 				Base,
 			);
 			mainGroup = 173CDB072714B740003CE150;
+			packageReferences = (
+				173CDB272714BCB1003CE150 /* XCRemoteSwiftPackageReference "Simple-QR-Reader" */,
+			);
 			productRefGroup = 173CDB112714B740003CE150 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -360,6 +368,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		173CDB272714BCB1003CE150 /* XCRemoteSwiftPackageReference "Simple-QR-Reader" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/PedroFarina/Simple-QR-Reader";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		173CDB282714BCB1003CE150 /* Simple QR Reader */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 173CDB272714BCB1003CE150 /* XCRemoteSwiftPackageReference "Simple-QR-Reader" */;
+			productName = "Simple QR Reader";
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 173CDB082714B740003CE150 /* Project object */;
 }
