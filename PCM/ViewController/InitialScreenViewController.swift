@@ -10,51 +10,68 @@ import UIKit
 
 class InitialScreenViewController: UIViewController, UITextFieldDelegate{
     
-    var logoImage: UIView = UIView ()
-    var titleLabel: UILabel = UILabel()
-    let userTextField = UITextField(frame: CGRect(x: 20, y: 100, width: 300, height: 40))
-    let passwordTextField = UITextField(frame: CGRect(x: 20, y: 100, width: 300, height: 40))
-   
-    let enterButton = UIButton ()
+    private var logoImage: UIView = {
+        let logoImage = UIView()
+        logoImage.translatesAutoresizingMaskIntoConstraints = false
+        logoImage.backgroundColor = .systemGray3
+        logoImage.layer.cornerRadius = 20
+        return logoImage
+    }()
+    
+    private lazy var userTextField: UITextField = {
+        let textField = UITextField(frame: .zero)
+        textField.translatesAutoresizingMaskIntoConstraints = false
+        textField.placeholder = "Usuário"
+        textField.font = UIFont.systemFont(ofSize: 15)
+        textField.borderStyle = UITextField.BorderStyle.roundedRect
+        textField.autocorrectionType = UITextAutocorrectionType.no
+        textField.keyboardType = UIKeyboardType.default
+        textField.returnKeyType = UIReturnKeyType.done
+        textField.clearButtonMode = UITextField.ViewMode.whileEditing
+        textField.delegate = self
+        return textField
+    }()
+    
+    private lazy var passwordTextField: UITextField = {
+        let textField = UITextField(frame: .zero)
+        textField.translatesAutoresizingMaskIntoConstraints = false
+        textField.placeholder = "Senha"
+        textField.font = UIFont.systemFont(ofSize: 15)
+        textField.borderStyle = UITextField.BorderStyle.roundedRect
+        textField.autocorrectionType = UITextAutocorrectionType.no
+        textField.keyboardType = UIKeyboardType.default
+        textField.returnKeyType = UIReturnKeyType.done
+        textField.clearButtonMode = UITextField.ViewMode.whileEditing
+        textField.delegate = self
+        return textField
+    }()
+    
+    private var titleLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = .preferredFont(forTextStyle: .title1)
+        label.adjustsFontForContentSizeCategory = true
+        label.text = "Bem-vindo!"
+        // TODO: mudar cor pra asset dark/light mode
+        label.textColor = UIColor(red: 60.0/255.0, green: 60.0/255.0, blue: 67.0/255.0, alpha: 1.0)
+        return label
+    }()
+    
+    private var enterButton: UIButton = {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.backgroundColor = UIColor(red: 246.0/255.0, green: 219.0/255.0, blue: 147.0/255.0, alpha: 1.0)
+        button.layer.cornerRadius = 14
+        button.setTitle("Entrar", for: .normal)
+        button.setTitleColor(UIColor(red: 60.0/255.0, green: 60.0/255.0, blue: 67.0/255.0, alpha: 1.0), for: .normal)
+        return button
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         view.backgroundColor = UIColor(red: 254.0/255.0, green: 254.0/255.0, blue: 254.0/255.0, alpha: 1.0)
-        logoImage.backgroundColor = .systemGray3
-        logoImage.layer.cornerRadius = 20
-        
-        titleLabel.text = "Bem-vindo!"
-        titleLabel.textColor = UIColor(red: 60.0/255.0, green: 60.0/255.0, blue: 67.0/255.0, alpha: 1.0)
-        titleLabel.font = .systemFont(ofSize: 32, weight: .regular)
-        
-        userTextField.placeholder = "Usuário"
-        userTextField.font = UIFont.systemFont(ofSize: 15)
-        userTextField.borderStyle = UITextField.BorderStyle.roundedRect
-        userTextField.autocorrectionType = UITextAutocorrectionType.no
-        userTextField.keyboardType = UIKeyboardType.default
-        userTextField.returnKeyType = UIReturnKeyType.done
-        userTextField.clearButtonMode = UITextField.ViewMode.whileEditing
-        userTextField.delegate = self
-        
-        
-        
-        passwordTextField.placeholder = "Senha"
-        passwordTextField.font = UIFont.systemFont(ofSize: 15)
-        passwordTextField.borderStyle = UITextField.BorderStyle.roundedRect
-        passwordTextField.autocorrectionType = UITextAutocorrectionType.no
-        passwordTextField.keyboardType = UIKeyboardType.default
-        passwordTextField.returnKeyType = UIReturnKeyType.done
-        passwordTextField.clearButtonMode = UITextField.ViewMode.whileEditing
-        passwordTextField.delegate = self
-
-        
-        
-        
-        enterButton.backgroundColor = UIColor(red: 246.0/255.0, green: 219.0/255.0, blue: 147.0/255.0, alpha: 1.0)
-        enterButton.layer.cornerRadius = 14
-        enterButton.setTitle("Entrar", for: .normal)
-        enterButton.setTitleColor(UIColor(red: 60.0/255.0, green: 60.0/255.0, blue: 67.0/255.0, alpha: 1.0), for: .normal)
-        
+    
 
         view.addSubview(userTextField)
         view.addSubview(passwordTextField)
@@ -66,31 +83,25 @@ class InitialScreenViewController: UIViewController, UITextFieldDelegate{
     
     func addConstraints() {
     
-        logoImage.translatesAutoresizingMaskIntoConstraints = false
         logoImage.topAnchor.constraint(equalTo: view.topAnchor, constant: view.frame.height/5).isActive = true
         logoImage.heightAnchor.constraint(equalToConstant: 115).isActive = true
         logoImage.widthAnchor.constraint(equalToConstant: 115).isActive = true
         logoImage.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
        
-        
-        titleLabel.translatesAutoresizingMaskIntoConstraints = false
+    
         titleLabel.topAnchor.constraint(equalTo: logoImage.bottomAnchor, constant: view.frame.height/20).isActive = true
         titleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         
-        userTextField.translatesAutoresizingMaskIntoConstraints = false
         userTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         userTextField.topAnchor.constraint(equalTo: titleLabel.topAnchor, constant: view.frame.height/10).isActive = true
         userTextField.heightAnchor.constraint(equalToConstant: 56).isActive = true
         userTextField.widthAnchor.constraint(equalToConstant: 343).isActive = true
         
-        
-        passwordTextField.translatesAutoresizingMaskIntoConstraints = false
         passwordTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         passwordTextField.topAnchor.constraint(equalTo: userTextField.bottomAnchor, constant: 10).isActive = true
         passwordTextField.heightAnchor.constraint(equalToConstant: 56).isActive = true
         passwordTextField.widthAnchor.constraint(equalToConstant: 343).isActive = true
         
-        enterButton.translatesAutoresizingMaskIntoConstraints = false
         enterButton.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: view.frame.height/8).isActive = true
         enterButton.heightAnchor.constraint(equalToConstant: 56).isActive = true
         enterButton.widthAnchor.constraint(equalToConstant: 288).isActive = true
