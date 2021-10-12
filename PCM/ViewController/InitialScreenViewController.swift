@@ -66,49 +66,48 @@ class InitialScreenViewController: UIViewController, UITextFieldDelegate{
         button.setTitleColor(UIColor(red: 60.0/255.0, green: 60.0/255.0, blue: 67.0/255.0, alpha: 1.0), for: .normal)
         return button
     }()
+    private lazy var constraints: [NSLayoutConstraint] = {
+        [
+            logoImage.topAnchor.constraint(equalTo: view.topAnchor, constant: view.frame.height * 0.2),
+            logoImage.heightAnchor.constraint(equalToConstant: 115),
+            logoImage.widthAnchor.constraint(equalTo: logoImage.heightAnchor),
+            logoImage.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            
+            titleLabel.topAnchor.constraint(equalTo: logoImage.bottomAnchor, constant: 50),
+            titleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            
+            userTextField.topAnchor.constraint(equalTo: titleLabel.topAnchor, constant: 50),
+            userTextField.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20),
+            userTextField.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20),
+            userTextField.heightAnchor.constraint(equalToConstant: 56),
+            
+            passwordTextField.topAnchor.constraint(equalTo: userTextField.bottomAnchor, constant: 10),
+            passwordTextField.leadingAnchor.constraint(equalTo: userTextField.leadingAnchor),
+            passwordTextField.trailingAnchor.constraint(equalTo: userTextField.trailingAnchor),
+            passwordTextField.heightAnchor.constraint(equalToConstant: 56),
+          
+            enterButton.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: 50),
+            enterButton.leadingAnchor.constraint(equalTo: passwordTextField.leadingAnchor, constant: 15),
+            enterButton.trailingAnchor.constraint(equalTo: passwordTextField.trailingAnchor, constant: -15),
+            enterButton.heightAnchor.constraint(equalToConstant: 56)
+        ]
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         view.backgroundColor = UIColor(red: 254.0/255.0, green: 254.0/255.0, blue: 254.0/255.0, alpha: 1.0)
-    
 
         view.addSubview(userTextField)
         view.addSubview(passwordTextField)
         view.addSubview(logoImage)
         view.addSubview(titleLabel)
         view.addSubview(enterButton)
-        addConstraints()
+    }
+    override func viewDidLayoutSubviews() {
+        NSLayoutConstraint.activate(constraints)
     }
     
-    func addConstraints() {
-    
-        logoImage.topAnchor.constraint(equalTo: view.topAnchor, constant: view.frame.height/5).isActive = true
-        logoImage.heightAnchor.constraint(equalToConstant: 115).isActive = true
-        logoImage.widthAnchor.constraint(equalToConstant: 115).isActive = true
-        logoImage.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-       
-    
-        titleLabel.topAnchor.constraint(equalTo: logoImage.bottomAnchor, constant: view.frame.height/20).isActive = true
-        titleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        
-        userTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        userTextField.topAnchor.constraint(equalTo: titleLabel.topAnchor, constant: view.frame.height/10).isActive = true
-        userTextField.heightAnchor.constraint(equalToConstant: 56).isActive = true
-        userTextField.widthAnchor.constraint(equalToConstant: 343).isActive = true
-        
-        passwordTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        passwordTextField.topAnchor.constraint(equalTo: userTextField.bottomAnchor, constant: 10).isActive = true
-        passwordTextField.heightAnchor.constraint(equalToConstant: 56).isActive = true
-        passwordTextField.widthAnchor.constraint(equalToConstant: 343).isActive = true
-        
-        enterButton.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: view.frame.height/8).isActive = true
-        enterButton.heightAnchor.constraint(equalToConstant: 56).isActive = true
-        enterButton.widthAnchor.constraint(equalToConstant: 288).isActive = true
-        enterButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        
-    
-    }
     
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
            // return NO to disallow editing.
