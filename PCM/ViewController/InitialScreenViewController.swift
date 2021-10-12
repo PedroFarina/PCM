@@ -52,18 +52,17 @@ class InitialScreenViewController: UIViewController, UITextFieldDelegate{
         label.font = .preferredFont(forTextStyle: .title1)
         label.adjustsFontForContentSizeCategory = true
         label.text = "Bem-vindo!"
-        // TODO: mudar cor pra asset dark/light mode
-        label.textColor = UIColor(red: 60.0/255.0, green: 60.0/255.0, blue: 67.0/255.0, alpha: 1.0)
+        label.textColor = .blackProt
         return label
     }()
     
     private var enterButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.backgroundColor = UIColor(red: 246.0/255.0, green: 219.0/255.0, blue: 147.0/255.0, alpha: 1.0)
+        button.backgroundColor = .yellowProt
         button.layer.cornerRadius = 14
         button.setTitle("Entrar", for: .normal)
-        button.setTitleColor(UIColor(red: 60.0/255.0, green: 60.0/255.0, blue: 67.0/255.0, alpha: 1.0), for: .normal)
+        button.setTitleColor(.blackProt, for: .normal)
         return button
     }()
     private lazy var constraints: [NSLayoutConstraint] = {
@@ -96,7 +95,7 @@ class InitialScreenViewController: UIViewController, UITextFieldDelegate{
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = UIColor(red: 254.0/255.0, green: 254.0/255.0, blue: 254.0/255.0, alpha: 1.0)
+        view.backgroundColor = .bgColor
 
         view.addSubview(userTextField)
         view.addSubview(passwordTextField)
@@ -155,4 +154,7 @@ class InitialScreenViewController: UIViewController, UITextFieldDelegate{
            return true
        }
   
+    
+    
 }
+
