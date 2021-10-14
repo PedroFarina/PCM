@@ -14,6 +14,7 @@
 		173CDB1D2714B744003CE150 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 173CDB1C2714B744003CE150 /* Assets.xcassets */; };
 		173CDB202714B744003CE150 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 173CDB1E2714B744003CE150 /* LaunchScreen.storyboard */; };
 		173CDB292714BCB1003CE150 /* Simple QR Reader in Frameworks */ = {isa = PBXBuildFile; productRef = 173CDB282714BCB1003CE150 /* Simple QR Reader */; };
+		173CDB302717BBA1003CE150 /* AtividadesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173CDB2F2717BBA1003CE150 /* AtividadesViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,6 +26,7 @@
 		173CDB1C2714B744003CE150 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		173CDB1F2714B744003CE150 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		173CDB212714B744003CE150 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		173CDB2F2717BBA1003CE150 /* AtividadesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AtividadesViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,6 +67,7 @@
 				173CDB1C2714B744003CE150 /* Assets.xcassets */,
 				173CDB1E2714B744003CE150 /* LaunchScreen.storyboard */,
 				173CDB212714B744003CE150 /* Info.plist */,
+				173CDB2F2717BBA1003CE150 /* AtividadesViewController.swift */,
 			);
 			path = PCM;
 			sourceTree = "<group>";
@@ -148,6 +151,7 @@
 			files = (
 				173CDB182714B740003CE150 /* ViewController.swift in Sources */,
 				173CDB142714B740003CE150 /* AppDelegate.swift in Sources */,
+				173CDB302717BBA1003CE150 /* AtividadesViewController.swift in Sources */,
 				173CDB162714B740003CE150 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
