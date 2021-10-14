@@ -56,13 +56,14 @@ class InitialScreenViewController: UIViewController, UITextFieldDelegate{
         return label
     }()
     
-    private var enterButton: UIButton = {
+    private lazy var enterButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.backgroundColor = .yellowProt
         button.layer.cornerRadius = 14
         button.setTitle("Entrar", for: .normal)
         button.setTitleColor(.blackProt, for: .normal)
+        button.addTarget(self, action: #selector(enterTap(_:)), for: .touchUpInside)
         return button
     }()
     private lazy var constraints: [NSLayoutConstraint] = {
@@ -105,6 +106,10 @@ class InitialScreenViewController: UIViewController, UITextFieldDelegate{
     }
     override func viewDidLayoutSubviews() {
         NSLayoutConstraint.activate(constraints)
+    }
+    
+    @objc func enterTap(_ sender: UIButton){
+        self.present(InitialScreenViewController(), animated: true)
     }
     
     
