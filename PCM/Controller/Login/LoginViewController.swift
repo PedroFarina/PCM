@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-internal class LoginViewController: UIViewController, UITextFieldDelegate{
+internal class LoginViewController: UIViewController {
     
     private var logoImage: UIView = {
         let logoImage = UIView()
@@ -21,28 +21,27 @@ internal class LoginViewController: UIViewController, UITextFieldDelegate{
     private lazy var userTextField: UITextField = {
         let textField = UITextField(frame: .zero)
         textField.translatesAutoresizingMaskIntoConstraints = false
+        textField.autocapitalizationType = .none
+        textField.keyboardType = .emailAddress
         textField.placeholder = "Usuário"
-        textField.font = UIFont.systemFont(ofSize: 15)
-        textField.borderStyle = UITextField.BorderStyle.roundedRect
-        textField.autocorrectionType = UITextAutocorrectionType.no
-        textField.keyboardType = UIKeyboardType.default
-        textField.returnKeyType = UIReturnKeyType.done
-        textField.clearButtonMode = UITextField.ViewMode.whileEditing
-        textField.delegate = self
+        textField.font = .systemFont(ofSize: 15)
+        textField.borderStyle = .roundedRect
+        textField.autocorrectionType = .no
+        textField.returnKeyType = .done
+        textField.clearButtonMode = .whileEditing
         return textField
     }()
     
     private lazy var passwordTextField: UITextField = {
         let textField = UITextField(frame: .zero)
         textField.translatesAutoresizingMaskIntoConstraints = false
+        textField.isSecureTextEntry = true
         textField.placeholder = "Senha"
-        textField.font = UIFont.systemFont(ofSize: 15)
-        textField.borderStyle = UITextField.BorderStyle.roundedRect
-        textField.autocorrectionType = UITextAutocorrectionType.no
-        textField.keyboardType = UIKeyboardType.default
-        textField.returnKeyType = UIReturnKeyType.done
-        textField.clearButtonMode = UITextField.ViewMode.whileEditing
-        textField.delegate = self
+        textField.font = .systemFont(ofSize: 15)
+        textField.borderStyle = .roundedRect
+        textField.autocorrectionType = .no
+        textField.returnKeyType = .done
+        textField.clearButtonMode = .whileEditing
         return textField
     }()
     
@@ -109,53 +108,11 @@ internal class LoginViewController: UIViewController, UITextFieldDelegate{
     }
     
     @objc private func enterTap(_ sender: UIButton){
-        self.present(ActivitiesViewController(), animated: true)
-    }
-    
-    
-    internal func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
-        // return NO to disallow editing.
-        print("TextField should begin editing method called")
-        return true
-    }
+        let vc = ActivitiesViewController()
+        let nav = UINavigationController(rootViewController: vc)
+        nav.modalPresentationStyle = .fullScreen
 
-    internal func textFieldDidBeginEditing(_ textField: UITextField) {
-        // became first responder
-        print("TextField did begin editing method called")
-    }
 
-    internal func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
-        // return YES to allow editing to stop and to resign first responder status. NO to disallow the editing session to end
-        print("TextField should snd editing method called")
-        return true
-    }
-
-    internal func textFieldDidEndEditing(_ textField: UITextField) {
-        // may be called if forced even if shouldEndEditing returns NO (e.g. view removed from window) or endEditing:YES called
-        print("TextField did end editing method called")
-    }
-
-    internal func textFieldDidEndEditing(_ textField: UITextField, reason: UITextField.DidEndEditingReason) {
-        // if implemented, called in place of textFieldDidEndEditing:
-        print("TextField did end editing with reason method called")
-    }
-
-    internal func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        // return NO to not change text
-        print("While entering the characters this method gets called")
-        return true
-    }
-
-    internal func textFieldShouldClear(_ textField: UITextField) -> Bool {
-        // called when clear button pressed. return NO to ignore (no notifications)
-        print("TextField should clear method called")
-        return true
-    }
-
-    internal func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        // called when 'return' key pressed. return NO to ignore.
-        print("TextField should return method called")
-        // may be useful: textField.resignFirstResponder()
-        return true
+        self.present(nav, animated: true)
     }
 }
