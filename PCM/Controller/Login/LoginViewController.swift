@@ -111,8 +111,6 @@ internal class LoginViewController: UIViewController {
         let vc = ActivitiesViewController()
         let nav = UINavigationController(rootViewController: vc)
         nav.modalPresentationStyle = .fullScreen
-
-
         self.present(nav, animated: true)
     }
 }
