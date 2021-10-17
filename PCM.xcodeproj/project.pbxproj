@@ -16,6 +16,8 @@
 		173CDB2C2714C083003CE150 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173CDB2B2714C083003CE150 /* LoginViewController.swift */; };
 		173CDB2E271515B8003CE150 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173CDB2D271515B8003CE150 /* UIColorExtension.swift */; };
 		173CDB322717D63C003CE150 /* ActivitiesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173CDB312717D63C003CE150 /* ActivitiesViewController.swift */; };
+		8D4E1321271C99E800709E62 /* ActivitiesTableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D4E1320271C99E800709E62 /* ActivitiesTableViewDelegate.swift */; };
+		8D4E1324271C9A2300709E62 /* ActivitiesTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D4E1323271C9A2300709E62 /* ActivitiesTableViewDataSource.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +31,8 @@
 		173CDB2B2714C083003CE150 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		173CDB2D271515B8003CE150 /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
 		173CDB312717D63C003CE150 /* ActivitiesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivitiesViewController.swift; sourceTree = "<group>"; };
+		8D4E1320271C99E800709E62 /* ActivitiesTableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivitiesTableViewDelegate.swift; sourceTree = "<group>"; };
+		8D4E1323271C9A2300709E62 /* ActivitiesTableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivitiesTableViewDataSource.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,8 +90,8 @@
 		8D4E131A271C912200709E62 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				8D4E131D271C91A900709E62 /* Activities */,
 				8D4E131B271C912B00709E62 /* Login */,
+				8D4E131D271C91A900709E62 /* Activities */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -103,6 +107,7 @@
 		8D4E131C271C915E00709E62 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				8D4E1322271C9A1600709E62 /* Activities */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -111,6 +116,15 @@
 			isa = PBXGroup;
 			children = (
 				173CDB312717D63C003CE150 /* ActivitiesViewController.swift */,
+				8D4E1320271C99E800709E62 /* ActivitiesTableViewDelegate.swift */,
+			);
+			path = Activities;
+			sourceTree = "<group>";
+		};
+		8D4E1322271C9A1600709E62 /* Activities */ = {
+			isa = PBXGroup;
+			children = (
+				8D4E1323271C9A2300709E62 /* ActivitiesTableViewDataSource.swift */,
 			);
 			path = Activities;
 			sourceTree = "<group>";
@@ -197,6 +211,8 @@
 				173CDB142714B740003CE150 /* AppDelegate.swift in Sources */,
 				173CDB322717D63C003CE150 /* ActivitiesViewController.swift in Sources */,
 				173CDB162714B740003CE150 /* SceneDelegate.swift in Sources */,
+				8D4E1324271C9A2300709E62 /* ActivitiesTableViewDataSource.swift in Sources */,
+				8D4E1321271C99E800709E62 /* ActivitiesTableViewDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -8,14 +8,7 @@
 import Foundation
 import UIKit
 
-class ActivitiesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-   
-    private lazy var atividades: [String] = {
-        let atividades: [String] = ["Atividade 1", "Atividade 2", "Atividade 3", "Atividade 4", "Atividade 5", "Atividade 6"]
-        return atividades
-    }()
-    
-    let cellReuseIdentifier = "cell"
+internal class ActivitiesViewController: UIViewController {
     
     private lazy var exitButton: UIBarButtonItem = {
         var exitButton = UIBarButtonItem()
@@ -23,14 +16,15 @@ class ActivitiesViewController: UIViewController, UITableViewDelegate, UITableVi
         exitButton.tintColor = .buttonColor
         return exitButton
     }()
-    
+
+    private let tableViewDataSource = ActivitiesTableViewDataSource()
+    private let tableViewDelegate = ActivitiesTableViewDelegate()
     private lazy var tableView: UITableView = {
         let table = UITableView()
         table.backgroundColor = .clear
         table.translatesAutoresizingMaskIntoConstraints = false
-        table.dataSource = self
-        table.delegate = self
-        table.register(UITableViewCell.self, forCellReuseIdentifier: cellReuseIdentifier)
+        table.dataSource = tableViewDataSource
+        table.delegate = tableViewDelegate
         return table
     }()
     
@@ -65,7 +59,7 @@ class ActivitiesViewController: UIViewController, UITableViewDelegate, UITableVi
         ]
     }()
     
-    override func viewDidLoad() {
+    internal override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .bgColor
         
@@ -79,45 +73,25 @@ class ActivitiesViewController: UIViewController, UITableViewDelegate, UITableVi
         view.addSubview(tableView)
     }
     
-    override func viewDidLayoutSubviews() {
+    internal override func viewDidLayoutSubviews() {
         NSLayoutConstraint.activate(constraints)
     }
     
-    @objc func logoutTap (_ sender: UIButton){
+    @objc private func logoutTap (_ sender: UIButton) {
         self.dismiss(animated: true)
     }
     
-    @objc func segmentedValueChanged(_ sender:UISegmentedControl!)
+    @objc private func segmentedValueChanged(_ sender:UISegmentedControl!)
     {
         switch sender.selectedSegmentIndex {
-        case 0:
-            print ("Liberados")
-        case 1:
-            print ("Em execução")
-        case 2:
-            print ("Concluídos")
-        default:
-            break
+            case 0:
+                print ("Liberados")
+            case 1:
+                print ("Em execução")
+            case 2:
+                print ("Concluídos")
+            default:
+                break
         }
     }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 6
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        // create a new cell if needed or reuse an old one
-        let cell:UITableViewCell = (self.tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier) as UITableViewCell?)!
-               
-               // set the text from the data model
-            cell.textLabel?.text = self.atividades[indexPath.row]
-        cell.accessoryType = UITableViewCell.AccessoryType.disclosureIndicator
-               
-               return cell
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-            print("Célula tocada - \(indexPath.row).")
-        }
 }
