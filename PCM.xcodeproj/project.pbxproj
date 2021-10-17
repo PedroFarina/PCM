@@ -9,12 +9,11 @@
 /* Begin PBXBuildFile section */
 		173CDB142714B740003CE150 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173CDB132714B740003CE150 /* AppDelegate.swift */; };
 		173CDB162714B740003CE150 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173CDB152714B740003CE150 /* SceneDelegate.swift */; };
-		173CDB182714B740003CE150 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173CDB172714B740003CE150 /* ViewController.swift */; };
 		173CDB1B2714B740003CE150 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 173CDB192714B740003CE150 /* Main.storyboard */; };
 		173CDB1D2714B744003CE150 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 173CDB1C2714B744003CE150 /* Assets.xcassets */; };
 		173CDB202714B744003CE150 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 173CDB1E2714B744003CE150 /* LaunchScreen.storyboard */; };
 		173CDB292714BCB1003CE150 /* Simple QR Reader in Frameworks */ = {isa = PBXBuildFile; productRef = 173CDB282714BCB1003CE150 /* Simple QR Reader */; };
-		173CDB2C2714C083003CE150 /* InitialScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173CDB2B2714C083003CE150 /* InitialScreenViewController.swift */; };
+		173CDB2C2714C083003CE150 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173CDB2B2714C083003CE150 /* LoginViewController.swift */; };
 		173CDB2E271515B8003CE150 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173CDB2D271515B8003CE150 /* UIColorExtension.swift */; };
 		173CDB322717D63C003CE150 /* ActivitiesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173CDB312717D63C003CE150 /* ActivitiesViewController.swift */; };
 /* End PBXBuildFile section */
@@ -23,12 +22,11 @@
 		173CDB102714B740003CE150 /* PCM.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PCM.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		173CDB132714B740003CE150 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		173CDB152714B740003CE150 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		173CDB172714B740003CE150 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		173CDB1A2714B740003CE150 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		173CDB1C2714B744003CE150 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		173CDB1F2714B744003CE150 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		173CDB212714B744003CE150 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		173CDB2B2714C083003CE150 /* InitialScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialScreenViewController.swift; sourceTree = "<group>"; };
+		173CDB2B2714C083003CE150 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		173CDB2D271515B8003CE150 /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
 		173CDB312717D63C003CE150 /* ActivitiesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivitiesViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -64,11 +62,12 @@
 		173CDB122714B740003CE150 /* PCM */ = {
 			isa = PBXGroup;
 			children = (
-				173CDB2A2714C069003CE150 /* ViewController */,
+				8D4E131C271C915E00709E62 /* Model */,
+				8D4E1319271C911B00709E62 /* View */,
+				8D4E131A271C912200709E62 /* Controller */,
 				173CDB2D271515B8003CE150 /* UIColorExtension.swift */,
 				173CDB132714B740003CE150 /* AppDelegate.swift */,
 				173CDB152714B740003CE150 /* SceneDelegate.swift */,
-				173CDB172714B740003CE150 /* ViewController.swift */,
 				173CDB192714B740003CE150 /* Main.storyboard */,
 				173CDB1C2714B744003CE150 /* Assets.xcassets */,
 				173CDB1E2714B744003CE150 /* LaunchScreen.storyboard */,
@@ -77,13 +76,43 @@
 			path = PCM;
 			sourceTree = "<group>";
 		};
-		173CDB2A2714C069003CE150 /* ViewController */ = {
+		8D4E1319271C911B00709E62 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		8D4E131A271C912200709E62 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				8D4E131D271C91A900709E62 /* Activities */,
+				8D4E131B271C912B00709E62 /* Login */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		8D4E131B271C912B00709E62 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				173CDB2B2714C083003CE150 /* LoginViewController.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		8D4E131C271C915E00709E62 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		8D4E131D271C91A900709E62 /* Activities */ = {
 			isa = PBXGroup;
 			children = (
 				173CDB312717D63C003CE150 /* ActivitiesViewController.swift */,
-				173CDB2B2714C083003CE150 /* InitialScreenViewController.swift */,
 			);
-			path = ViewController;
+			path = Activities;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -163,8 +192,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				173CDB2C2714C083003CE150 /* InitialScreenViewController.swift in Sources */,
-				173CDB182714B740003CE150 /* ViewController.swift in Sources */,
+				173CDB2C2714C083003CE150 /* LoginViewController.swift in Sources */,
 				173CDB2E271515B8003CE150 /* UIColorExtension.swift in Sources */,
 				173CDB142714B740003CE150 /* AppDelegate.swift in Sources */,
 				173CDB322717D63C003CE150 /* ActivitiesViewController.swift in Sources */,

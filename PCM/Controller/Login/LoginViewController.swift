@@ -1,5 +1,5 @@
 //
-//  InitialScreen.swift
+//  LoginViewController.swift
 //  PCM
 //
 //  Created by Francielly Cristina Ortiz Candido on 11/10/21.
@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-class InitialScreenViewController: UIViewController, UITextFieldDelegate{
+internal class LoginViewController: UIViewController, UITextFieldDelegate{
     
     private var logoImage: UIView = {
         let logoImage = UIView()
@@ -109,7 +109,7 @@ class InitialScreenViewController: UIViewController, UITextFieldDelegate{
     }
     
     @objc func enterTap(_ sender: UIButton){
-        self.present(InitialScreenViewController(), animated: true)
+//        self.present(InitialScreenViewController(), animated: true)
     }
     
     
@@ -158,8 +158,4 @@ class InitialScreenViewController: UIViewController, UITextFieldDelegate{
            // may be useful: textField.resignFirstResponder()
            return true
        }
-  
-    
-    
 }
-
