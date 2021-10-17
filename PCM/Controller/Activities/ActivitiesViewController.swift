@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-class ActivitiesScreenViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class ActivitiesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
    
     private lazy var atividades: [String] = {
         let atividades: [String] = ["Atividade 1", "Atividade 2", "Atividade 3", "Atividade 4", "Atividade 5", "Atividade 6"]
@@ -84,7 +84,7 @@ class ActivitiesScreenViewController: UIViewController, UITableViewDelegate, UIT
     }
     
     @objc func logoutTap (_ sender: UIButton){
-        self.present(InitialScreenViewController(), animated: true)
+        self.dismiss(animated: true)
     }
     
     @objc func segmentedValueChanged(_ sender:UISegmentedControl!)

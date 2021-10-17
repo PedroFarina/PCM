@@ -85,7 +85,7 @@ internal class LoginViewController: UIViewController, UITextFieldDelegate{
             passwordTextField.leadingAnchor.constraint(equalTo: userTextField.leadingAnchor),
             passwordTextField.trailingAnchor.constraint(equalTo: userTextField.trailingAnchor),
             passwordTextField.heightAnchor.constraint(equalToConstant: 56),
-          
+
             enterButton.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: 50),
             enterButton.leadingAnchor.constraint(equalTo: passwordTextField.leadingAnchor, constant: 15),
             enterButton.trailingAnchor.constraint(equalTo: passwordTextField.trailingAnchor, constant: -15),
@@ -93,7 +93,7 @@ internal class LoginViewController: UIViewController, UITextFieldDelegate{
         ]
     }()
     
-    override func viewDidLoad() {
+    override internal func viewDidLoad() {
         super.viewDidLoad()
         
         view.backgroundColor = .bgColor
@@ -104,58 +104,58 @@ internal class LoginViewController: UIViewController, UITextFieldDelegate{
         view.addSubview(titleLabel)
         view.addSubview(enterButton)
     }
-    override func viewDidLayoutSubviews() {
+    override internal func viewDidLayoutSubviews() {
         NSLayoutConstraint.activate(constraints)
     }
     
-    @objc func enterTap(_ sender: UIButton){
-//        self.present(InitialScreenViewController(), animated: true)
+    @objc private func enterTap(_ sender: UIButton){
+        self.present(ActivitiesViewController(), animated: true)
     }
     
     
-    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
-           // return NO to disallow editing.
-           print("TextField should begin editing method called")
-           return true
-       }
+    internal func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        // return NO to disallow editing.
+        print("TextField should begin editing method called")
+        return true
+    }
 
-       func textFieldDidBeginEditing(_ textField: UITextField) {
-           // became first responder
-           print("TextField did begin editing method called")
-       }
+    internal func textFieldDidBeginEditing(_ textField: UITextField) {
+        // became first responder
+        print("TextField did begin editing method called")
+    }
 
-       func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
-           // return YES to allow editing to stop and to resign first responder status. NO to disallow the editing session to end
-           print("TextField should snd editing method called")
-           return true
-       }
+    internal func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
+        // return YES to allow editing to stop and to resign first responder status. NO to disallow the editing session to end
+        print("TextField should snd editing method called")
+        return true
+    }
 
-       func textFieldDidEndEditing(_ textField: UITextField) {
-           // may be called if forced even if shouldEndEditing returns NO (e.g. view removed from window) or endEditing:YES called
-           print("TextField did end editing method called")
-       }
+    internal func textFieldDidEndEditing(_ textField: UITextField) {
+        // may be called if forced even if shouldEndEditing returns NO (e.g. view removed from window) or endEditing:YES called
+        print("TextField did end editing method called")
+    }
 
-    func textFieldDidEndEditing(_ textField: UITextField, reason: UITextField.DidEndEditingReason) {
-           // if implemented, called in place of textFieldDidEndEditing:
-           print("TextField did end editing with reason method called")
-       }
+    internal func textFieldDidEndEditing(_ textField: UITextField, reason: UITextField.DidEndEditingReason) {
+        // if implemented, called in place of textFieldDidEndEditing:
+        print("TextField did end editing with reason method called")
+    }
 
-       func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-           // return NO to not change text
-           print("While entering the characters this method gets called")
-           return true
-       }
+    internal func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        // return NO to not change text
+        print("While entering the characters this method gets called")
+        return true
+    }
 
-       func textFieldShouldClear(_ textField: UITextField) -> Bool {
-           // called when clear button pressed. return NO to ignore (no notifications)
-           print("TextField should clear method called")
-           return true
-       }
+    internal func textFieldShouldClear(_ textField: UITextField) -> Bool {
+        // called when clear button pressed. return NO to ignore (no notifications)
+        print("TextField should clear method called")
+        return true
+    }
 
-       func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-           // called when 'return' key pressed. return NO to ignore.
-           print("TextField should return method called")
-           // may be useful: textField.resignFirstResponder()
-           return true
-       }
+    internal func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        // called when 'return' key pressed. return NO to ignore.
+        print("TextField should return method called")
+        // may be useful: textField.resignFirstResponder()
+        return true
+    }
 }
