@@ -17,6 +17,33 @@ internal class DetailsViewController: UIViewController{
         return conclusionButton
     }()
     
+    private lazy var commentButton: UIButton = {
+        var button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.addTarget(self, action: #selector(includeTap(_:)), for: .touchUpInside)
+        button.setImage(UIImage(systemName: "plus.bubble.fill"), for: .normal)
+        button.tintColor = .buttonColor
+        return button
+    }()
+    
+    private lazy var problemsButton: UIButton = {
+        var button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.addTarget(self, action: #selector(includeTap(_:)), for: .touchUpInside)
+        button.setImage(UIImage(systemName: "nosign"), for: .normal)
+        button.tintColor = .buttonColor
+        return button
+    }()
+    
+    private lazy var qrcodeButton: UIButton = {
+        var button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.addTarget(self, action: #selector(includeTap(_:)), for: .touchUpInside)
+        button.setImage(UIImage(systemName: "qrcode.viewfinder"), for: .normal)
+        button.tintColor = .buttonColor
+        return button
+    }()
+        
     private var infoContainer: UIView = {
         let containerView = UIView()
         containerView.translatesAutoresizingMaskIntoConstraints = false
@@ -53,15 +80,15 @@ internal class DetailsViewController: UIViewController{
     }()
     
     private var hour: Int = {
-        var day = Int()
-        day = 0
-        return day
+        var hour = Int()
+        hour = 0
+        return hour
     }()
     
     private var min: Int = {
-        var day = Int()
-        day = 0
-        return day
+        var min = Int()
+        min = 0
+        return min
     }()
     
     private var addTimeLabel: UILabel = {
@@ -70,6 +97,18 @@ internal class DetailsViewController: UIViewController{
         label.font = .preferredFont(forTextStyle: .headline)
         label.adjustsFontForContentSizeCategory = true
         label.text = "0d 0h 0m"
+        label.textColor = .blackProt
+        return label
+    }()
+    
+    private var infoText: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = .preferredFont(forTextStyle: .body)
+        label.adjustsFontForContentSizeCategory = true
+        label.text = "Construção do segundo andar do prédio Chateaux d’Artigny"
+        label.lineBreakMode = NSLineBreakMode.byWordWrapping
+        label.numberOfLines = 3
         label.textColor = .blackProt
         return label
     }()
@@ -98,7 +137,21 @@ internal class DetailsViewController: UIViewController{
             addTimeButton.trailingAnchor.constraint(equalTo: addTimeView.trailingAnchor, constant: -9),
             
             addTimeLabel.topAnchor.constraint(equalTo: addTimeView.topAnchor, constant: 4),
-            addTimeLabel.leadingAnchor.constraint(equalTo: addTimeView.leadingAnchor, constant: 10)
+            addTimeLabel.leadingAnchor.constraint(equalTo: addTimeView.leadingAnchor, constant: 10),
+            
+            infoText.topAnchor.constraint(equalTo: addTimeView.bottomAnchor, constant: 10),
+            infoText.leadingAnchor.constraint(equalTo: infoContainer.leadingAnchor, constant: 10),
+            infoText.widthAnchor.constraint(equalToConstant: 345),
+            
+            commentButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -view.frame.height * 0.05),
+            commentButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -15),
+            
+            problemsButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -view.frame.height * 0.05),
+            problemsButton.trailingAnchor.constraint(equalTo: commentButton.leadingAnchor, constant: -20),
+            
+            qrcodeButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -view.frame.height * 0.05),
+            qrcodeButton.trailingAnchor.constraint(equalTo: commentButton.leadingAnchor, constant: -60)
+            
         ]
     }()
     
@@ -111,16 +164,20 @@ internal class DetailsViewController: UIViewController{
         self.navigationItem.title = "Atividade X"
         navigationItem.rightBarButtonItem = conclusionButton
         navigationItem.leftBarButtonItem = backButton
-    
+       
         
         view.addSubview(infoContainer)
         view.addSubview(addTimeView)
         view.addSubview(addTimeButton)
         view.addSubview(addTimeLabel)
+        view.addSubview(infoText)
+        view.addSubview(commentButton)
+        view.addSubview(problemsButton)
+        view.addSubview(qrcodeButton)
         
     }
     
-    override internal func viewDidLayoutSubviews() {
+    internal override func viewDidLayoutSubviews() {
         NSLayoutConstraint.activate(constraints)
     }
     
