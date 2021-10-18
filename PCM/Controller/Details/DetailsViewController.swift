@@ -46,6 +46,34 @@ internal class DetailsViewController: UIViewController{
         return button
     }()
     
+    private var day: Int = {
+        var day = Int()
+        day = 0
+        return day
+    }()
+    
+    private var hour: Int = {
+        var day = Int()
+        day = 0
+        return day
+    }()
+    
+    private var min: Int = {
+        var day = Int()
+        day = 0
+        return day
+    }()
+    
+    private var addTimeLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = .preferredFont(forTextStyle: .headline)
+        label.adjustsFontForContentSizeCategory = true
+        label.text = "0d 0h 0m"
+        label.textColor = .blackProt
+        return label
+    }()
+    
     // TODO: verificar se essa função realmente será necessária quando mergear essa PR na develop
     private lazy var backButton: UIBarButtonItem = {
         var backButton = UIBarButtonItem()
@@ -67,7 +95,10 @@ internal class DetailsViewController: UIViewController{
             addTimeView.leadingAnchor.constraint(equalTo: infoContainer.leadingAnchor, constant: 10),
             
             addTimeButton.topAnchor.constraint(equalTo: addTimeView.topAnchor, constant: 4),
-            addTimeButton.trailingAnchor.constraint(equalTo: addTimeView.trailingAnchor, constant: -9)
+            addTimeButton.trailingAnchor.constraint(equalTo: addTimeView.trailingAnchor, constant: -9),
+            
+            addTimeLabel.topAnchor.constraint(equalTo: addTimeView.topAnchor, constant: 4),
+            addTimeLabel.leadingAnchor.constraint(equalTo: addTimeView.leadingAnchor, constant: 10)
         ]
     }()
     
@@ -80,10 +111,12 @@ internal class DetailsViewController: UIViewController{
         self.navigationItem.title = "Atividade X"
         navigationItem.rightBarButtonItem = conclusionButton
         navigationItem.leftBarButtonItem = backButton
+    
         
         view.addSubview(infoContainer)
         view.addSubview(addTimeView)
         view.addSubview(addTimeButton)
+        view.addSubview(addTimeLabel)
         
     }
     
@@ -92,7 +125,14 @@ internal class DetailsViewController: UIViewController{
     }
     
     @objc private func includeTap (_ sender: UIButton) {
-        
+        day = day + 1
+        hour = hour + 1
+        min = min + 30
+        if min == 60 {
+            min = 0
+            hour = hour + 1
+        }
+        addTimeLabel.text = "\(day)d \(hour)h \(min)m"
     }
     
     @objc private func conclusionTap (_ sender: UIButton) {
