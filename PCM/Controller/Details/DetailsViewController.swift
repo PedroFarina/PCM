@@ -194,12 +194,12 @@ internal class DetailsViewController: UIViewController{
             tableView.topAnchor.constraint(equalTo: titleTable.bottomAnchor, constant: 10),
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15),
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -15),
-            tableView.bottomAnchor.constraint(equalTo: stopButton.topAnchor, constant: -view.frame.height * 0.02),
+            tableView.bottomAnchor.constraint(equalTo: stopButton.topAnchor, constant: -view.frame.height * 0.1),
             
             stopButton.heightAnchor.constraint(equalToConstant: 56),
             stopButton.widthAnchor.constraint(equalToConstant: 240),
             stopButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            stopButton.bottomAnchor.constraint(equalTo: commentButton.topAnchor, constant: -view.frame.height * 0.02)
+            stopButton.bottomAnchor.constraint(equalTo: commentButton.topAnchor, constant: -view.frame.height * 0.05)
             
             
         ]
