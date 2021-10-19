@@ -73,6 +73,7 @@ internal class DetailsViewController: UIViewController{
         let table = UITableView()
         table.backgroundColor = .clear
         table.translatesAutoresizingMaskIntoConstraints = false
+        table.rowHeight = 50
         table.dataSource = tableViewDataSource
         table.delegate = tableViewDelegate
         return table
@@ -194,12 +195,12 @@ internal class DetailsViewController: UIViewController{
             tableView.topAnchor.constraint(equalTo: titleTable.bottomAnchor, constant: 10),
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15),
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -15),
-            tableView.bottomAnchor.constraint(equalTo: stopButton.topAnchor, constant: -view.frame.height * 0.1),
+            tableView.bottomAnchor.constraint(equalTo: stopButton.topAnchor, constant: -view.frame.height * 0.07),
             
             stopButton.heightAnchor.constraint(equalToConstant: 56),
             stopButton.widthAnchor.constraint(equalToConstant: 240),
             stopButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            stopButton.bottomAnchor.constraint(equalTo: commentButton.topAnchor, constant: -view.frame.height * 0.05)
+            stopButton.bottomAnchor.constraint(equalTo: commentButton.topAnchor, constant: -view.frame.height * 0.04)
             
             
         ]
@@ -215,6 +216,7 @@ internal class DetailsViewController: UIViewController{
         navigationItem.rightBarButtonItem = conclusionButton
         navigationItem.leftBarButtonItem = backButton
        
+        
         
         view.addSubview(infoContainer)
         view.addSubview(addTimeView)
