@@ -20,8 +20,9 @@ internal class DetailsViewController: UIViewController{
     private lazy var commentButton: UIButton = {
         var button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
+        let configuration = UIImage.SymbolConfiguration(pointSize: 24)
         button.addTarget(self, action: #selector(includeTap(_:)), for: .touchUpInside)
-        button.setImage(UIImage(systemName: "plus.bubble.fill"), for: .normal)
+        button.setImage(UIImage(systemName: "plus.bubble.fill", withConfiguration: configuration), for: .normal)
         button.tintColor = .buttonColor
         return button
     }()
@@ -29,8 +30,9 @@ internal class DetailsViewController: UIViewController{
     private lazy var problemsButton: UIButton = {
         var button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
+        let configuration = UIImage.SymbolConfiguration(pointSize: 24)
         button.addTarget(self, action: #selector(includeTap(_:)), for: .touchUpInside)
-        button.setImage(UIImage(systemName: "nosign"), for: .normal)
+        button.setImage(UIImage(systemName: "nosign", withConfiguration: configuration), for: .normal)
         button.tintColor = .buttonColor
         return button
     }()
@@ -38,10 +40,42 @@ internal class DetailsViewController: UIViewController{
     private lazy var qrcodeButton: UIButton = {
         var button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
+        let configuration = UIImage.SymbolConfiguration(pointSize: 24)
         button.addTarget(self, action: #selector(includeTap(_:)), for: .touchUpInside)
-        button.setImage(UIImage(systemName: "qrcode.viewfinder"), for: .normal)
+        button.setImage(UIImage(systemName: "qrcode.viewfinder", withConfiguration: configuration), for: .normal)
         button.tintColor = .buttonColor
         return button
+    }()
+    
+    private var addTimeButton: UIButton = {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.addTarget(self, action: #selector(includeTap(_:)), for: .touchUpInside)
+        button.setImage(UIImage(systemName: "plus"), for: .normal)
+        button.tintColor = .buttonColor
+        return button
+    }()
+    
+    private var stopButton: UIButton = {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.backgroundColor = .yellowProt
+        button.layer.cornerRadius = 14
+        button.setTitle("Parar", for: .normal)
+        button.setTitleColor(.blackProt, for: .normal)
+        button.addTarget(self, action: #selector(includeTap(_:)), for: .touchUpInside)
+        return button
+    }()
+    
+    private let tableViewDataSource = DetailsTableViewDataSource()
+    private let tableViewDelegate = DetailsTableViewDelegate()
+    private lazy var tableView: UITableView = {
+        let table = UITableView()
+        table.backgroundColor = .clear
+        table.translatesAutoresizingMaskIntoConstraints = false
+        table.dataSource = tableViewDataSource
+        table.delegate = tableViewDelegate
+        return table
     }()
         
     private var infoContainer: UIView = {
@@ -62,15 +96,6 @@ internal class DetailsViewController: UIViewController{
         containerView.backgroundColor = .segmentedColor
         containerView.layer.cornerRadius = 7
         return containerView
-    }()
-    
-    private var addTimeButton: UIButton = {
-        let button = UIButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.addTarget(self, action: #selector(includeTap(_:)), for: .touchUpInside)
-        button.setImage(UIImage(systemName: "plus"), for: .normal)
-        button.tintColor = .buttonColor
-        return button
     }()
     
     private var day: Int = {
@@ -113,6 +138,16 @@ internal class DetailsViewController: UIViewController{
         return label
     }()
     
+    private var titleTable: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = .preferredFont(forTextStyle: .headline)
+        label.adjustsFontForContentSizeCategory = true
+        label.text = "Registro de Atividades"
+        label.textColor = .blackProt
+        return label
+    }()
+    
     // TODO: verificar se essa função realmente será necessária quando mergear essa PR na develop
     private lazy var backButton: UIBarButtonItem = {
         var backButton = UIBarButtonItem()
@@ -141,6 +176,7 @@ internal class DetailsViewController: UIViewController{
             
             infoText.topAnchor.constraint(equalTo: addTimeView.bottomAnchor, constant: 10),
             infoText.leadingAnchor.constraint(equalTo: infoContainer.leadingAnchor, constant: 10),
+            //TODO: trocar ordem da 145 com a 143 pra manter consistência
             infoText.widthAnchor.constraint(equalToConstant: 345),
             
             commentButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -view.frame.height * 0.05),
@@ -150,7 +186,21 @@ internal class DetailsViewController: UIViewController{
             problemsButton.trailingAnchor.constraint(equalTo: commentButton.leadingAnchor, constant: -20),
             
             qrcodeButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -view.frame.height * 0.05),
-            qrcodeButton.trailingAnchor.constraint(equalTo: commentButton.leadingAnchor, constant: -60)
+            qrcodeButton.trailingAnchor.constraint(equalTo: commentButton.leadingAnchor, constant: -70),
+            
+            titleTable.topAnchor.constraint(equalTo: infoContainer.bottomAnchor, constant: 20),
+            titleTable.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15),
+            
+            tableView.topAnchor.constraint(equalTo: titleTable.bottomAnchor, constant: 10),
+            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15),
+            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -15),
+            tableView.bottomAnchor.constraint(equalTo: stopButton.topAnchor, constant: -view.frame.height * 0.02),
+            
+            stopButton.heightAnchor.constraint(equalToConstant: 56),
+            stopButton.widthAnchor.constraint(equalToConstant: 240),
+            stopButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            stopButton.bottomAnchor.constraint(equalTo: commentButton.topAnchor, constant: -view.frame.height * 0.02)
+            
             
         ]
     }()
@@ -174,6 +224,9 @@ internal class DetailsViewController: UIViewController{
         view.addSubview(commentButton)
         view.addSubview(problemsButton)
         view.addSubview(qrcodeButton)
+        view.addSubview(titleTable)
+        view.addSubview(tableView)
+        view.addSubview(stopButton)
         
     }
     
