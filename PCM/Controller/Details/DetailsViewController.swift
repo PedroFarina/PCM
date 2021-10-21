@@ -47,6 +47,16 @@ internal class DetailsViewController: UIViewController{
         return button
     }()
     
+    private lazy var turnButton: UIButton = {
+        var button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        let configuration = UIImage.SymbolConfiguration(pointSize: 24)
+        button.addTarget(self, action: #selector(turnTap(_:)), for: .touchUpInside)
+        button.setImage(UIImage(systemName: "diamond.circle.fill", withConfiguration: configuration), for: .normal)
+        button.tintColor = .buttonColor
+        return button
+    }()
+    
     private var addTimeButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -88,6 +98,15 @@ internal class DetailsViewController: UIViewController{
         containerView.layer.shadowOpacity = 1
         containerView.layer.shadowOffset = CGSize(width: 0, height: 3)
         containerView.layer.shadowRadius = 1
+        return containerView
+    }()
+    
+    private var containerFlipView: UIView = {
+        let containerView = UIView()
+        containerView.translatesAutoresizingMaskIntoConstraints = false
+        containerView.backgroundColor = .bgColor
+        containerView.layer.cornerRadius = 7
+        containerView.isHidden = true
         return containerView
     }()
     
@@ -189,6 +208,9 @@ internal class DetailsViewController: UIViewController{
             qrcodeButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -view.frame.height * 0.05),
             qrcodeButton.trailingAnchor.constraint(equalTo: commentButton.leadingAnchor, constant: -70),
             
+            turnButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -view.frame.height * 0.05),
+            turnButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15),
+            
             titleTable.topAnchor.constraint(equalTo: infoContainer.bottomAnchor, constant: 20),
             titleTable.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15),
             
@@ -200,7 +222,13 @@ internal class DetailsViewController: UIViewController{
             stopButton.heightAnchor.constraint(equalToConstant: 56),
             stopButton.widthAnchor.constraint(equalToConstant: 240),
             stopButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            stopButton.bottomAnchor.constraint(equalTo: commentButton.topAnchor, constant: -view.frame.height * 0.04)
+            stopButton.bottomAnchor.constraint(equalTo: commentButton.topAnchor, constant: -view.frame.height * 0.04),
+            
+            containerFlipView.topAnchor.constraint(equalTo: infoContainer.bottomAnchor, constant: 50),
+            containerFlipView.heightAnchor.constraint(equalToConstant: 260),
+            containerFlipView.widthAnchor.constraint(equalToConstant: 360),
+            containerFlipView.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+            
             
             
         ]
@@ -217,7 +245,6 @@ internal class DetailsViewController: UIViewController{
         navigationItem.leftBarButtonItem = backButton
        
         
-        
         view.addSubview(infoContainer)
         view.addSubview(addTimeView)
         view.addSubview(addTimeButton)
@@ -229,6 +256,8 @@ internal class DetailsViewController: UIViewController{
         view.addSubview(titleTable)
         view.addSubview(tableView)
         view.addSubview(stopButton)
+        view.addSubview(turnButton)
+        view.addSubview(containerFlipView)
         
     }
     
@@ -252,6 +281,20 @@ internal class DetailsViewController: UIViewController{
     }
     
     @objc private func returnTap (_ sender: UIButton) {
+        
+    }
+    
+    @objc private func turnTap(_ sender: UIButton){
+        tableView.isHidden.toggle()
+        if tableView.isHidden == true{
+            titleTable.text = "Relatório"
+            containerFlipView.isHidden = false
+        }
+        else {
+            titleTable.text = "Registro de atividades"
+            containerFlipView.isHidden = true
+        }
+        
         
     }
 }
