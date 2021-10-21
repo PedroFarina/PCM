@@ -21,7 +21,7 @@ internal class DetailsViewController: UIViewController{
         var button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         let configuration = UIImage.SymbolConfiguration(pointSize: 24)
-        button.addTarget(self, action: #selector(includeTap(_:)), for: .touchUpInside)
+        button.addTarget(self, action: #selector(commentTap(_:)), for: .touchUpInside)
         button.setImage(UIImage(systemName: "plus.bubble.fill", withConfiguration: configuration), for: .normal)
         button.tintColor = .buttonColor
         return button
@@ -176,6 +176,20 @@ internal class DetailsViewController: UIViewController{
         return backButton
     }()
     
+    //TODO: isso aqui é útil?
+    private lazy var labelTeste: UILabel = {
+        let label = UILabel()
+        var label2 = UILabel()
+        label2 = self.labelGenerator(a: label)
+        return label2
+    }()
+    
+    private func labelGenerator (a: UILabel) -> UILabel {
+        let label = UILabel()
+        label.text = "teste"
+        return label
+    }
+    
     private lazy var constraints: [NSLayoutConstraint] = {
         [
             infoContainer.topAnchor.constraint(equalTo: view.topAnchor, constant: view.frame.height * 0.135),
@@ -243,7 +257,6 @@ internal class DetailsViewController: UIViewController{
         self.navigationItem.title = "Atividade X"
         navigationItem.rightBarButtonItem = conclusionButton
         navigationItem.leftBarButtonItem = backButton
-       
         
         view.addSubview(infoContainer)
         view.addSubview(addTimeView)
@@ -283,6 +296,7 @@ internal class DetailsViewController: UIViewController{
     @objc private func returnTap (_ sender: UIButton) {
         
     }
+
     
     @objc private func turnTap(_ sender: UIButton){
         tableView.isHidden.toggle()
@@ -297,4 +311,26 @@ internal class DetailsViewController: UIViewController{
         
         
     }
+    
+    @objc private func commentTap (_ sender: UIButton) {
+            let alertController = UIAlertController(title: "Adicionar comentário", message: "", preferredStyle: .alert)
+        
+            alertController.addTextField { (textField : UITextField!) -> Void in
+                textField.placeholder = "placeholder"
+            }
+        
+            let saveAction = UIAlertAction(title: "Save", style: .default, handler: { alert -> Void in
+                let firstTextField = alertController.textFields![0] as UITextField
+                print("\(String(describing: firstTextField.text))")
+            })
+        
+            let cancelAction = UIAlertAction(title: "Cancel", style: .default, handler: { (action : UIAlertAction!) -> Void in })
+            
+
+            alertController.addAction(saveAction)
+            alertController.addAction(cancelAction)
+            
+            self.present(alertController, animated: true, completion: nil)
+        }
 }
+ 
