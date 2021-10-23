@@ -6,9 +6,16 @@
 //
 
 import Foundation
+import Simple_QR_Reader
 import UIKit
 
-internal class DetailsViewController: UIViewController{
+internal class DetailsViewController: UIViewController {
+    
+    private lazy var qrViewController: SimpleQRViewController = {
+        let viewController = SimpleQRViewController()
+        viewController.delegate = self
+        return viewController
+    }()
     
     private lazy var conclusionButton: UIBarButtonItem = {
         var conclusionButton = UIBarButtonItem()
@@ -41,7 +48,7 @@ internal class DetailsViewController: UIViewController{
         var button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         let configuration = UIImage.SymbolConfiguration(pointSize: 24)
-        button.addTarget(self, action: #selector(includeTap(_:)), for: .touchUpInside)
+        button.addTarget(self, action: #selector(qrSessionTap(_:)), for: .touchUpInside)
         button.setImage(UIImage(systemName: "qrcode.viewfinder", withConfiguration: configuration), for: .normal)
         button.tintColor = .buttonColor
         return button
@@ -410,6 +417,13 @@ internal class DetailsViewController: UIViewController{
         
         
     }
+    // MARK: - BLABLA
+    @objc private func qrSessionTap (_ : UIButton){
+        let vc = qrViewController
+        let nav = UINavigationController(rootViewController: vc)
+        nav.modalPresentationStyle = .fullScreen
+        self.present(nav, animated: true)
+    }
     
     @objc private func commentTap (_ sender: UIButton) {
             let alertController = UIAlertController(title: "Adicionar comentário", message: "", preferredStyle: .alert)
@@ -419,7 +433,7 @@ internal class DetailsViewController: UIViewController{
             }
         
             let saveAction = UIAlertAction(title: "Save", style: .default, handler: { alert -> Void in
-                let firstTextField = alertController.textFields![0] as UITextField
+                guard let firstTextField = alertController.textFields?[0] else {return}
                 print("\(String(describing: firstTextField.text))")
             })
         
@@ -431,5 +445,21 @@ internal class DetailsViewController: UIViewController{
             
             self.present(alertController, animated: true, completion: nil)
         }
+}
+
+extension DetailsViewController: SimpleQROutputDelegate {
+    func viewDidSetup() {
+        
+    }
+    
+    func qrCodeFound(_ value: String) {
+        print(value)
+    }
+    
+    func viewWasDismissed() {
+        
+    }
+    
+    
 }
  
