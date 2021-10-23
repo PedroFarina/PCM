@@ -31,7 +31,7 @@ internal class DetailsViewController: UIViewController{
         var button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         let configuration = UIImage.SymbolConfiguration(pointSize: 24)
-        button.addTarget(self, action: #selector(includeTap(_:)), for: .touchUpInside)
+        button.addTarget(self, action: #selector(impedimentsTap(_:)), for: .touchUpInside)
         button.setImage(UIImage(systemName: "nosign", withConfiguration: configuration), for: .normal)
         button.tintColor = .buttonColor
         return button
@@ -168,6 +168,63 @@ internal class DetailsViewController: UIViewController{
         return label
     }()
     
+    private var resumoView: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = .preferredFont(forTextStyle: .headline)
+        label.adjustsFontForContentSizeCategory = true
+        label.text = "Resumo"
+        label.isHidden = true
+        label.textColor = .blackProt
+        return label
+    }()
+    
+    private var funcOficialView: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = .preferredFont(forTextStyle: .body)
+        label.adjustsFontForContentSizeCategory = true
+        label.text = "Funcionários oficiais: "
+        label.lineBreakMode = NSLineBreakMode.byWordWrapping
+        label.numberOfLines = 3
+        label.isHidden = true
+        label.textColor = .blackProt
+        return label
+    }()
+    
+    private var funcMeioOficialView: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = .preferredFont(forTextStyle: .body)
+        label.adjustsFontForContentSizeCategory = true
+        label.text = "Funcionários meio-oficiais: "
+        label.isHidden = true
+        label.textColor = .blackProt
+        return label
+    }()
+    
+    private var hourFuncMeioOficialView: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = .preferredFont(forTextStyle: .body)
+        label.adjustsFontForContentSizeCategory = true
+        label.text = "2h40min"
+        label.isHidden = true
+        label.textColor = .blackProt
+        return label
+    }()
+    
+    private var hourFuncOficialView: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = .preferredFont(forTextStyle: .body)
+        label.adjustsFontForContentSizeCategory = true
+        label.text = "1h30min"
+        label.isHidden = true
+        label.textColor = .blackProt
+        return label
+    }()
+    
     // TODO: verificar se essa função realmente será necessária quando mergear essa PR na develop
     private lazy var backButton: UIBarButtonItem = {
         var backButton = UIBarButtonItem()
@@ -177,18 +234,23 @@ internal class DetailsViewController: UIViewController{
     }()
     
     //TODO: isso aqui é útil?
-    private lazy var labelTeste: UILabel = {
-        let label = UILabel()
-        var label2 = UILabel()
-        label2 = self.labelGenerator(a: label)
-        return label2
-    }()
+    private var labels: [UILabel] = []
     
-    private func labelGenerator (a: UILabel) -> UILabel {
-        let label = UILabel()
-        label.text = "teste"
-        return label
+    private func labelGenerator () -> (leftLabel: UILabel, rightLabel: UILabel) {
+        let leftLabel = UILabel()
+        leftLabel.translatesAutoresizingMaskIntoConstraints = false
+        leftLabel.font = .preferredFont(forTextStyle: .body)
+        leftLabel.textAlignment = .left
+        let rightLabel = UILabel()
+        rightLabel.translatesAutoresizingMaskIntoConstraints = false
+        rightLabel.font = .preferredFont(forTextStyle: .body)
+        rightLabel.textAlignment = .right
+        return (leftLabel, rightLabel)
     }
+    
+//    private func labelConstraint (leftLabel: UILabel, rightLabel: UILabel, leftLabel2: UILabel, rightLabel2: UILabel) -> [NSLayoutConstraint] {
+//        return NSLayoutConstraint
+//    }
     
     private lazy var constraints: [NSLayoutConstraint] = {
         [
@@ -241,7 +303,24 @@ internal class DetailsViewController: UIViewController{
             containerFlipView.topAnchor.constraint(equalTo: infoContainer.bottomAnchor, constant: 50),
             containerFlipView.heightAnchor.constraint(equalToConstant: 260),
             containerFlipView.widthAnchor.constraint(equalToConstant: 360),
-            containerFlipView.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+            containerFlipView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            
+            resumoView.topAnchor.constraint(equalTo: containerFlipView.topAnchor, constant: 10),
+            resumoView.centerXAnchor.constraint(equalTo: containerFlipView.centerXAnchor),
+            
+            funcOficialView.topAnchor.constraint(equalTo: resumoView.bottomAnchor, constant: 10),
+            funcOficialView.leadingAnchor.constraint(equalTo: containerFlipView.leadingAnchor, constant: 10),
+            
+            hourFuncOficialView.topAnchor.constraint(equalTo: resumoView.bottomAnchor, constant: 10),
+            hourFuncOficialView.leadingAnchor.constraint(equalTo: funcOficialView.trailingAnchor, constant: 93),
+            hourFuncOficialView.trailingAnchor.constraint(equalTo: containerFlipView.trailingAnchor, constant: -10),
+            
+            funcMeioOficialView.topAnchor.constraint(equalTo: funcOficialView.bottomAnchor, constant: 10),
+            funcMeioOficialView.leadingAnchor.constraint(equalTo: containerFlipView.leadingAnchor, constant: 10),
+            
+            hourFuncMeioOficialView.topAnchor.constraint(equalTo: hourFuncOficialView.bottomAnchor, constant: 10),
+            hourFuncMeioOficialView.leadingAnchor.constraint(equalTo: funcMeioOficialView.trailingAnchor),
+            hourFuncMeioOficialView.trailingAnchor.constraint(equalTo: containerFlipView.trailingAnchor, constant: -25),
             
             
             
@@ -271,7 +350,11 @@ internal class DetailsViewController: UIViewController{
         view.addSubview(stopButton)
         view.addSubview(turnButton)
         view.addSubview(containerFlipView)
-        
+        view.addSubview(resumoView)
+        view.addSubview(funcOficialView)
+        view.addSubview(hourFuncOficialView)
+        view.addSubview(funcMeioOficialView)
+        view.addSubview(hourFuncMeioOficialView)
     }
     
     internal override func viewDidLayoutSubviews() {
@@ -297,16 +380,32 @@ internal class DetailsViewController: UIViewController{
         
     }
 
+    @objc private func impedimentsTap (_ sender: UIButton){
+        let vc = ImpedimentsViewController()
+        let nav = UINavigationController(rootViewController: vc)
+        nav.modalPresentationStyle = .popover
+        self.present(nav, animated: true)
+    }
     
     @objc private func turnTap(_ sender: UIButton){
         tableView.isHidden.toggle()
         if tableView.isHidden == true{
             titleTable.text = "Relatório"
             containerFlipView.isHidden = false
+            funcOficialView.isHidden = false
+            hourFuncOficialView.isHidden = false
+            resumoView.isHidden = false
+            hourFuncMeioOficialView.isHidden = false
+            funcMeioOficialView.isHidden = false
         }
         else {
             titleTable.text = "Registro de atividades"
             containerFlipView.isHidden = true
+            funcOficialView.isHidden = true
+            hourFuncOficialView.isHidden = true
+            resumoView.isHidden = true
+            hourFuncMeioOficialView.isHidden = true
+            funcMeioOficialView.isHidden = true
         }
         
         

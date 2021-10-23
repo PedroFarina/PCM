@@ -20,6 +20,7 @@
 		173CDB3A271E5031003CE150 /* DetailsTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173CDB39271E5031003CE150 /* DetailsTableViewDataSource.swift */; };
 		173CDB3C271E506E003CE150 /* DetailsTableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173CDB3B271E506E003CE150 /* DetailsTableViewDelegate.swift */; };
 		173CDB3E271E5309003CE150 /* CellStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173CDB3D271E5309003CE150 /* CellStyle.swift */; };
+		17E3CE682723B63000C50648 /* ImpedimentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E3CE672723B63000C50648 /* ImpedimentsViewController.swift */; };
 		8D4E1321271C99E800709E62 /* ActivitiesTableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D4E1320271C99E800709E62 /* ActivitiesTableViewDelegate.swift */; };
 		8D4E1324271C9A2300709E62 /* ActivitiesTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D4E1323271C9A2300709E62 /* ActivitiesTableViewDataSource.swift */; };
 /* End PBXBuildFile section */
@@ -39,6 +40,7 @@
 		173CDB39271E5031003CE150 /* DetailsTableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsTableViewDataSource.swift; sourceTree = "<group>"; };
 		173CDB3B271E506E003CE150 /* DetailsTableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsTableViewDelegate.swift; sourceTree = "<group>"; };
 		173CDB3D271E5309003CE150 /* CellStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellStyle.swift; sourceTree = "<group>"; };
+		17E3CE672723B63000C50648 /* ImpedimentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImpedimentsViewController.swift; sourceTree = "<group>"; };
 		8D4E1320271C99E800709E62 /* ActivitiesTableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivitiesTableViewDelegate.swift; sourceTree = "<group>"; };
 		8D4E1323271C9A2300709E62 /* ActivitiesTableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivitiesTableViewDataSource.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -106,6 +108,14 @@
 			path = Details;
 			sourceTree = "<group>";
 		};
+		17E3CE662723B60500C50648 /* Impediments */ = {
+			isa = PBXGroup;
+			children = (
+				17E3CE672723B63000C50648 /* ImpedimentsViewController.swift */,
+			);
+			path = Impediments;
+			sourceTree = "<group>";
+		};
 		8D4E1319271C911B00709E62 /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -116,6 +126,7 @@
 		8D4E131A271C912200709E62 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				17E3CE662723B60500C50648 /* Impediments */,
 				173CDB35271DE00F003CE150 /* Details */,
 				8D4E131B271C912B00709E62 /* Login */,
 				8D4E131D271C91A900709E62 /* Activities */,
@@ -238,6 +249,7 @@
 				173CDB3A271E5031003CE150 /* DetailsTableViewDataSource.swift in Sources */,
 				173CDB2E271515B8003CE150 /* UIColorExtension.swift in Sources */,
 				173CDB142714B740003CE150 /* AppDelegate.swift in Sources */,
+				17E3CE682723B63000C50648 /* ImpedimentsViewController.swift in Sources */,
 				173CDB37271DE02C003CE150 /* DetailsViewController.swift in Sources */,
 				173CDB322717D63C003CE150 /* ActivitiesViewController.swift in Sources */,
 				173CDB162714B740003CE150 /* SceneDelegate.swift in Sources */,
