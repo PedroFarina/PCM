@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 internal class CellStyle: UITableViewCell {
-    public var comentAtv: UILabel = {
+    public var atvComent: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .preferredFont(forTextStyle: .body)
@@ -36,22 +36,20 @@ internal class CellStyle: UITableViewCell {
     
     internal lazy var Constraints: [NSLayoutConstraint] = {
         [
-            comentAtv.topAnchor.constraint(equalTo: self.topAnchor, constant: 14),
-            comentAtv.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 10)
+            atvComent.topAnchor.constraint(equalTo: self.topAnchor, constant: 14),
+            atvComent.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 10)
         ]
     }()
     
     internal override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        self.addSubview(comentAtv)
-//        self.addSubview(dataComent)
-//        self.addSubview(horaComent)
+        self.addSubview(atvComent)
         
         NSLayoutConstraint.activate(Constraints)
     }
     
     required init? (coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+       return nil
     }
     
     
