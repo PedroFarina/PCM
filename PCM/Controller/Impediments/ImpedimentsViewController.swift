@@ -9,6 +9,19 @@ import UIKit
 
 internal class ImpedimentsViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     
+    private lazy var exitButton: UIBarButtonItem = {
+        var exitButton = UIBarButtonItem()
+        exitButton = UIBarButtonItem(title: "Finalizar", style: UIBarButtonItem.Style.plain, target: self, action: #selector(exitTap(_:)))
+        exitButton.tintColor = .buttonColor
+        return exitButton
+    }()
+    
+    private lazy var cancelButton: UIBarButtonItem = {
+        var exitButton = UIBarButtonItem()
+        exitButton = UIBarButtonItem(title: "Cancelar", style: UIBarButtonItem.Style.plain, target: self, action: #selector(exitTap(_:)))
+        exitButton.tintColor = .buttonColor
+        return exitButton
+    }()
     
     private var categoriaTitle: UILabel = {
         let label = UILabel()
@@ -146,6 +159,9 @@ internal class ImpedimentsViewController: UIViewController, UIPickerViewDelegate
         appearance.configureWithOpaqueBackground()
         navigationController?.navigationBar.scrollEdgeAppearance = appearance
         self.navigationItem.title = "Impedimentos"
+        
+        navigationItem.rightBarButtonItem = exitButton
+        navigationItem.leftBarButtonItem = cancelButton
 
         
         view.addSubview(categoriaTitle)
@@ -179,10 +195,10 @@ internal class ImpedimentsViewController: UIViewController, UIPickerViewDelegate
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         if pickerView.tag == 1 {
-            return "oi"
+            return "Equipamento"
         }
         else {
-            return "nice"
+            return "Manutenção"
         }
     }
 
@@ -194,6 +210,10 @@ internal class ImpedimentsViewController: UIViewController, UIPickerViewDelegate
             hour = hour + 1
         }
         addTimeLabel.text = "\(hour)h \(min)m"
+    }
+    
+    @objc func exitTap(_: UIButton){
+        self.dismiss(animated: true)
     }
     
 }
