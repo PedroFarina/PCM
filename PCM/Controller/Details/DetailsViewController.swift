@@ -235,7 +235,7 @@ internal class DetailsViewController: UIViewController {
     // TODO: verificar se essa função realmente será necessária quando mergear essa PR na develop
     private lazy var backButton: UIBarButtonItem = {
         var backButton = UIBarButtonItem()
-        backButton = UIBarButtonItem(title: "Atividades", style: UIBarButtonItem.Style.plain, target: self, action: #selector(returnTap(_:)))
+        backButton = UIBarButtonItem(title: "Voltar", style: UIBarButtonItem.Style.plain, target: self, action: #selector(returnTap(_:)))
         backButton.tintColor = .buttonColor
         return backButton
     }()
@@ -384,6 +384,7 @@ internal class DetailsViewController: UIViewController {
     }
     
     @objc private func returnTap (_ sender: UIButton) {
+        self.dismiss(animated: true)
         
     }
 

@@ -8,7 +8,5 @@
 import UIKit
 
 internal class ActivitiesTableViewDelegate: NSObject, UITableViewDelegate {
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("Selecionou")
-    }
+   
 }
