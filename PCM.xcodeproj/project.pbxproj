@@ -35,6 +35,7 @@
 		BD7AE385272B3F3C0048B8D3 /* ReportCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD7AE384272B3F3C0048B8D3 /* ReportCellView.swift */; };
 		BD7AE388272B40200048B8D3 /* ReportCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD7AE387272B40200048B8D3 /* ReportCellViewModel.swift */; };
 		BDDD267F272B44B300153A53 /* ReportContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDDD267E272B44B300153A53 /* ReportContainerView.swift */; };
+		BDDD2681272B488100153A53 /* ReportContainerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDDD2680272B488100153A53 /* ReportContainerViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -67,6 +68,7 @@
 		BD7AE384272B3F3C0048B8D3 /* ReportCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportCellView.swift; sourceTree = "<group>"; };
 		BD7AE387272B40200048B8D3 /* ReportCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportCellViewModel.swift; sourceTree = "<group>"; };
 		BDDD267E272B44B300153A53 /* ReportContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportContainerView.swift; sourceTree = "<group>"; };
+		BDDD2680272B488100153A53 /* ReportContainerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportContainerViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -263,6 +265,7 @@
 			isa = PBXGroup;
 			children = (
 				BD7AE387272B40200048B8D3 /* ReportCellViewModel.swift */,
+				BDDD2680272B488100153A53 /* ReportContainerViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -349,6 +352,7 @@
 				8D32D860272B37BD005581BB /* WorkingUnit.swift in Sources */,
 				173CDB2C2714C083003CE150 /* LoginViewController.swift in Sources */,
 				173CDB3A271E5031003CE150 /* ActivityLogTableViewDataSource.swift in Sources */,
+				BDDD2681272B488100153A53 /* ReportContainerViewModel.swift in Sources */,
 				173CDB2E271515B8003CE150 /* UIColorExtension.swift in Sources */,
 				173CDB142714B740003CE150 /* AppDelegate.swift in Sources */,
 				17E3CE6B2724F41400C50648 /* ImpedimentsPickerViewDataSource.swift in Sources */,

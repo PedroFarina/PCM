@@ -62,6 +62,8 @@ final class ReportContainerView: UIStackView {
     private func setupStackView() {
         spacing = 10
         axis = .vertical
+
+        backgroundColor = .white
     }
 
     private func setupViewHierarchy() {
