@@ -7,7 +7,11 @@
 import Foundation
 import UIKit
 
-internal class ImpedimentsViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
+internal class ImpedimentsViewController: UIViewController {
+
+    private var currentCategory: PCMImpeditiveCategory? = EquipmentCategory()
+
+    private let categories: [PCMImpeditiveCategory]
     
     private lazy var exitButton: UIBarButtonItem = {
         var exitButton = UIBarButtonItem()
@@ -20,6 +24,7 @@ internal class ImpedimentsViewController: UIViewController, UIPickerViewDelegate
         var exitButton = UIBarButtonItem()
         exitButton = UIBarButtonItem(title: "Cancelar", style: UIBarButtonItem.Style.plain, target: self, action: #selector(exitTap(_:)))
         exitButton.tintColor = .buttonColor
+        
         return exitButton
     }()
     
@@ -112,7 +117,6 @@ internal class ImpedimentsViewController: UIViewController, UIPickerViewDelegate
         return containerView
     }()
     
-    
     private lazy var constraints: [NSLayoutConstraint] = {
         [
             categoriaTitle.topAnchor.constraint(equalTo: view.topAnchor, constant: view.frame.height * 0.135),
@@ -144,14 +148,20 @@ internal class ImpedimentsViewController: UIViewController, UIPickerViewDelegate
             
             buttonTime.topAnchor.constraint(equalTo: addTimeView.topAnchor, constant: 12),
             buttonTime.centerXAnchor.constraint(equalTo: addTimeView.centerXAnchor, constant: 30),
-            
-        
-            
-            
-            
         ]
     }()
-    
+
+    init(categories: [PCMImpeditiveCategory]) {
+        self.categories = categories
+
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    @available(*, unavailable)
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
     internal override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .detailsBg
@@ -163,7 +173,6 @@ internal class ImpedimentsViewController: UIViewController, UIPickerViewDelegate
         navigationItem.rightBarButtonItem = exitButton
         navigationItem.leftBarButtonItem = cancelButton
 
-        
         view.addSubview(categoriaTitle)
         view.addSubview(pickerViewCategoria)
         view.addSubview(subCategoriaTitle)
@@ -172,34 +181,10 @@ internal class ImpedimentsViewController: UIViewController, UIPickerViewDelegate
         view.addSubview(addTimeView)
         view.addSubview(addTimeLabel)
         view.addSubview(buttonTime)
-
     }
     
     internal override func viewDidLayoutSubviews() {
         NSLayoutConstraint.activate(constraints)
-    }
-    
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 1
-        
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        if pickerView.tag == 1 {
-            return 3
-        }
-        else {
-            return 5
-        }
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        if pickerView.tag == 1 {
-            return "Equipamento"
-        }
-        else {
-            return "Manutenção"
-        }
     }
 
     @objc func includeTap(_: UIButton){
@@ -215,6 +200,48 @@ internal class ImpedimentsViewController: UIViewController, UIPickerViewDelegate
     @objc func exitTap(_: UIButton){
         self.dismiss(animated: true)
     }
-    
+}
+
+extension ImpedimentsViewController: UIPickerViewDataSource {
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        guard pickerView.tag == 2 else {
+            return categories.count
+        }
+
+        guard let category = currentCategory else {
+            return 0
+        }
+
+        return category.subcategories.count
+    }
+
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        guard pickerView.tag == 2 else {
+            return categories[row].description
+        }
+
+        guard let category = currentCategory else {
+            return ""
+        }
+
+        return category.subcategories[row].description
+    }
+}
+
+extension ImpedimentsViewController: UIPickerViewDelegate {
+
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        guard pickerView.tag == 1 else {
+            return
+        }
+
+        currentCategory = ImpeditiveCategories(rawValue: row)?.categoryValue
+        pickerViewSubCategoria.reloadAllComponents()
+        pickerViewSubCategoria.selectRow(0, inComponent: 0, animated: true)
+    }
 }
 

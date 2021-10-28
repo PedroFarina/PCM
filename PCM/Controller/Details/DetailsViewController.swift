@@ -385,7 +385,7 @@ internal class DetailsViewController: UIViewController {
     }
 
     @objc private func impedimentsTap (_ sender: UIButton){
-        let vc = ImpedimentsViewController()
+        let vc = ImpedimentsViewController(categories: [EquipmentCategory(), WorkerCategory(), MaterialCategory(), NatureCategory()])
         let nav = UINavigationController(rootViewController: vc)
         nav.modalPresentationStyle = .popover
         self.present(nav, animated: true)
