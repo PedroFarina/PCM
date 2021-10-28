@@ -97,7 +97,7 @@ internal class ActivitiesViewController: UIViewController, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let vc = DetailsViewController()
+        let vc = DetailsViewController(with: tableViewDataSource.activityAt(indexPath.row))
         let nav = UINavigationController(rootViewController: vc)
         nav.modalPresentationStyle = .fullScreen
         self.present(nav, animated: true)

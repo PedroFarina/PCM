@@ -10,12 +10,18 @@ import Simple_QR_Reader
 import UIKit
 
 internal class DetailsViewController: UIViewController {
-    
-    private lazy var qrViewController: SimpleQRViewController = {
-        let viewController = SimpleQRViewController()
-        viewController.delegate = self
-        return viewController
-    }()
+
+    private let activity: PCMActivity
+
+    init(with activity: PCMActivity) {
+        self.activity = activity
+        super.init(nibName: nil, bundle: nil)
+    }
+    required init?(coder: NSCoder) {
+        return nil
+    }
+
+    private lazy var referenceDate: Date = activity.startedAt
     
     private lazy var conclusionButton: UIBarButtonItem = {
         var conclusionButton = UIBarButtonItem()
@@ -84,7 +90,7 @@ internal class DetailsViewController: UIViewController {
         return button
     }()
     
-    private let tableViewDataSource = DetailsTableViewDataSource()
+    private lazy var tableViewDataSource = ActivityLogTableViewDataSource(with: activity)
     private let tableViewDelegate = DetailsTableViewDelegate()
     private lazy var tableView: UITableView = {
         let table = UITableView()
@@ -93,6 +99,7 @@ internal class DetailsViewController: UIViewController {
         table.rowHeight = 50
         table.dataSource = tableViewDataSource
         table.delegate = tableViewDelegate
+        tableView.register(ActivityLogTableViewCell.self, forCellReuseIdentifier: "cell")
         return table
     }()
         
@@ -125,24 +132,6 @@ internal class DetailsViewController: UIViewController {
         return containerView
     }()
     
-    private var day: Int = {
-        var day = Int()
-        day = 0
-        return day
-    }()
-    
-    private var hour: Int = {
-        var hour = Int()
-        hour = 0
-        return hour
-    }()
-    
-    private var min: Int = {
-        var min = Int()
-        min = 0
-        return min
-    }()
-    
     private var addTimeLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -153,12 +142,12 @@ internal class DetailsViewController: UIViewController {
         return label
     }()
     
-    private var infoText: UILabel = {
+    private lazy var infoText: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .preferredFont(forTextStyle: .body)
         label.adjustsFontForContentSizeCategory = true
-        label.text = "Construção do segundo andar do prédio Chateaux d’Artigny"
+        label.text = activity.description
         label.lineBreakMode = NSLineBreakMode.byWordWrapping
         label.numberOfLines = 3
         label.textColor = .blackProt
@@ -340,7 +329,7 @@ internal class DetailsViewController: UIViewController {
         let appearance = UINavigationBarAppearance()
         appearance.configureWithOpaqueBackground()
         navigationController?.navigationBar.scrollEdgeAppearance = appearance
-        self.navigationItem.title = "Atividade X"
+        self.navigationItem.title = activity.name
         navigationItem.rightBarButtonItem = conclusionButton
         navigationItem.leftBarButtonItem = backButton
         
@@ -367,16 +356,13 @@ internal class DetailsViewController: UIViewController {
     internal override func viewDidLayoutSubviews() {
         NSLayoutConstraint.activate(constraints)
     }
-    
+
     @objc private func includeTap (_ sender: UIButton) {
-        day = day + 1
-        hour = hour + 1
-        min = min + 30
-        if min == 60 {
-            min = 0
-            hour = hour + 1
-        }
-        addTimeLabel.text = "\(day)d \(hour)h \(min)m"
+        referenceDate = referenceDate.addingTimeInterval(600)
+        let day = Calendar.current.calculateComponentBetween(referenceDate, and: activity.startedAt, with: .day)
+        let hour = Calendar.current.calculateComponentBetween(referenceDate, and: activity.startedAt, with: .hour)
+        let minute = Calendar.current.calculateComponentBetween(referenceDate, and: activity.startedAt, with: .minute)
+        addTimeLabel.text = "\(day)d \(hour)h \(minute)m"
     }
     
     @objc private func conclusionTap (_ sender: UIButton) {
@@ -418,9 +404,10 @@ internal class DetailsViewController: UIViewController {
         
         
     }
-    // MARK: - BLABLA
+
     @objc private func qrSessionTap (_ : UIButton){
-        let vc = qrViewController
+        let vc = SimpleQRViewController()
+        vc.delegate = self
         let nav = UINavigationController(rootViewController: vc)
         nav.modalPresentationStyle = .fullScreen
         self.present(nav, animated: true)

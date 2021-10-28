@@ -26,4 +26,8 @@ internal class ActivitiesTableViewDataSource: NSObject, UITableViewDataSource {
     internal func filterBy(_ state: PCMActivityState) {
         self.filter = state
     }
+
+    internal func activityAt(_ index: Int) -> PCMActivity {
+        return filteredActivities[index]
+    }
 }
