@@ -8,17 +8,22 @@
 import UIKit
 
 internal class ActivitiesTableViewDataSource: NSObject, UITableViewDataSource {
-    private var atividades: [String] = {
-        let atividades: [String] = ["Atividade 1", "Atividade 2", "Atividade 3", "Atividade 4", "Atividade 5", "Atividade 6"]
-        return atividades
-    }()
-
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return atividades.count
+    private var filter: PCMActivityState = .todo
+    private var activities: [PCMActivity] = ModelController.getMockedActivities()
+    private var filteredActivities: [PCMActivity] {
+        activities.filter({ $0.state == filter })
     }
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+
+    internal func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return filteredActivities.count
+    }
+    internal func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell()
-        cell.textLabel?.text = atividades[indexPath.row]
+        cell.textLabel?.text = filteredActivities[indexPath.row].name
         return cell
+    }
+
+    internal func filterBy(_ state: PCMActivityState) {
+        self.filter = state
     }
 }
