@@ -16,9 +16,9 @@ internal enum PCMActivityState {
 internal protocol PCMActivity {
     var name: String { get }
     var description: String { get }
-    var timeSpent: TimeInterval { get }
     var state: PCMActivityState { get }
     var serviceValue: Double { get }
+    var startedAt: Date { get }
 
     var workingUnits: [PCMWorkingUnit] { get }
     var impeditives: [PCMImpeditive] { get }
