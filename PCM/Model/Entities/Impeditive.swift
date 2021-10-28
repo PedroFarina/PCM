@@ -7,9 +7,13 @@
 
 import Foundation
 
-internal protocol PCMImpeditive {
-    var category: String { get }
+internal protocol PCMImpeditive: PCMActivityLogItem {
+    var category: PCMImpeditiveCategory { get }
     var subcategory: String { get }
     var timeSpent: TimeInterval { get }
-    var registeredAt: Date { get }
+}
+
+internal protocol PCMImpeditiveCategory {
+    var description: String { get }
+    var subcategories: [String] { get }
 }

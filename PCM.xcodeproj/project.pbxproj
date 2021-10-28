@@ -26,8 +26,8 @@
 		8D32D85E272B379F005581BB /* Activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D32D85D272B379F005581BB /* Activity.swift */; };
 		8D32D860272B37BD005581BB /* WorkingUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D32D85F272B37BD005581BB /* WorkingUnit.swift */; };
 		8D32D864272B3881005581BB /* Impeditive.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D32D863272B3881005581BB /* Impeditive.swift */; };
-		8D32D866272B38EC005581BB /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D32D865272B38EC005581BB /* Comment.swift */; };
 		8D32D868272B396E005581BB /* ActivityLogItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D32D867272B396E005581BB /* ActivityLogItem.swift */; };
+		8D32D86B272B3BA3005581BB /* ModelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D32D86A272B3BA3005581BB /* ModelController.swift */; };
 		8D4E1321271C99E800709E62 /* ActivitiesTableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D4E1320271C99E800709E62 /* ActivitiesTableViewDelegate.swift */; };
 		8D4E1324271C9A2300709E62 /* ActivitiesTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D4E1323271C9A2300709E62 /* ActivitiesTableViewDataSource.swift */; };
 /* End PBXBuildFile section */
@@ -53,8 +53,8 @@
 		8D32D85D272B379F005581BB /* Activity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Activity.swift; sourceTree = "<group>"; };
 		8D32D85F272B37BD005581BB /* WorkingUnit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkingUnit.swift; sourceTree = "<group>"; };
 		8D32D863272B3881005581BB /* Impeditive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Impeditive.swift; sourceTree = "<group>"; };
-		8D32D865272B38EC005581BB /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 		8D32D867272B396E005581BB /* ActivityLogItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityLogItem.swift; sourceTree = "<group>"; };
+		8D32D86A272B3BA3005581BB /* ModelController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelController.swift; sourceTree = "<group>"; };
 		8D4E1320271C99E800709E62 /* ActivitiesTableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivitiesTableViewDelegate.swift; sourceTree = "<group>"; };
 		8D4E1323271C9A2300709E62 /* ActivitiesTableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivitiesTableViewDataSource.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -145,10 +145,17 @@
 				8D32D85D272B379F005581BB /* Activity.swift */,
 				8D32D85F272B37BD005581BB /* WorkingUnit.swift */,
 				8D32D863272B3881005581BB /* Impeditive.swift */,
-				8D32D865272B38EC005581BB /* Comment.swift */,
 				8D32D867272B396E005581BB /* ActivityLogItem.swift */,
 			);
 			path = Entities;
+			sourceTree = "<group>";
+		};
+		8D32D869272B3B8F005581BB /* Database */ = {
+			isa = PBXGroup;
+			children = (
+				8D32D86A272B3BA3005581BB /* ModelController.swift */,
+			);
+			path = Database;
 			sourceTree = "<group>";
 		};
 		8D4E1319271C911B00709E62 /* View */ = {
@@ -180,6 +187,7 @@
 		8D4E131C271C915E00709E62 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				8D32D869272B3B8F005581BB /* Database */,
 				8D32D85C272B3794005581BB /* Entities */,
 				17E3CE692724F3F500C50648 /* Impediments */,
 				173CDB38271E5016003CE150 /* Details */,
@@ -283,6 +291,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8D32D85E272B379F005581BB /* Activity.swift in Sources */,
+				8D32D86B272B3BA3005581BB /* ModelController.swift in Sources */,
 				8D32D860272B37BD005581BB /* WorkingUnit.swift in Sources */,
 				173CDB2C2714C083003CE150 /* LoginViewController.swift in Sources */,
 				173CDB3A271E5031003CE150 /* DetailsTableViewDataSource.swift in Sources */,
@@ -299,7 +308,6 @@
 				173CDB3C271E506E003CE150 /* DetailsTableViewDelegate.swift in Sources */,
 				8D4E1324271C9A2300709E62 /* ActivitiesTableViewDataSource.swift in Sources */,
 				8D4E1321271C99E800709E62 /* ActivitiesTableViewDelegate.swift in Sources */,
-				8D32D866272B38EC005581BB /* Comment.swift in Sources */,
 				173CDB3E271E5309003CE150 /* CellStyle.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
