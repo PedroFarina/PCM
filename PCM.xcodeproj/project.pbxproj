@@ -23,6 +23,11 @@
 		17E3CE682723B63000C50648 /* ImpedimentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E3CE672723B63000C50648 /* ImpedimentsViewController.swift */; };
 		17E3CE6B2724F41400C50648 /* ImpedimentsPickerViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E3CE6A2724F41400C50648 /* ImpedimentsPickerViewDataSource.swift */; };
 		17E3CE6D2724F46200C50648 /* ImpedimentsPickerViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E3CE6C2724F46200C50648 /* ImpedimentsPickerViewDelegate.swift */; };
+		8D32D85E272B379F005581BB /* Activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D32D85D272B379F005581BB /* Activity.swift */; };
+		8D32D860272B37BD005581BB /* WorkingUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D32D85F272B37BD005581BB /* WorkingUnit.swift */; };
+		8D32D864272B3881005581BB /* Impeditive.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D32D863272B3881005581BB /* Impeditive.swift */; };
+		8D32D866272B38EC005581BB /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D32D865272B38EC005581BB /* Comment.swift */; };
+		8D32D868272B396E005581BB /* ActivityLogItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D32D867272B396E005581BB /* ActivityLogItem.swift */; };
 		8D4E1321271C99E800709E62 /* ActivitiesTableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D4E1320271C99E800709E62 /* ActivitiesTableViewDelegate.swift */; };
 		8D4E1324271C9A2300709E62 /* ActivitiesTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D4E1323271C9A2300709E62 /* ActivitiesTableViewDataSource.swift */; };
 /* End PBXBuildFile section */
@@ -45,6 +50,11 @@
 		17E3CE672723B63000C50648 /* ImpedimentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImpedimentsViewController.swift; sourceTree = "<group>"; };
 		17E3CE6A2724F41400C50648 /* ImpedimentsPickerViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImpedimentsPickerViewDataSource.swift; sourceTree = "<group>"; };
 		17E3CE6C2724F46200C50648 /* ImpedimentsPickerViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImpedimentsPickerViewDelegate.swift; sourceTree = "<group>"; };
+		8D32D85D272B379F005581BB /* Activity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Activity.swift; sourceTree = "<group>"; };
+		8D32D85F272B37BD005581BB /* WorkingUnit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkingUnit.swift; sourceTree = "<group>"; };
+		8D32D863272B3881005581BB /* Impeditive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Impeditive.swift; sourceTree = "<group>"; };
+		8D32D865272B38EC005581BB /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
+		8D32D867272B396E005581BB /* ActivityLogItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityLogItem.swift; sourceTree = "<group>"; };
 		8D4E1320271C99E800709E62 /* ActivitiesTableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivitiesTableViewDelegate.swift; sourceTree = "<group>"; };
 		8D4E1323271C9A2300709E62 /* ActivitiesTableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivitiesTableViewDataSource.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -129,6 +139,18 @@
 			path = Impediments;
 			sourceTree = "<group>";
 		};
+		8D32D85C272B3794005581BB /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				8D32D85D272B379F005581BB /* Activity.swift */,
+				8D32D85F272B37BD005581BB /* WorkingUnit.swift */,
+				8D32D863272B3881005581BB /* Impeditive.swift */,
+				8D32D865272B38EC005581BB /* Comment.swift */,
+				8D32D867272B396E005581BB /* ActivityLogItem.swift */,
+			);
+			path = Entities;
+			sourceTree = "<group>";
+		};
 		8D4E1319271C911B00709E62 /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -158,6 +180,7 @@
 		8D4E131C271C915E00709E62 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				8D32D85C272B3794005581BB /* Entities */,
 				17E3CE692724F3F500C50648 /* Impediments */,
 				173CDB38271E5016003CE150 /* Details */,
 				8D4E1322271C9A1600709E62 /* Activities */,
@@ -259,6 +282,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8D32D85E272B379F005581BB /* Activity.swift in Sources */,
+				8D32D860272B37BD005581BB /* WorkingUnit.swift in Sources */,
 				173CDB2C2714C083003CE150 /* LoginViewController.swift in Sources */,
 				173CDB3A271E5031003CE150 /* DetailsTableViewDataSource.swift in Sources */,
 				173CDB2E271515B8003CE150 /* UIColorExtension.swift in Sources */,
@@ -266,12 +291,15 @@
 				17E3CE6B2724F41400C50648 /* ImpedimentsPickerViewDataSource.swift in Sources */,
 				17E3CE682723B63000C50648 /* ImpedimentsViewController.swift in Sources */,
 				173CDB37271DE02C003CE150 /* DetailsViewController.swift in Sources */,
+				8D32D864272B3881005581BB /* Impeditive.swift in Sources */,
+				8D32D868272B396E005581BB /* ActivityLogItem.swift in Sources */,
 				173CDB322717D63C003CE150 /* ActivitiesViewController.swift in Sources */,
 				173CDB162714B740003CE150 /* SceneDelegate.swift in Sources */,
 				17E3CE6D2724F46200C50648 /* ImpedimentsPickerViewDelegate.swift in Sources */,
 				173CDB3C271E506E003CE150 /* DetailsTableViewDelegate.swift in Sources */,
 				8D4E1324271C9A2300709E62 /* ActivitiesTableViewDataSource.swift in Sources */,
 				8D4E1321271C99E800709E62 /* ActivitiesTableViewDelegate.swift in Sources */,
+				8D32D866272B38EC005581BB /* Comment.swift in Sources */,
 				173CDB3E271E5309003CE150 /* CellStyle.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
