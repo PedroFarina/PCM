@@ -30,6 +30,12 @@
 		8D32D86B272B3BA3005581BB /* ModelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D32D86A272B3BA3005581BB /* ModelController.swift */; };
 		8D4E1321271C99E800709E62 /* ActivitiesTableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D4E1320271C99E800709E62 /* ActivitiesTableViewDelegate.swift */; };
 		8D4E1324271C9A2300709E62 /* ActivitiesTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D4E1323271C9A2300709E62 /* ActivitiesTableViewDataSource.swift */; };
+		BD7AE380272B37D80048B8D3 /* ActivitiesViewControllerTableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD7AE37F272B37D80048B8D3 /* ActivitiesViewControllerTableViewDelegate.swift */; };
+		BD7AE385272B3F3C0048B8D3 /* ReportCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD7AE384272B3F3C0048B8D3 /* ReportCellView.swift */; };
+		BD7AE388272B40200048B8D3 /* ReportCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD7AE387272B40200048B8D3 /* ReportCellViewModel.swift */; };
+		BDDD267F272B44B300153A53 /* ReportContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDDD267E272B44B300153A53 /* ReportContainerView.swift */; };
+		BDDD2681272B488100153A53 /* ReportContainerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDDD2680272B488100153A53 /* ReportContainerViewModel.swift */; };
+		BDDD2685272B4C5A00153A53 /* ActivityLogTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDDD2684272B4C5A00153A53 /* ActivityLogTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -57,6 +63,12 @@
 		8D32D86A272B3BA3005581BB /* ModelController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelController.swift; sourceTree = "<group>"; };
 		8D4E1320271C99E800709E62 /* ActivitiesTableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivitiesTableViewDelegate.swift; sourceTree = "<group>"; };
 		8D4E1323271C9A2300709E62 /* ActivitiesTableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivitiesTableViewDataSource.swift; sourceTree = "<group>"; };
+		BD7AE37F272B37D80048B8D3 /* ActivitiesViewControllerTableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivitiesViewControllerTableViewDelegate.swift; sourceTree = "<group>"; };
+		BD7AE384272B3F3C0048B8D3 /* ReportCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportCellView.swift; sourceTree = "<group>"; };
+		BD7AE387272B40200048B8D3 /* ReportCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportCellViewModel.swift; sourceTree = "<group>"; };
+		BDDD267E272B44B300153A53 /* ReportContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportContainerView.swift; sourceTree = "<group>"; };
+		BDDD2680272B488100153A53 /* ReportContainerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportContainerViewModel.swift; sourceTree = "<group>"; };
+		BDDD2684272B4C5A00153A53 /* ActivityLogTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityLogTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,6 +88,7 @@
 			children = (
 				173CDB122714B740003CE150 /* PCM */,
 				173CDB112714B740003CE150 /* Products */,
+				BDDD2682272B4C3800153A53 /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -91,7 +104,7 @@
 			isa = PBXGroup;
 			children = (
 				8D4E131C271C915E00709E62 /* Model */,
-				8D4E1319271C911B00709E62 /* View */,
+				BD7AE381272B3EF10048B8D3 /* Views */,
 				8D4E131A271C912200709E62 /* Controller */,
 				173CDB2D271515B8003CE150 /* UIColorExtension.swift */,
 				173CDB132714B740003CE150 /* AppDelegate.swift */,
@@ -117,6 +130,7 @@
 			isa = PBXGroup;
 			children = (
 				173CDB39271E5031003CE150 /* ActivityLogTableViewDataSource.swift */,
+				BD7AE386272B3FF70048B8D3 /* ViewModel */,
 			);
 			path = Details;
 			sourceTree = "<group>";
@@ -157,14 +171,6 @@
 			path = Database;
 			sourceTree = "<group>";
 		};
-		8D4E1319271C911B00709E62 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				173CDB3D271E5309003CE150 /* ActivityLogTableViewCell.swift */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
 		8D4E131A271C912200709E62 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
@@ -199,6 +205,7 @@
 		8D4E131D271C91A900709E62 /* Activities */ = {
 			isa = PBXGroup;
 			children = (
+				BD7AE37E272B37C60048B8D3 /* Delegate */,
 				173CDB312717D63C003CE150 /* ActivitiesViewController.swift */,
 				8D4E1320271C99E800709E62 /* ActivitiesTableViewDelegate.swift */,
 			);
@@ -211,6 +218,65 @@
 				8D4E1323271C9A2300709E62 /* ActivitiesTableViewDataSource.swift */,
 			);
 			path = Activities;
+			sourceTree = "<group>";
+		};
+		BD7AE37E272B37C60048B8D3 /* Delegate */ = {
+			isa = PBXGroup;
+			children = (
+				BD7AE37F272B37D80048B8D3 /* ActivitiesViewControllerTableViewDelegate.swift */,
+			);
+			path = Delegate;
+			sourceTree = "<group>";
+		};
+		BD7AE381272B3EF10048B8D3 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				BDDD2686272B4C6200153A53 /* Activity */,
+				BD7AE382272B3F010048B8D3 /* Details */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		BD7AE382272B3F010048B8D3 /* Details */ = {
+			isa = PBXGroup;
+			children = (
+				BD7AE383272B3F0B0048B8D3 /* Container */,
+			);
+			path = Details;
+			sourceTree = "<group>";
+		};
+		BD7AE383272B3F0B0048B8D3 /* Container */ = {
+			isa = PBXGroup;
+			children = (
+				BD7AE384272B3F3C0048B8D3 /* ReportCellView.swift */,
+				BDDD267E272B44B300153A53 /* ReportContainerView.swift */,
+			);
+			path = Container;
+			sourceTree = "<group>";
+		};
+		BD7AE386272B3FF70048B8D3 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				BD7AE387272B40200048B8D3 /* ReportCellViewModel.swift */,
+				BDDD2680272B488100153A53 /* ReportContainerViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		BDDD2682272B4C3800153A53 /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				173CDB3D271E5309003CE150 /* ActivityLogTableViewCell.swift */,
+			);
+			name = "Recovered References";
+			sourceTree = "<group>";
+		};
+		BDDD2686272B4C6200153A53 /* Activity */ = {
+			isa = PBXGroup;
+			children = (
+				BDDD2684272B4C5A00153A53 /* ActivityLogTableViewCell.swift */,
+			);
+			path = Activity;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -295,6 +361,7 @@
 				8D32D860272B37BD005581BB /* WorkingUnit.swift in Sources */,
 				173CDB2C2714C083003CE150 /* LoginViewController.swift in Sources */,
 				173CDB3A271E5031003CE150 /* ActivityLogTableViewDataSource.swift in Sources */,
+				BDDD2681272B488100153A53 /* ReportContainerViewModel.swift in Sources */,
 				173CDB2E271515B8003CE150 /* UIColorExtension.swift in Sources */,
 				173CDB142714B740003CE150 /* AppDelegate.swift in Sources */,
 				17E3CE6B2724F41400C50648 /* ImpedimentsPickerViewDataSource.swift in Sources */,
@@ -302,6 +369,9 @@
 				173CDB37271DE02C003CE150 /* DetailsViewController.swift in Sources */,
 				8D32D864272B3881005581BB /* Impeditive.swift in Sources */,
 				8D32D868272B396E005581BB /* ActivityLogItem.swift in Sources */,
+				BDDD2685272B4C5A00153A53 /* ActivityLogTableViewCell.swift in Sources */,
+				BD7AE385272B3F3C0048B8D3 /* ReportCellView.swift in Sources */,
+				BD7AE388272B40200048B8D3 /* ReportCellViewModel.swift in Sources */,
 				173CDB322717D63C003CE150 /* ActivitiesViewController.swift in Sources */,
 				173CDB162714B740003CE150 /* SceneDelegate.swift in Sources */,
 				17E3CE6D2724F46200C50648 /* ImpedimentsPickerViewDelegate.swift in Sources */,
@@ -309,6 +379,8 @@
 				8D4E1324271C9A2300709E62 /* ActivitiesTableViewDataSource.swift in Sources */,
 				8D4E1321271C99E800709E62 /* ActivitiesTableViewDelegate.swift in Sources */,
 				173CDB3E271E5309003CE150 /* ActivityLogTableViewCell.swift in Sources */,
+				BDDD267F272B44B300153A53 /* ReportContainerView.swift in Sources */,
+				BD7AE380272B37D80048B8D3 /* ActivitiesViewControllerTableViewDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

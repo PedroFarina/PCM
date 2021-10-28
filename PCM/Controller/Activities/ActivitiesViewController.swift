@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-internal class ActivitiesViewController: UIViewController, UITableViewDelegate {
+internal class ActivitiesViewController: UIViewController {
     
     private lazy var exitButton: UIBarButtonItem = {
         var exitButton = UIBarButtonItem()
@@ -18,14 +18,21 @@ internal class ActivitiesViewController: UIViewController, UITableViewDelegate {
     }()
 
     private let tableViewDataSource = ActivitiesTableViewDataSource()
-//    private let tableViewDelegate = ActivitiesTableViewDelegate()
-    
+
+    private lazy var tableViewDelegate = ActivitiesViewControllerTableViewDelegate { [weak self] in
+        guard let self = self else { return }
+        
+        let detailsViewController = DetailsViewController()
+
+        self.navigationController?.pushViewController(detailsViewController, animated: true)
+    }
+
     private lazy var tableView: UITableView = {
         let table = UITableView()
         table.backgroundColor = .clear
         table.translatesAutoresizingMaskIntoConstraints = false
         table.dataSource = tableViewDataSource
-        table.delegate = self
+        table.delegate = tableViewDelegate
         return table
     }()
     
@@ -94,12 +101,5 @@ internal class ActivitiesViewController: UIViewController, UITableViewDelegate {
             default:
                 break
         }
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let vc = DetailsViewController(with: tableViewDataSource.activityAt(indexPath.row))
-        let nav = UINavigationController(rootViewController: vc)
-        nav.modalPresentationStyle = .fullScreen
-        self.present(nav, animated: true)
     }
 }
