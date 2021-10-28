@@ -10,42 +10,45 @@ import UIKit
 
 final class ReportContainerView: UIStackView {
 
+    private let viewModel: ReportContainerViewModel
+
     private lazy var workersTimeCell: ReportCellView = {
-        let viewModel = ReportCellViewModel(title: "Funcionários", value: "")
+        let viewModel = ReportCellViewModel(title: "Funcionários", value: viewModel.workersTimeValue)
         let cell = ReportCellView(from: viewModel)
 
         return cell
     }()
 
     private lazy var allocatedEquipmentCell: ReportCellView = {
-        let viewModel = ReportCellViewModel(title: "Equipamentos alocados", value: "")
+        let viewModel = ReportCellViewModel(title: "Equipamentos alocados", value: viewModel.allocatedEquipments)
         let cell = ReportCellView(from: viewModel)
 
         return cell
     }()
 
     private lazy var workedHoursCell: ReportCellView = {
-        let viewModel = ReportCellViewModel(title: "Horas trabalhadas", value: "")
+        let viewModel = ReportCellViewModel(title: "Horas trabalhadas", value: viewModel.workedHours)
         let cell = ReportCellView(from: viewModel)
 
         return cell
     }()
 
     private lazy var productiveHoursCell: ReportCellView = {
-        let viewModel = ReportCellViewModel(title: "Horas produtivas", value: "")
+        let viewModel = ReportCellViewModel(title: "Horas produtivas", value: viewModel.productiveHours)
         let cell = ReportCellView(from: viewModel)
 
         return cell
     }()
 
     private lazy var unproductiveHoursCell: ReportCellView = {
-        let viewModel = ReportCellViewModel(title: "Horas improdutivas", value: "")
+        let viewModel = ReportCellViewModel(title: "Horas improdutivas", value: viewModel.unproductiveHours)
         let cell = ReportCellView(from: viewModel)
 
         return cell
     }()
 
-    override init(frame: CGRect) {
+    init(viewModel: ReportContainerViewModel, frame: CGRect = .zero) {
+        self.viewModel = viewModel
 
         super.init(frame: frame)
 

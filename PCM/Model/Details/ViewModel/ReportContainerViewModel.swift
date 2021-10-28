@@ -11,12 +11,12 @@ struct ReportContainerViewModel {
 
     private let activity: PCMActivity
 
-    var workersTimeValue: String {
-        ""
-    }
+    var workersTimeValue: String
 
-    var allocatedEquipment: String {
-        ""
+    var allocatedEquipments: String {
+        let equipments: Int = activity.workingUnits.filter { $0.category == .equipment }.count
+
+        return String(equipments)
     }
 
     var workedHours: String {
@@ -31,7 +31,8 @@ struct ReportContainerViewModel {
         ""
     }
 
-    init(activity: PCMActivity) {
+    init(activity: PCMActivity, workersTimeValue: String) {
         self.activity = activity
+        self.workersTimeValue = workersTimeValue
     }
 }
