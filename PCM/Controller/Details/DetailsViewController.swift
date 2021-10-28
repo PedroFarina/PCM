@@ -370,8 +370,7 @@ internal class DetailsViewController: UIViewController {
     }
     
     @objc private func returnTap (_ sender: UIButton) {
-        self.dismiss(animated: true)
-        
+        navigationController?.popViewController(animated: true)
     }
 
     @objc private func impedimentsTap (_ sender: UIButton){
@@ -447,7 +446,5 @@ extension DetailsViewController: SimpleQROutputDelegate {
     func viewWasDismissed() {
         
     }
-    
-    
 }
  
