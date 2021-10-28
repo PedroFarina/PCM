@@ -31,6 +31,7 @@
 		8D32D86D272B473B005581BB /* Calendar Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D32D86C272B473B005581BB /* Calendar Extension.swift */; };
 		8D4E1321271C99E800709E62 /* ActivitiesTableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D4E1320271C99E800709E62 /* ActivitiesTableViewDelegate.swift */; };
 		8D4E1324271C9A2300709E62 /* ActivitiesTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D4E1323271C9A2300709E62 /* ActivitiesTableViewDataSource.swift */; };
+		BD7AE380272B37D80048B8D3 /* ActivitiesViewControllerTableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD7AE37F272B37D80048B8D3 /* ActivitiesViewControllerTableViewDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -59,6 +60,7 @@
 		8D32D86C272B473B005581BB /* Calendar Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Calendar Extension.swift"; sourceTree = "<group>"; };
 		8D4E1320271C99E800709E62 /* ActivitiesTableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivitiesTableViewDelegate.swift; sourceTree = "<group>"; };
 		8D4E1323271C9A2300709E62 /* ActivitiesTableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivitiesTableViewDataSource.swift; sourceTree = "<group>"; };
+		BD7AE37F272B37D80048B8D3 /* ActivitiesViewControllerTableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivitiesViewControllerTableViewDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -201,6 +203,7 @@
 		8D4E131D271C91A900709E62 /* Activities */ = {
 			isa = PBXGroup;
 			children = (
+				BD7AE37E272B37C60048B8D3 /* Delegate */,
 				173CDB312717D63C003CE150 /* ActivitiesViewController.swift */,
 				8D4E1320271C99E800709E62 /* ActivitiesTableViewDelegate.swift */,
 			);
@@ -213,6 +216,14 @@
 				8D4E1323271C9A2300709E62 /* ActivitiesTableViewDataSource.swift */,
 			);
 			path = Activities;
+			sourceTree = "<group>";
+		};
+		BD7AE37E272B37C60048B8D3 /* Delegate */ = {
+			isa = PBXGroup;
+			children = (
+				BD7AE37F272B37D80048B8D3 /* ActivitiesViewControllerTableViewDelegate.swift */,
+			);
+			path = Delegate;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -312,6 +323,7 @@
 				8D4E1321271C99E800709E62 /* ActivitiesTableViewDelegate.swift in Sources */,
 				8D32D86D272B473B005581BB /* Calendar Extension.swift in Sources */,
 				173CDB3E271E5309003CE150 /* ActivityLogTableViewCell.swift in Sources */,
+				BD7AE380272B37D80048B8D3 /* ActivitiesViewControllerTableViewDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
