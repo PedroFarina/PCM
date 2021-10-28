@@ -93,7 +93,6 @@
 			isa = PBXGroup;
 			children = (
 				8D4E131C271C915E00709E62 /* Model */,
-				8D4E1319271C911B00709E62 /* View */,
 				8D4E131A271C912200709E62 /* Controller */,
 				173CDB2D271515B8003CE150 /* UIColorExtension.swift */,
 				173CDB132714B740003CE150 /* AppDelegate.swift */,
