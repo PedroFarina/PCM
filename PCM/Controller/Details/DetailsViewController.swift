@@ -11,7 +11,7 @@ import UIKit
 
 internal class DetailsViewController: UIViewController {
 
-    private let activity: PCMActivity
+    private var activity: PCMActivity
 
     init(with activity: PCMActivity) {
         self.activity = activity
@@ -20,8 +20,6 @@ internal class DetailsViewController: UIViewController {
     required init?(coder: NSCoder) {
         return nil
     }
-
-    private lazy var referenceDate: Date = activity.startedAt
     
     private lazy var conclusionButton: UIBarButtonItem = {
         var conclusionButton = UIBarButtonItem()
@@ -358,11 +356,8 @@ internal class DetailsViewController: UIViewController {
     }
 
     @objc private func includeTap (_ sender: UIButton) {
-        referenceDate = referenceDate.addingTimeInterval(600)
-        let day = Calendar.current.calculateComponentBetween(referenceDate, and: activity.startedAt, with: .day)
-        let hour = Calendar.current.calculateComponentBetween(referenceDate, and: activity.startedAt, with: .hour)
-        let minute = Calendar.current.calculateComponentBetween(referenceDate, and: activity.startedAt, with: .minute)
-        addTimeLabel.text = "\(day)d \(hour)h \(minute)m"
+        activity.timeElapsed += 6000
+        addTimeLabel.text = activity.getTimeElapsedString()
     }
     
     @objc private func conclusionTap (_ sender: UIButton) {
