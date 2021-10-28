@@ -44,4 +44,14 @@ internal struct ActivityObject: PCMActivity {
         let minutes = Int(timeRemaining/minuteInSeconds)
         return "\(days)d \(hours)h \(minutes)m"
     }
+
+    mutating func addWorkingUnit(_ workingUnit: PCMWorkingUnit) {
+        self.workingUnits.append(workingUnit)
+    }
+    mutating func addComment(_ comment: CommentObject) {
+        self.comments.append(comment)
+    }
+    mutating func addImpeditive(_ impeditive: PCMImpeditive) {
+        self.impeditives.append(impeditive)
+    }
 }
