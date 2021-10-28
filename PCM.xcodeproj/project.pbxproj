@@ -28,6 +28,7 @@
 		8D32D864272B3881005581BB /* Impeditive.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D32D863272B3881005581BB /* Impeditive.swift */; };
 		8D32D868272B396E005581BB /* ActivityLogItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D32D867272B396E005581BB /* ActivityLogItem.swift */; };
 		8D32D86B272B3BA3005581BB /* ModelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D32D86A272B3BA3005581BB /* ModelController.swift */; };
+		8D32D871272B5014005581BB /* ActivityObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D32D870272B5014005581BB /* ActivityObject.swift */; };
 		8D4E1321271C99E800709E62 /* ActivitiesTableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D4E1320271C99E800709E62 /* ActivitiesTableViewDelegate.swift */; };
 		8D4E1324271C9A2300709E62 /* ActivitiesTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D4E1323271C9A2300709E62 /* ActivitiesTableViewDataSource.swift */; };
 		BD7AE380272B37D80048B8D3 /* ActivitiesViewControllerTableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD7AE37F272B37D80048B8D3 /* ActivitiesViewControllerTableViewDelegate.swift */; };
@@ -61,6 +62,7 @@
 		8D32D863272B3881005581BB /* Impeditive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Impeditive.swift; sourceTree = "<group>"; };
 		8D32D867272B396E005581BB /* ActivityLogItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityLogItem.swift; sourceTree = "<group>"; };
 		8D32D86A272B3BA3005581BB /* ModelController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelController.swift; sourceTree = "<group>"; };
+		8D32D870272B5014005581BB /* ActivityObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityObject.swift; sourceTree = "<group>"; };
 		8D4E1320271C99E800709E62 /* ActivitiesTableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivitiesTableViewDelegate.swift; sourceTree = "<group>"; };
 		8D4E1323271C9A2300709E62 /* ActivitiesTableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivitiesTableViewDataSource.swift; sourceTree = "<group>"; };
 		BD7AE37F272B37D80048B8D3 /* ActivitiesViewControllerTableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivitiesViewControllerTableViewDelegate.swift; sourceTree = "<group>"; };
@@ -167,6 +169,7 @@
 			isa = PBXGroup;
 			children = (
 				8D32D86A272B3BA3005581BB /* ModelController.swift */,
+				8D32D870272B5014005581BB /* ActivityObject.swift */,
 			);
 			path = Database;
 			sourceTree = "<group>";
@@ -368,6 +371,7 @@
 				17E3CE682723B63000C50648 /* ImpedimentsViewController.swift in Sources */,
 				173CDB37271DE02C003CE150 /* DetailsViewController.swift in Sources */,
 				8D32D864272B3881005581BB /* Impeditive.swift in Sources */,
+				8D32D871272B5014005581BB /* ActivityObject.swift in Sources */,
 				8D32D868272B396E005581BB /* ActivityLogItem.swift in Sources */,
 				BDDD2685272B4C5A00153A53 /* ActivityLogTableViewCell.swift in Sources */,
 				BD7AE385272B3F3C0048B8D3 /* ReportCellView.swift in Sources */,
