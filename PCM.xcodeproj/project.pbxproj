@@ -28,7 +28,6 @@
 		8D32D864272B3881005581BB /* Impeditive.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D32D863272B3881005581BB /* Impeditive.swift */; };
 		8D32D868272B396E005581BB /* ActivityLogItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D32D867272B396E005581BB /* ActivityLogItem.swift */; };
 		8D32D86B272B3BA3005581BB /* ModelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D32D86A272B3BA3005581BB /* ModelController.swift */; };
-		8D32D86D272B473B005581BB /* Calendar Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D32D86C272B473B005581BB /* Calendar Extension.swift */; };
 		8D4E1321271C99E800709E62 /* ActivitiesTableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D4E1320271C99E800709E62 /* ActivitiesTableViewDelegate.swift */; };
 		8D4E1324271C9A2300709E62 /* ActivitiesTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D4E1323271C9A2300709E62 /* ActivitiesTableViewDataSource.swift */; };
 /* End PBXBuildFile section */
@@ -56,7 +55,6 @@
 		8D32D863272B3881005581BB /* Impeditive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Impeditive.swift; sourceTree = "<group>"; };
 		8D32D867272B396E005581BB /* ActivityLogItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityLogItem.swift; sourceTree = "<group>"; };
 		8D32D86A272B3BA3005581BB /* ModelController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelController.swift; sourceTree = "<group>"; };
-		8D32D86C272B473B005581BB /* Calendar Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Calendar Extension.swift"; sourceTree = "<group>"; };
 		8D4E1320271C99E800709E62 /* ActivitiesTableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivitiesTableViewDelegate.swift; sourceTree = "<group>"; };
 		8D4E1323271C9A2300709E62 /* ActivitiesTableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivitiesTableViewDataSource.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -189,7 +187,6 @@
 		8D4E131C271C915E00709E62 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				8D32D86C272B473B005581BB /* Calendar Extension.swift */,
 				8D32D869272B3B8F005581BB /* Database */,
 				8D32D85C272B3794005581BB /* Entities */,
 				17E3CE692724F3F500C50648 /* Impediments */,
@@ -311,7 +308,6 @@
 				173CDB3C271E506E003CE150 /* DetailsTableViewDelegate.swift in Sources */,
 				8D4E1324271C9A2300709E62 /* ActivitiesTableViewDataSource.swift in Sources */,
 				8D4E1321271C99E800709E62 /* ActivitiesTableViewDelegate.swift in Sources */,
-				8D32D86D272B473B005581BB /* Calendar Extension.swift in Sources */,
 				173CDB3E271E5309003CE150 /* ActivityLogTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

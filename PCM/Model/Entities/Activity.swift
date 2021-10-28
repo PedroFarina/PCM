@@ -19,10 +19,12 @@ internal protocol PCMActivity {
     var state: PCMActivityState { get }
     var serviceValue: Double { get }
     var startedAt: Date { get }
+    var timeElapsed: TimeInterval { get set }
 
     var workingUnits: [PCMWorkingUnit] { get }
     var impeditives: [PCMImpeditive] { get }
     var logItems: [PCMActivityLogItem] { get }
 
     func calculateEfficiency() -> Double
+    func getTimeElapsedString() -> String
 }
