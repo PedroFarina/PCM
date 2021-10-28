@@ -7,7 +7,7 @@
 
 import Foundation
 
-internal enum ActivityState {
+internal enum PCMActivityState {
     case todo
     case doing
     case done
@@ -17,7 +17,7 @@ internal protocol PCMActivity {
     var name: String { get }
     var description: String { get }
     var timeSpent: TimeInterval { get }
-    var state: ActivityState { get }
+    var state: PCMActivityState { get }
     var serviceValue: Double { get }
 
     var workingUnits: [PCMWorkingUnit] { get }
