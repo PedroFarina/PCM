@@ -32,6 +32,8 @@
 		8D4E1321271C99E800709E62 /* ActivitiesTableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D4E1320271C99E800709E62 /* ActivitiesTableViewDelegate.swift */; };
 		8D4E1324271C9A2300709E62 /* ActivitiesTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D4E1323271C9A2300709E62 /* ActivitiesTableViewDataSource.swift */; };
 		BD7AE380272B37D80048B8D3 /* ActivitiesViewControllerTableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD7AE37F272B37D80048B8D3 /* ActivitiesViewControllerTableViewDelegate.swift */; };
+		BD7AE385272B3F3C0048B8D3 /* ReportCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD7AE384272B3F3C0048B8D3 /* ReportCell.swift */; };
+		BD7AE388272B40200048B8D3 /* ReportCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD7AE387272B40200048B8D3 /* ReportCellViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -61,6 +63,8 @@
 		8D4E1320271C99E800709E62 /* ActivitiesTableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivitiesTableViewDelegate.swift; sourceTree = "<group>"; };
 		8D4E1323271C9A2300709E62 /* ActivitiesTableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivitiesTableViewDataSource.swift; sourceTree = "<group>"; };
 		BD7AE37F272B37D80048B8D3 /* ActivitiesViewControllerTableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivitiesViewControllerTableViewDelegate.swift; sourceTree = "<group>"; };
+		BD7AE384272B3F3C0048B8D3 /* ReportCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportCell.swift; sourceTree = "<group>"; };
+		BD7AE387272B40200048B8D3 /* ReportCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportCellViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,6 +99,7 @@
 			isa = PBXGroup;
 			children = (
 				8D4E131C271C915E00709E62 /* Model */,
+				BD7AE381272B3EF10048B8D3 /* Views */,
 				8D4E131A271C912200709E62 /* Controller */,
 				173CDB2D271515B8003CE150 /* UIColorExtension.swift */,
 				173CDB132714B740003CE150 /* AppDelegate.swift */,
@@ -120,6 +125,7 @@
 			isa = PBXGroup;
 			children = (
 				173CDB39271E5031003CE150 /* ActivityLogTableViewDataSource.swift */,
+				BD7AE386272B3FF70048B8D3 /* ViewModel */,
 			);
 			path = Details;
 			sourceTree = "<group>";
@@ -226,6 +232,38 @@
 			path = Delegate;
 			sourceTree = "<group>";
 		};
+		BD7AE381272B3EF10048B8D3 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				BD7AE382272B3F010048B8D3 /* Details */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		BD7AE382272B3F010048B8D3 /* Details */ = {
+			isa = PBXGroup;
+			children = (
+				BD7AE383272B3F0B0048B8D3 /* Container */,
+			);
+			path = Details;
+			sourceTree = "<group>";
+		};
+		BD7AE383272B3F0B0048B8D3 /* Container */ = {
+			isa = PBXGroup;
+			children = (
+				BD7AE384272B3F3C0048B8D3 /* ReportCell.swift */,
+			);
+			path = Container;
+			sourceTree = "<group>";
+		};
+		BD7AE386272B3FF70048B8D3 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				BD7AE387272B40200048B8D3 /* ReportCellViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -315,6 +353,8 @@
 				173CDB37271DE02C003CE150 /* DetailsViewController.swift in Sources */,
 				8D32D864272B3881005581BB /* Impeditive.swift in Sources */,
 				8D32D868272B396E005581BB /* ActivityLogItem.swift in Sources */,
+				BD7AE385272B3F3C0048B8D3 /* ReportCell.swift in Sources */,
+				BD7AE388272B40200048B8D3 /* ReportCellViewModel.swift in Sources */,
 				173CDB322717D63C003CE150 /* ActivitiesViewController.swift in Sources */,
 				173CDB162714B740003CE150 /* SceneDelegate.swift in Sources */,
 				17E3CE6D2724F46200C50648 /* ImpedimentsPickerViewDelegate.swift in Sources */,
