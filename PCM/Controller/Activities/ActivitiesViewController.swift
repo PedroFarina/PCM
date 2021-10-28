@@ -19,12 +19,13 @@ internal class ActivitiesViewController: UIViewController {
 
     private let tableViewDataSource = ActivitiesTableViewDataSource()
 
-    private lazy var tableViewDelegate = ActivitiesViewControllerTableViewDelegate { [weak self] in
+    private lazy var tableViewDelegate = ActivitiesViewControllerTableViewDelegate { [weak self] indexPath in
         guard let self = self else { return }
-        
-        let detailsViewController = DetailsViewController()
+
+        let detailsViewController = DetailsViewController(with: self.tableViewDataSource.activityAt(indexPath.row))
 
         self.navigationController?.pushViewController(detailsViewController, animated: true)
+        self.tableView.deselectRow(at: indexPath, animated: true)
     }
 
     private lazy var tableView: UITableView = {
@@ -93,13 +94,16 @@ internal class ActivitiesViewController: UIViewController {
     {
         switch sender.selectedSegmentIndex {
             case 0:
-                print ("Liberados")
+                tableViewDataSource.filterBy(.todo)
             case 1:
-                print ("Em execução")
+                tableViewDataSource.filterBy(.doing)
             case 2:
-                print ("Concluídos")
+                tableViewDataSource.filterBy(.done)
             default:
                 break
         }
+        tableView.beginUpdates()
+        tableView.reloadSections(.init(integer: 0), with: .automatic)
+        tableView.endUpdates()
     }
 }

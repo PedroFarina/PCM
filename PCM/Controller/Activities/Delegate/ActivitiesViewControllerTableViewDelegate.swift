@@ -10,13 +10,13 @@ import UIKit
 
 final class ActivitiesViewControllerTableViewDelegate: NSObject, UITableViewDelegate {
 
-    private let rowAction: () -> Void
+    private let rowAction: (IndexPath) -> Void
 
-    init(action: @escaping () -> Void) {
+    init(action: @escaping (IndexPath) -> Void) {
         rowAction = action
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        rowAction()
+        rowAction(indexPath)
     }
 }

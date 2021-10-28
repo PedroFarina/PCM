@@ -91,14 +91,14 @@ internal class DetailsViewController: UIViewController {
     private lazy var tableViewDataSource = ActivityLogTableViewDataSource(with: activity)
     private let tableViewDelegate = DetailsTableViewDelegate()
     private lazy var tableView: UITableView = {
-        let table = UITableView()
-        table.backgroundColor = .clear
-        table.translatesAutoresizingMaskIntoConstraints = false
-        table.rowHeight = 50
-        table.dataSource = tableViewDataSource
-        table.delegate = tableViewDelegate
-        tableView.register(ActivityLogTableViewCell.self, forCellReuseIdentifier: "cell")
-        return table
+        let tableView = UITableView()
+        tableView.backgroundColor = .clear
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.rowHeight = 50
+        tableView.dataSource = tableViewDataSource
+        tableView.delegate = tableViewDelegate
+        tableView.register(ActivityLogTableViewCell.self, forCellReuseIdentifier: ActivityLogTableViewCell.identifier)
+        return tableView
     }()
         
     private var infoContainer: UIView = {
