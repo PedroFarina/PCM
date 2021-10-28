@@ -1,0 +1,16 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "Simple QR Reader",
+        "repositoryURL": "https://github.com/PedroFarina/Simple-QR-Reader",
+        "state": {
+          "branch": "main",
+          "revision": "42b1f084dfec1ebbb2cad6b614c2feb4a750b51c",
+          "version": null
+        }
+      }
+    ]
+  },
+  "version": 1
+}
