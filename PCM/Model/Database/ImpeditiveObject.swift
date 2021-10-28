@@ -11,6 +11,8 @@ internal struct ImpeditiveObject: PCMImpeditive {
     var category: PCMImpeditiveCategory
     var subcategory: String
     var timeSpent: TimeInterval
-    var description: String
+    var description: String {
+        return category.description + " - " + subcategory
+    }
     var registeredAt: Date
 }

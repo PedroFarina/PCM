@@ -40,7 +40,8 @@ internal class ActivityLogTableViewCell: UITableViewCell {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .preferredFont(forTextStyle: .footnote)
         label.adjustsFontForContentSizeCategory = true
-        label.textColor = .segmentedColor
+        label.textColor = .detailColor
+        label.textAlignment = .right
         return label
     }()
     private var timeLabel: UILabel = {
@@ -48,7 +49,8 @@ internal class ActivityLogTableViewCell: UITableViewCell {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .preferredFont(forTextStyle: .footnote)
         label.adjustsFontForContentSizeCategory = true
-        label.textColor = .segmentedColor
+        label.textColor = .detailColor
+        label.textAlignment = .right
         return label
     }()
 

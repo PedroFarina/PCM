@@ -16,7 +16,14 @@ internal struct ActivityObject: PCMActivity {
     var timeElapsed: TimeInterval
     var workingUnits: [PCMWorkingUnit]
     var impeditives: [PCMImpeditive]
-    var logItems: [PCMActivityLogItem]
+    var comments: [CommentObject]
+    var logItems: [PCMActivityLogItem] {
+        var activities: [PCMActivityLogItem] = []
+        activities.append(contentsOf: comments)
+        activities.append(contentsOf: impeditives)
+        activities.sort(by: { $0.registeredAt < $1.registeredAt })
+        return activities
+    }
 
     func calculateEfficiency() -> Double {
         return 0
