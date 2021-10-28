@@ -10,6 +10,8 @@ import UIKit
 
 internal class LoginViewController: UIViewController {
     
+    private lazy var tap = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(_:)))
+    
     private var logoImage: UIView = {
         let logoImage = UIView()
         logoImage.translatesAutoresizingMaskIntoConstraints = false
@@ -102,6 +104,7 @@ internal class LoginViewController: UIViewController {
         view.addSubview(logoImage)
         view.addSubview(titleLabel)
         view.addSubview(enterButton)
+        view.addGestureRecognizer(tap)
     }
     override internal func viewDidLayoutSubviews() {
         NSLayoutConstraint.activate(constraints)
@@ -112,5 +115,10 @@ internal class LoginViewController: UIViewController {
         let nav = UINavigationController(rootViewController: vc)
         nav.modalPresentationStyle = .fullScreen
         self.present(nav, animated: true)
+    }
+    
+    @objc private func handleTap(_ sender: UITapGestureRecognizer? = nil){
+        userTextField.resignFirstResponder()
+        passwordTextField.resignFirstResponder()
     }
 }
