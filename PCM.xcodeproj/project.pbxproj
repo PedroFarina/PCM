@@ -36,6 +36,7 @@
 		BD7AE388272B40200048B8D3 /* ReportCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD7AE387272B40200048B8D3 /* ReportCellViewModel.swift */; };
 		BDDD267F272B44B300153A53 /* ReportContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDDD267E272B44B300153A53 /* ReportContainerView.swift */; };
 		BDDD2681272B488100153A53 /* ReportContainerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDDD2680272B488100153A53 /* ReportContainerViewModel.swift */; };
+		BDDD2685272B4C5A00153A53 /* ActivityLogTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDDD2684272B4C5A00153A53 /* ActivityLogTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -69,6 +70,7 @@
 		BD7AE387272B40200048B8D3 /* ReportCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportCellViewModel.swift; sourceTree = "<group>"; };
 		BDDD267E272B44B300153A53 /* ReportContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportContainerView.swift; sourceTree = "<group>"; };
 		BDDD2680272B488100153A53 /* ReportContainerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportContainerViewModel.swift; sourceTree = "<group>"; };
+		BDDD2684272B4C5A00153A53 /* ActivityLogTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityLogTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +90,7 @@
 			children = (
 				173CDB122714B740003CE150 /* PCM */,
 				173CDB112714B740003CE150 /* Products */,
+				BDDD2682272B4C3800153A53 /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -170,14 +173,6 @@
 			path = Database;
 			sourceTree = "<group>";
 		};
-		8D4E1319271C911B00709E62 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				173CDB3D271E5309003CE150 /* ActivityLogTableViewCell.swift */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
 		8D4E131A271C912200709E62 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
@@ -239,6 +234,7 @@
 		BD7AE381272B3EF10048B8D3 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				BDDD2686272B4C6200153A53 /* Activity */,
 				BD7AE382272B3F010048B8D3 /* Details */,
 			);
 			path = Views;
@@ -268,6 +264,22 @@
 				BDDD2680272B488100153A53 /* ReportContainerViewModel.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		BDDD2682272B4C3800153A53 /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				173CDB3D271E5309003CE150 /* ActivityLogTableViewCell.swift */,
+			);
+			name = "Recovered References";
+			sourceTree = "<group>";
+		};
+		BDDD2686272B4C6200153A53 /* Activity */ = {
+			isa = PBXGroup;
+			children = (
+				BDDD2684272B4C5A00153A53 /* ActivityLogTableViewCell.swift */,
+			);
+			path = Activity;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -360,6 +372,7 @@
 				173CDB37271DE02C003CE150 /* DetailsViewController.swift in Sources */,
 				8D32D864272B3881005581BB /* Impeditive.swift in Sources */,
 				8D32D868272B396E005581BB /* ActivityLogItem.swift in Sources */,
+				BDDD2685272B4C5A00153A53 /* ActivityLogTableViewCell.swift in Sources */,
 				BD7AE385272B3F3C0048B8D3 /* ReportCellView.swift in Sources */,
 				BD7AE388272B40200048B8D3 /* ReportCellViewModel.swift in Sources */,
 				173CDB322717D63C003CE150 /* ActivitiesViewController.swift in Sources */,
