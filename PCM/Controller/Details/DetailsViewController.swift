@@ -205,6 +205,7 @@ internal class DetailsViewController: UIViewController {
         label.isHidden = true
         label.textColor = .blackProt
         return label
+    }()
 
     //TODO: isso aqui é útil?
     private var labels: [UILabel] = []
@@ -346,7 +347,10 @@ internal class DetailsViewController: UIViewController {
     }
 
     @objc private func impedimentsTap (_ sender: UIButton){
-        let vc = ImpedimentsViewController(categories: [EquipmentCategory(), WorkerCategory(), MaterialCategory(), NatureCategory()])
+        let vc = ImpedimentsViewController { impeditive in
+            self.activity.impeditives.append(impeditive)
+            self.tableView.reloadData()
+        }
         let nav = UINavigationController(rootViewController: vc)
         nav.modalPresentationStyle = .popover
         self.present(nav, animated: true)

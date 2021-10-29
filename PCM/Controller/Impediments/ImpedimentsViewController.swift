@@ -9,9 +9,11 @@ import UIKit
 
 internal class ImpedimentsViewController: UIViewController {
 
-    private var currentCategory: PCMImpeditiveCategory? = EquipmentCategory()
+    private lazy var currentCategory: PCMImpeditiveCategory? = categories.first
+    private lazy var currentSubcategoryValue: String = currentCategory?.subcategories.first ?? ""
+    private let categories: [PCMImpeditiveCategory] = [WorkerCategory(), EquipmentCategory(), MaterialCategory(), NatureCategory()]
 
-    private let categories: [PCMImpeditiveCategory]
+    private let didAddImpeditive: (PCMImpeditive) -> Void
     
     private lazy var exitButton: UIBarButtonItem = {
         var exitButton = UIBarButtonItem()
@@ -71,7 +73,6 @@ internal class ImpedimentsViewController: UIViewController {
     private lazy var pickerViewCategoria: UIPickerView = {
         let picker = UIPickerView()
         picker.translatesAutoresizingMaskIntoConstraints = false
-        // MARK: FARINA ME PERDOA
         picker.dataSource = self
         picker.delegate = self
         picker.tag = 1
@@ -81,7 +82,6 @@ internal class ImpedimentsViewController: UIViewController {
     private lazy var pickerViewSubCategoria: UIPickerView = {
         let picker = UIPickerView()
         picker.translatesAutoresizingMaskIntoConstraints = false
-        // MARK: FARINA ME PERDOA
         picker.dataSource = self
         picker.delegate = self
         picker.tag = 2
@@ -125,9 +125,8 @@ internal class ImpedimentsViewController: UIViewController {
         ]
     }()
 
-    init(categories: [PCMImpeditiveCategory]) {
-        self.categories = categories
-
+    init(didAddImpeditive: @escaping (PCMImpeditive) -> Void) {
+        self.didAddImpeditive = didAddImpeditive
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -165,6 +164,13 @@ internal class ImpedimentsViewController: UIViewController {
     }
 
     @objc func exitTap(_: UIButton){
+        guard let currentCategory = currentCategory else {
+            return
+        }
+        let impeditive = ModelController.createImpeditive(with: currentCategory,
+                                                          and: currentSubcategoryValue,
+                                                          for: datePicker.countDownDuration)
+        didAddImpeditive(impeditive)
         self.dismiss(animated: true)
     }
 }
@@ -202,13 +208,13 @@ extension ImpedimentsViewController: UIPickerViewDataSource {
 extension ImpedimentsViewController: UIPickerViewDelegate {
 
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        guard pickerView.tag == 1 else {
-            return
+        if pickerView.tag == 1 {
+            currentCategory = ImpeditiveCategories(rawValue: row)?.categoryValue
+            pickerViewSubCategoria.reloadAllComponents()
+            pickerViewSubCategoria.selectRow(0, inComponent: 0, animated: true)
+        } else {
+            currentSubcategoryValue = currentCategory?.subcategories[row].description ?? ""
         }
-
-        currentCategory = ImpeditiveCategories(rawValue: row)?.categoryValue
-        pickerViewSubCategoria.reloadAllComponents()
-        pickerViewSubCategoria.selectRow(0, inComponent: 0, animated: true)
     }
 }
 
