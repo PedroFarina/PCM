@@ -21,11 +21,14 @@ internal protocol PCMActivity: AnyObject {
     var startedAt: Date { get }
     var timeElapsed: TimeInterval { get set }
 
-    var workingUnits: [PCMWorkingUnit] { get set }
+    var workingUnits: [PCMWorkingUnit] { get }
     var impeditives: [PCMImpeditive] { get set }
     var comments: [CommentObject] { get set }
     var logItems: [PCMActivityLogItem] { get }
 
     func calculateEfficiency() -> Double
     func getTimeElapsedString() -> String
+
+    func addWorkingUnit(_ workingUnit: PCMWorkingUnit, at date: Date)
+    func removeWorkingUnit(_ workingUnit: PCMWorkingUnit)
 }
