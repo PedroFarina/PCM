@@ -220,14 +220,6 @@ internal class DetailsViewController: UIViewController {
         return label
     }()
     
-    // TODO: verificar se essa função realmente será necessária quando mergear essa PR na develop
-    private lazy var backButton: UIBarButtonItem = {
-        var backButton = UIBarButtonItem()
-        backButton = UIBarButtonItem(title: "Voltar", style: UIBarButtonItem.Style.plain, target: self, action: #selector(returnTap(_:)))
-        backButton.tintColor = .buttonColor
-        return backButton
-    }()
-    
     //TODO: isso aqui é útil?
     private var labels: [UILabel] = []
     
@@ -326,8 +318,8 @@ internal class DetailsViewController: UIViewController {
         appearance.configureWithOpaqueBackground()
         navigationController?.navigationBar.scrollEdgeAppearance = appearance
         self.navigationItem.title = activity.name
+        navigationController?.navigationBar.tintColor = .buttonColor
         navigationItem.rightBarButtonItem = conclusionButton
-        navigationItem.leftBarButtonItem = backButton
         
         view.addSubview(infoContainer)
         view.addSubview(addTimeView)
@@ -347,6 +339,32 @@ internal class DetailsViewController: UIViewController {
         view.addSubview(hourFuncOficialView)
         view.addSubview(funcMeioOficialView)
         view.addSubview(hourFuncMeioOficialView)
+
+        checkUI()
+    }
+
+    func checkUI() {
+        switch activity.state {
+            case .todo:
+                navigationItem.rightBarButtonItem = nil
+                addTimeButton.isHidden = true
+                commentButton.isHidden = true
+                problemsButton.isHidden = true
+                qrcodeButton.isHidden = true
+                turnButton.isHidden = true
+                titleTable.isHidden = true
+                stopButton.setTitle("Começar", for: .normal)
+            case .doing:
+                break
+            case .done:
+                navigationItem.rightBarButtonItem = nil
+                addTimeButton.isHidden = true
+                addTimeView.isHidden = true
+                commentButton.isHidden = true
+                problemsButton.isHidden = true
+                qrcodeButton.isHidden = true
+                stopButton.isHidden = true
+        }
     }
     
     internal override func viewDidLayoutSubviews() {

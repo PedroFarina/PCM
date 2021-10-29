@@ -7,8 +7,9 @@
 
 import Foundation
 import UIKit
+import Simple_QR_Reader
 
-internal class ActivitiesViewController: UIViewController {
+internal class ActivitiesViewController: UIViewController, SimpleQROutputDelegate {
     
     private lazy var exitButton: UIBarButtonItem = {
         var exitButton = UIBarButtonItem()
@@ -18,13 +19,25 @@ internal class ActivitiesViewController: UIViewController {
     }()
 
     private let tableViewDataSource = ActivitiesTableViewDataSource()
+    weak var selectedActivity: PCMActivity?
 
     private lazy var tableViewDelegate = ActivitiesViewControllerTableViewDelegate { [weak self] indexPath in
         guard let self = self else { return }
 
-        let detailsViewController = DetailsViewController(with: self.tableViewDataSource.activityAt(indexPath.row))
+        let activity = self.tableViewDataSource.activityAt(indexPath.row)
+        if activity.state != .todo {
+            let detailsViewController = DetailsViewController(with: self.tableViewDataSource.activityAt(indexPath.row))
+            self.navigationController?.pushViewController(detailsViewController, animated: true)
+        } else {
+            activity.state = .doing
+            self.tableView.reloadData()
+            self.segmentedControlCustom.selectedSegmentIndex = 1
+            self.tableViewDataSource.filterBy(.doing)
+            self.selectedActivity = activity
+            let qrVC = SimpleQRViewController()
+            self.present(qrVC, animated: true)
+        }
 
-        self.navigationController?.pushViewController(detailsViewController, animated: true)
         self.tableView.deselectRow(at: indexPath, animated: true)
     }
 
@@ -105,5 +118,17 @@ internal class ActivitiesViewController: UIViewController {
         tableView.beginUpdates()
         tableView.reloadSections(.init(integer: 0), with: .automatic)
         tableView.endUpdates()
+    }
+
+    func viewDidSetup() {
+    }
+
+    func qrCodeFound(_ value: String) {
+        let workingUnit = ModelController.createWorkingUnit(with: value, and: .person)
+        selectedActivity?.addWorkingUnit(workingUnit, at: Date())
+    }
+
+    func viewWasDismissed() {
+        selectedActivity = nil
     }
 }
