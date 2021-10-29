@@ -43,6 +43,7 @@ final class ReportContainerView: UIStackView {
     private lazy var unproductiveHoursCell: ReportCellView = {
         let viewModel = ReportCellViewModel(title: "Horas improdutivas", value: viewModel.unproductiveHours)
         let cell = ReportCellView(from: viewModel)
+        cell.translatesAutoresizingMaskIntoConstraints = false
 
         return cell
     }()
@@ -63,10 +64,11 @@ final class ReportContainerView: UIStackView {
 
 
     private func setupStackView() {
-        spacing = 10
+        spacing = 5
         axis = .vertical
 
         backgroundColor = .white
+        layer.cornerRadius = 4
     }
 
     private func setupViewHierarchy() {

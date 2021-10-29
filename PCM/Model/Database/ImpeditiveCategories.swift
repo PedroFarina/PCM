@@ -21,3 +21,25 @@ internal struct NatureCategory: PCMImpeditiveCategory {
     let description: String = "Intempérie"
     let subcategories: [String] = ["Chuva", "Vento", "Raio", "Outros"]
 }
+
+enum ImpeditiveCategories: Int {
+    case equipmentCategory = 0
+    case workerCategory = 1
+    case materialCategory = 2
+    case natureCategory = 3
+}
+
+extension ImpeditiveCategories {
+    var categoryValue: PCMImpeditiveCategory {
+        switch self {
+        case .equipmentCategory:
+            return EquipmentCategory()
+        case .workerCategory:
+            return WorkerCategory()
+        case .materialCategory:
+            return MaterialCategory()
+        case .natureCategory:
+            return NatureCategory()
+        }
+    }
+}

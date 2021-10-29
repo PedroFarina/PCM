@@ -113,16 +113,16 @@ internal class DetailsViewController: UIViewController {
         containerView.layer.shadowRadius = 1
         return containerView
     }()
-    
-    private var containerFlipView: UIView = {
-        let containerView = UIView()
-        containerView.translatesAutoresizingMaskIntoConstraints = false
-        containerView.backgroundColor = .bgColor
-        containerView.layer.cornerRadius = 7
-        containerView.isHidden = true
-        return containerView
+
+    private lazy var reportContainerView: ReportContainerView = {
+        let viewModel = ReportContainerViewModel(activity: activity)
+        let view = ReportContainerView(viewModel: viewModel)
+        view.isHidden = true
+        view.translatesAutoresizingMaskIntoConstraints = false
+
+        return view
     }()
-    
+
     private var addTimeView: UIView = {
         let containerView = UIView()
         containerView.translatesAutoresizingMaskIntoConstraints = false
@@ -173,20 +173,7 @@ internal class DetailsViewController: UIViewController {
         label.textColor = .blackProt
         return label
     }()
-    
-    private var funcOficialView: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = .preferredFont(forTextStyle: .body)
-        label.adjustsFontForContentSizeCategory = true
-        label.text = "Funcionários oficiais: "
-        label.lineBreakMode = NSLineBreakMode.byWordWrapping
-        label.numberOfLines = 3
-        label.isHidden = true
-        label.textColor = .blackProt
-        return label
-    }()
-    
+
     private var funcMeioOficialView: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -218,8 +205,7 @@ internal class DetailsViewController: UIViewController {
         label.isHidden = true
         label.textColor = .blackProt
         return label
-    }()
-    
+
     //TODO: isso aqui é útil?
     private var labels: [UILabel] = []
     
@@ -284,30 +270,10 @@ internal class DetailsViewController: UIViewController {
             stopButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             stopButton.bottomAnchor.constraint(equalTo: commentButton.topAnchor, constant: -view.frame.height * 0.04),
             
-            containerFlipView.topAnchor.constraint(equalTo: infoContainer.bottomAnchor, constant: 50),
-            containerFlipView.heightAnchor.constraint(equalToConstant: 260),
-            containerFlipView.widthAnchor.constraint(equalToConstant: 360),
-            containerFlipView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            
-            resumoView.topAnchor.constraint(equalTo: containerFlipView.topAnchor, constant: 10),
-            resumoView.centerXAnchor.constraint(equalTo: containerFlipView.centerXAnchor),
-            
-            funcOficialView.topAnchor.constraint(equalTo: resumoView.bottomAnchor, constant: 10),
-            funcOficialView.leadingAnchor.constraint(equalTo: containerFlipView.leadingAnchor, constant: 10),
-            
-            hourFuncOficialView.topAnchor.constraint(equalTo: resumoView.bottomAnchor, constant: 10),
-            hourFuncOficialView.leadingAnchor.constraint(equalTo: funcOficialView.trailingAnchor, constant: 93),
-            hourFuncOficialView.trailingAnchor.constraint(equalTo: containerFlipView.trailingAnchor, constant: -10),
-            
-            funcMeioOficialView.topAnchor.constraint(equalTo: funcOficialView.bottomAnchor, constant: 10),
-            funcMeioOficialView.leadingAnchor.constraint(equalTo: containerFlipView.leadingAnchor, constant: 10),
-            
-            hourFuncMeioOficialView.topAnchor.constraint(equalTo: hourFuncOficialView.bottomAnchor, constant: 10),
-            hourFuncMeioOficialView.leadingAnchor.constraint(equalTo: funcMeioOficialView.trailingAnchor),
-            hourFuncMeioOficialView.trailingAnchor.constraint(equalTo: containerFlipView.trailingAnchor, constant: -25),
-            
-            
-            
+            reportContainerView.topAnchor.constraint(equalTo: infoContainer.bottomAnchor, constant: 50),
+            reportContainerView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15),
+            reportContainerView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -15),
+            reportContainerView.centerXAnchor.constraint(equalTo: view.centerXAnchor)
         ]
     }()
     
@@ -333,13 +299,8 @@ internal class DetailsViewController: UIViewController {
         view.addSubview(tableView)
         view.addSubview(stopButton)
         view.addSubview(turnButton)
-        view.addSubview(containerFlipView)
+        view.addSubview(reportContainerView)
         view.addSubview(resumoView)
-        view.addSubview(funcOficialView)
-        view.addSubview(hourFuncOficialView)
-        view.addSubview(funcMeioOficialView)
-        view.addSubview(hourFuncMeioOficialView)
-
         checkUI()
     }
 
@@ -385,7 +346,7 @@ internal class DetailsViewController: UIViewController {
     }
 
     @objc private func impedimentsTap (_ sender: UIButton){
-        let vc = ImpedimentsViewController()
+        let vc = ImpedimentsViewController(categories: [EquipmentCategory(), WorkerCategory(), MaterialCategory(), NatureCategory()])
         let nav = UINavigationController(rootViewController: vc)
         nav.modalPresentationStyle = .popover
         self.present(nav, animated: true)
@@ -395,24 +356,18 @@ internal class DetailsViewController: UIViewController {
         tableView.isHidden.toggle()
         if tableView.isHidden == true{
             titleTable.text = "Relatório"
-            containerFlipView.isHidden = false
-            funcOficialView.isHidden = false
-            hourFuncOficialView.isHidden = false
             resumoView.isHidden = false
+            reportContainerView.isHidden = false
             hourFuncMeioOficialView.isHidden = false
             funcMeioOficialView.isHidden = false
         }
         else {
             titleTable.text = "Registro de atividades"
-            containerFlipView.isHidden = true
-            funcOficialView.isHidden = true
-            hourFuncOficialView.isHidden = true
             resumoView.isHidden = true
             hourFuncMeioOficialView.isHidden = true
             funcMeioOficialView.isHidden = true
+            reportContainerView.isHidden = true
         }
-        
-        
     }
 
     @objc private func qrSessionTap (_ : UIButton){
