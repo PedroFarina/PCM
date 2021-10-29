@@ -36,19 +36,19 @@ final class ReportCellView: UIView {
 
     private lazy var titleLabelConstraints: [NSLayoutConstraint] = {
         let constraints = [
-            titleLabel.topAnchor.constraint(equalTo: topAnchor),
+            titleLabel.topAnchor.constraint(equalTo: topAnchor, constant: 5),
             titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10),
-            titleLabel.bottomAnchor.constraint(equalTo: bottomAnchor)
+            titleLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -5)
         ]
         return constraints
     }()
 
     private lazy var valueLabelConstraints: [NSLayoutConstraint] = {
         let constraints = [
-            valueLabel.topAnchor.constraint(equalTo: topAnchor),
+            valueLabel.topAnchor.constraint(equalTo: topAnchor, constant: 5),
             valueLabel.leadingAnchor.constraint(greaterThanOrEqualTo: titleLabel.trailingAnchor, constant: 40),
             valueLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10),
-            valueLabel.bottomAnchor.constraint(equalTo: bottomAnchor),
+            valueLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -5)
         ]
 
         return constraints

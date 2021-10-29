@@ -12,17 +12,6 @@ final class ReportContainerView: UIStackView {
 
     private let viewModel: ReportContainerViewModel
 
-    private lazy var titleLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = .preferredFont(forTextStyle: .headline)
-        label.adjustsFontForContentSizeCategory = true
-        label.textColor = .blackProt
-        label.text = "Quantidade de horas trabalhadas"
-
-        return label
-    }()
-
     private lazy var workersTimeCell: ReportCellView = {
         let viewModel = ReportCellViewModel(title: "Funcionários", value: viewModel.workersTimeValue)
         let cell = ReportCellView(from: viewModel)
@@ -54,6 +43,7 @@ final class ReportContainerView: UIStackView {
     private lazy var unproductiveHoursCell: ReportCellView = {
         let viewModel = ReportCellViewModel(title: "Horas improdutivas", value: viewModel.unproductiveHours)
         let cell = ReportCellView(from: viewModel)
+        cell.translatesAutoresizingMaskIntoConstraints = false
 
         return cell
     }()
@@ -74,14 +64,14 @@ final class ReportContainerView: UIStackView {
 
 
     private func setupStackView() {
-        spacing = 10
+        spacing = 5
         axis = .vertical
 
         backgroundColor = .white
+        layer.cornerRadius = 4
     }
 
     private func setupViewHierarchy() {
-        addArrangedSubview(titleLabel)
         addArrangedSubview(workersTimeCell)
         addArrangedSubview(allocatedEquipmentCell)
         addArrangedSubview(workedHoursCell)

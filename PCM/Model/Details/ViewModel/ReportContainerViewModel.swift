@@ -12,7 +12,7 @@ struct ReportContainerViewModel {
     private let activity: PCMActivity
 
     var workersTimeValue: String {
-        ""
+        "1"
     }
 
     var allocatedEquipments: String {
@@ -22,15 +22,15 @@ struct ReportContainerViewModel {
     }
 
     var workedHours: String {
-        ""
+        "12"
     }
 
     var productiveHours: String {
-        ""
+        "123"
     }
 
     var unproductiveHours: String {
-        ""
+        "1234"
     }
 
     init(activity: PCMActivity) {
