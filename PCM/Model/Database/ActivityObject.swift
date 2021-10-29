@@ -58,4 +58,19 @@ internal class ActivityObject: PCMActivity {
         let minutes = Int(timeRemaining/minuteInSeconds)
         return "\(days)d \(hours)h \(minutes)m"
     }
+
+    func addWorkingUnit(_ workingUnit: PCMWorkingUnit, at date: Date = Date()) {
+        workingUnits.append(workingUnit)
+        var comment = ModelController.createComment(with: "\(workingUnit.description) foi adicionado a tarefa.")
+        comment.registeredAt = date
+        comments.append(comment)
+    }
+
+    func removeWorkingUnit(_ workingUnit: PCMWorkingUnit) {
+        if let index = workingUnits.firstIndex(where: { $0.description == workingUnit.description }) {
+            workingUnits.remove(at: index)
+            let comment = ModelController.createComment(with: "\(workingUnit.description) foi removido da tarefa.")
+            comments.append(comment)
+        }
+    }
 }

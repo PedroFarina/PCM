@@ -92,9 +92,10 @@ internal class DetailsViewController: UIViewController {
     private let tableViewDelegate = DetailsTableViewDelegate()
     private lazy var tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .grouped)
+        tableView.allowsSelection = false
         tableView.backgroundColor = .clear
         tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.rowHeight = 50
+        tableView.estimatedRowHeight = 50
         tableView.dataSource = tableViewDataSource
         tableView.delegate = tableViewDelegate
         tableView.register(ActivityLogTableViewCell.self, forCellReuseIdentifier: ActivityLogTableViewCell.identifier)
@@ -130,12 +131,12 @@ internal class DetailsViewController: UIViewController {
         return containerView
     }()
     
-    private var addTimeLabel: UILabel = {
+    private lazy var addTimeLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .preferredFont(forTextStyle: .headline)
         label.adjustsFontForContentSizeCategory = true
-        label.text = "0d 0h 0m"
+        label.text = activity.getTimeElapsedString()
         label.textColor = .blackProt
         return label
     }()

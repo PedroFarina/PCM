@@ -27,6 +27,7 @@ internal class ActivityLogTableViewCell: UITableViewCell {
         label.font = .preferredFont(forTextStyle: .body)
         label.adjustsFontForContentSizeCategory = true
         label.textColor = .blackProt
+        label.numberOfLines = 0
         return label
     }()
     private var containerView: UIView = {
@@ -78,7 +79,7 @@ internal class ActivityLogTableViewCell: UITableViewCell {
             descriptionLabel.topAnchor.constraint(greaterThanOrEqualTo: topAnchor, constant: 10),
             descriptionLabel.bottomAnchor.constraint(lessThanOrEqualTo: bottomAnchor, constant: -10),
             descriptionLabel.centerYAnchor.constraint(equalTo: centerYAnchor),
-            descriptionLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10),
+            descriptionLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
             descriptionLabel.trailingAnchor.constraint(equalTo: containerView.leadingAnchor),
 
             containerView.topAnchor.constraint(greaterThanOrEqualTo: topAnchor, constant: 10),
