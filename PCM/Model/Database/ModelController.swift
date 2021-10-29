@@ -16,30 +16,30 @@ internal final class ModelController {
     internal static func getMockedActivities() -> [PCMActivity] {
         return [
             ActivityObject(name: "Chão do Banheiro",
-                           description: "Fazer o rolezinho",
+                           description: "Concluir o chão do banheiro. A quantidade do serviço estabelecida é de 4m.",
                            state: .todo,
-                           serviceValue: 15,
+                           serviceValue: 5,
                            startedAt: Date(),
                            timeElapsed: 0,
                            workingUnits: generateWorkingUnits(), impeditives: generateImpeditives(), comments: generateComments()),
             ActivityObject(name: "Chão da Cozinha",
-                           description: "Fazer o rolezinho",
+                           description: "Concluir o chão da cozinha. A quantidade do serviço estabelecida é de 7m.",
                            state: .doing,
-                           serviceValue: 15,
+                           serviceValue: 7,
                            startedAt: Date(),
                            timeElapsed: 0,
                            workingUnits: generateWorkingUnits(), impeditives: generateImpeditives(), comments: generateComments()),
-            ActivityObject(name: "Chão do Quarto",
-                           description: "Fazer o rolezinho",
+            ActivityObject(name: "Construção de pilar",
+                           description: "Cimentar o pilar da cozinha. A quantidade do serviço estabelecide é de 5m.",
                            state: .doing,
-                           serviceValue: 15,
+                           serviceValue: 5,
                            startedAt: Date(),
                            timeElapsed: 0,
                            workingUnits: generateWorkingUnits(), impeditives: generateImpeditives(), comments: generateComments()),
-            ActivityObject(name: "Chão do Outro Quarto",
-                           description: "Fazer o rolezinho",
+            ActivityObject(name: "Instalação de porcelanato no banheiro",
+                           description: "Instalar o porcelanato no banheiro. A quantidade do serviço estabelecido é 45m.",
                            state: .done,
-                           serviceValue: 15,
+                           serviceValue: 45,
                            startedAt: Date(),
                            timeElapsed: 0,
                            workingUnits: generateWorkingUnits(), impeditives: generateImpeditives(), comments: generateComments())
@@ -100,7 +100,7 @@ internal final class ModelController {
     internal static func createWorkingUnit(with description: String, and category: WorkingUnitCategory) -> PCMWorkingUnit {
         WorkingUnitObject(category: category, description: description)
     }
-    internal static func createComment(with description: String) -> PCMActivityLogItem {
+    internal static func createComment(with description: String) -> CommentObject {
         CommentObject(description: description, registeredAt: Date())
     }
     internal static func createImpeditive(with category: PCMImpeditiveCategory, and subcategory: String, for time: TimeInterval) -> PCMImpeditive {

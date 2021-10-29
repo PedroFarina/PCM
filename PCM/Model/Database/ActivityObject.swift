@@ -7,12 +7,26 @@
 
 import Foundation
 
-internal struct ActivityObject: PCMActivity {
-    var name: String
-    var description: String
+internal class ActivityObject: PCMActivity {
+
+    internal init(name: String, description: String, state: PCMActivityState, serviceValue: Double, startedAt: Date,
+                  timeElapsed: TimeInterval, workingUnits: [PCMWorkingUnit], impeditives: [PCMImpeditive], comments: [CommentObject]) {
+        self.name = name
+        self.description = description
+        self.state = state
+        self.serviceValue = serviceValue
+        self.startedAt = startedAt
+        self.timeElapsed = timeElapsed
+        self.workingUnits = workingUnits
+        self.impeditives = impeditives
+        self.comments = comments
+    }
+
+    let name: String
+    let description: String
     var state: PCMActivityState
-    var serviceValue: Double
-    var startedAt: Date
+    let serviceValue: Double
+    let startedAt: Date
     var timeElapsed: TimeInterval
     var workingUnits: [PCMWorkingUnit]
     var impeditives: [PCMImpeditive]
@@ -43,15 +57,5 @@ internal struct ActivityObject: PCMActivity {
         let minuteInSeconds: Double = 60
         let minutes = Int(timeRemaining/minuteInSeconds)
         return "\(days)d \(hours)h \(minutes)m"
-    }
-
-    mutating func addWorkingUnit(_ workingUnit: PCMWorkingUnit) {
-        self.workingUnits.append(workingUnit)
-    }
-    mutating func addComment(_ comment: CommentObject) {
-        self.comments.append(comment)
-    }
-    mutating func addImpeditive(_ impeditive: PCMImpeditive) {
-        self.impeditives.append(impeditive)
     }
 }
