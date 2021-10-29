@@ -57,19 +57,7 @@ internal class ImpedimentsViewController: UIViewController {
         label.textColor = .blackProt
         return label
     }()
-    
-    private var hour: Int = {
-        var hour = Int()
-        hour = 0
-        return hour
-    }()
-    
-    private var min: Int = {
-        var min = Int()
-        min = 0
-        return min
-    }()
-    
+
     private var timeTitle: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -99,24 +87,16 @@ internal class ImpedimentsViewController: UIViewController {
         picker.tag = 2
         return picker
     }()
-    
-    private lazy var buttonTime: UIButton = {
-        let button = UIButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.addTarget(self, action: #selector(includeTap(_:)), for: .touchUpInside)
-        button.setImage(UIImage(systemName: "plus"), for: .normal)
-        button.tintColor = .buttonColor
-        return button
+
+    private lazy var datePicker: UIDatePicker = {
+        let picker = UIDatePicker()
+        picker.datePickerMode = .countDownTimer
+        picker.translatesAutoresizingMaskIntoConstraints = false
+        picker.addTarget(self, action: #selector(pickerHandler), for: .valueChanged)
+
+        return picker
     }()
-    
-    private var addTimeView: UIView = {
-        let containerView = UIView()
-        containerView.translatesAutoresizingMaskIntoConstraints = false
-        containerView.backgroundColor = .bgColor
-        containerView.layer.cornerRadius = 7
-        return containerView
-    }()
-    
+
     private lazy var constraints: [NSLayoutConstraint] = {
         [
             categoriaTitle.topAnchor.constraint(equalTo: view.topAnchor, constant: view.frame.height * 0.135),
@@ -138,16 +118,10 @@ internal class ImpedimentsViewController: UIViewController {
             timeTitle.topAnchor.constraint(equalTo: pickerViewSubCategoria.bottomAnchor, constant: 20),
             timeTitle.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
             
-            addTimeView.topAnchor.constraint(equalTo: timeTitle.bottomAnchor, constant: 20),
-            addTimeView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15),
-            addTimeView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -15),
-            addTimeView.heightAnchor.constraint(equalToConstant: 44),
-            
-            addTimeLabel.topAnchor.constraint(equalTo: addTimeView.topAnchor, constant: 12),
-            addTimeLabel.centerXAnchor.constraint(equalTo: addTimeView.centerXAnchor, constant: -10),
-            
-            buttonTime.topAnchor.constraint(equalTo: addTimeView.topAnchor, constant: 12),
-            buttonTime.centerXAnchor.constraint(equalTo: addTimeView.centerXAnchor, constant: 30),
+            datePicker.topAnchor.constraint(equalTo: timeTitle.bottomAnchor, constant: 20),
+            datePicker.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15),
+            datePicker.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -15),
+            datePicker.heightAnchor.constraint(equalToConstant: 100)
         ]
     }()
 
@@ -178,25 +152,18 @@ internal class ImpedimentsViewController: UIViewController {
         view.addSubview(subCategoriaTitle)
         view.addSubview(pickerViewSubCategoria)
         view.addSubview(timeTitle)
-        view.addSubview(addTimeView)
-        view.addSubview(addTimeLabel)
-        view.addSubview(buttonTime)
+        view.addSubview(datePicker)
     }
     
     internal override func viewDidLayoutSubviews() {
         NSLayoutConstraint.activate(constraints)
     }
 
-    @objc func includeTap(_: UIButton){
-        hour = hour + 1
-        min = min + 30
-        if min == 60 {
-            min = 0
-            hour = hour + 1
-        }
-        addTimeLabel.text = "\(hour)h \(min)m"
+    @objc
+    func pickerHandler() {
+        debugPrint(datePicker.countDownDuration)
     }
-    
+
     @objc func exitTap(_: UIButton){
         self.dismiss(animated: true)
     }
