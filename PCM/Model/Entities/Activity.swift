@@ -13,7 +13,7 @@ internal enum PCMActivityState {
     case done
 }
 
-internal protocol PCMActivity {
+internal protocol PCMActivity: AnyObject {
     var name: String { get }
     var description: String { get }
     var state: PCMActivityState { get }
@@ -21,8 +21,9 @@ internal protocol PCMActivity {
     var startedAt: Date { get }
     var timeElapsed: TimeInterval { get set }
 
-    var workingUnits: [PCMWorkingUnit] { get }
-    var impeditives: [PCMImpeditive] { get }
+    var workingUnits: [PCMWorkingUnit] { get set }
+    var impeditives: [PCMImpeditive] { get set }
+    var comments: [CommentObject] { get set }
     var logItems: [PCMActivityLogItem] { get }
 
     func calculateEfficiency() -> Double

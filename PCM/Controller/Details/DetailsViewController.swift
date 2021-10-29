@@ -91,7 +91,7 @@ internal class DetailsViewController: UIViewController {
     private lazy var tableViewDataSource = ActivityLogTableViewDataSource(with: activity)
     private let tableViewDelegate = DetailsTableViewDelegate()
     private lazy var tableView: UITableView = {
-        let tableView = UITableView()
+        let tableView = UITableView(frame: .zero, style: .grouped)
         tableView.backgroundColor = .clear
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.rowHeight = 50
@@ -242,15 +242,12 @@ internal class DetailsViewController: UIViewController {
         return (leftLabel, rightLabel)
     }
     
-//    private func labelConstraint (leftLabel: UILabel, rightLabel: UILabel, leftLabel2: UILabel, rightLabel2: UILabel) -> [NSLayoutConstraint] {
-//        return NSLayoutConstraint
-//    }
-    
     private lazy var constraints: [NSLayoutConstraint] = {
         [
             infoContainer.topAnchor.constraint(equalTo: view.topAnchor, constant: view.frame.height * 0.135),
             infoContainer.heightAnchor.constraint(equalToConstant: 104),
-            infoContainer.widthAnchor.constraint(equalToConstant: 345),
+            infoContainer.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15),
+            infoContainer.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -15),
             infoContainer.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             
             addTimeView.topAnchor.constraint(equalTo: infoContainer.topAnchor, constant: 10),
@@ -284,7 +281,7 @@ internal class DetailsViewController: UIViewController {
             titleTable.topAnchor.constraint(equalTo: infoContainer.bottomAnchor, constant: 20),
             titleTable.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15),
             
-            tableView.topAnchor.constraint(equalTo: titleTable.bottomAnchor, constant: 10),
+            tableView.topAnchor.constraint(equalTo: titleTable.bottomAnchor, constant: -20),
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15),
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -15),
             tableView.bottomAnchor.constraint(equalTo: stopButton.topAnchor, constant: -view.frame.height * 0.07),
@@ -408,25 +405,30 @@ internal class DetailsViewController: UIViewController {
     }
     
     @objc private func commentTap (_ sender: UIButton) {
-            let alertController = UIAlertController(title: "Adicionar comentário", message: "", preferredStyle: .alert)
+        let alertController = UIAlertController(title: "Adicionar comentário", message: "", preferredStyle: .alert)
         
-            alertController.addTextField { (textField : UITextField!) -> Void in
-                textField.placeholder = "placeholder"
-            }
-        
-            let saveAction = UIAlertAction(title: "Save", style: .default, handler: { alert -> Void in
-                guard let firstTextField = alertController.textFields?[0] else {return}
-                print("\(String(describing: firstTextField.text))")
-            })
-        
-            let cancelAction = UIAlertAction(title: "Cancel", style: .default, handler: { (action : UIAlertAction!) -> Void in })
-            
-
-            alertController.addAction(saveAction)
-            alertController.addAction(cancelAction)
-            
-            self.present(alertController, animated: true, completion: nil)
+        alertController.addTextField { (textField : UITextField!) -> Void in
+            textField.placeholder = "Comentário"
+            textField.becomeFirstResponder()
         }
+        
+        let saveAction = UIAlertAction(title: "Concluir", style: .default, handler: { alert -> Void in
+            guard let firstTextField = alertController.textFields?[0] else {return}
+            if let text = firstTextField.text, text.trimmingCharacters(in: .whitespaces) != "" {
+                let comment = ModelController.createComment(with: firstTextField.text ?? "Comentário vazio")
+                self.activity.comments.append(comment)
+                self.tableView.reloadData()
+            }
+        })
+        
+        let cancelAction = UIAlertAction(title: "Cancelar", style: .cancel, handler: { (action : UIAlertAction!) -> Void in })
+
+
+        alertController.addAction(saveAction)
+        alertController.addAction(cancelAction)
+
+        self.present(alertController, animated: true, completion: nil)
+    }
 }
 
 extension DetailsViewController: SimpleQROutputDelegate {

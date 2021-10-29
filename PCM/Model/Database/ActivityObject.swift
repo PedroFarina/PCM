@@ -7,12 +7,26 @@
 
 import Foundation
 
-internal struct ActivityObject: PCMActivity {
-    var name: String
-    var description: String
+internal class ActivityObject: PCMActivity {
+
+    internal init(name: String, description: String, state: PCMActivityState, serviceValue: Double, startedAt: Date,
+                  timeElapsed: TimeInterval, workingUnits: [PCMWorkingUnit], impeditives: [PCMImpeditive], comments: [CommentObject]) {
+        self.name = name
+        self.description = description
+        self.state = state
+        self.serviceValue = serviceValue
+        self.startedAt = startedAt
+        self.timeElapsed = timeElapsed
+        self.workingUnits = workingUnits
+        self.impeditives = impeditives
+        self.comments = comments
+    }
+
+    let name: String
+    let description: String
     var state: PCMActivityState
-    var serviceValue: Double
-    var startedAt: Date
+    let serviceValue: Double
+    let startedAt: Date
     var timeElapsed: TimeInterval
     var workingUnits: [PCMWorkingUnit]
     var impeditives: [PCMImpeditive]

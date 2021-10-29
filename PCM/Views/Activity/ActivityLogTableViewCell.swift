@@ -99,8 +99,6 @@ internal class ActivityLogTableViewCell: UITableViewCell {
     
     internal override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        self.layer.cornerRadius = 7
-        self.clipsToBounds = true
         self.addSubview(descriptionLabel)
         self.addSubview(containerView)
         containerView.addSubview(dateLabel)
