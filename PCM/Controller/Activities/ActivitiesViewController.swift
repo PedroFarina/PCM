@@ -120,6 +120,12 @@ internal class ActivitiesViewController: UIViewController, SimpleQROutputDelegat
         tableView.endUpdates()
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        tableView.beginUpdates()
+        tableView.reloadSections(.init(integer: 0), with: .automatic)
+        tableView.endUpdates()
+    }
+
     func viewDidSetup() {
     }
 

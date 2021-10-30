@@ -13,35 +13,43 @@ final class ReportContainerView: UIStackView {
     private let viewModel: ReportContainerViewModel
 
     private lazy var workersTimeCell: ReportCellView = {
-        let viewModel = ReportCellViewModel(title: "Funcionários", value: viewModel.workersTimeValue)
+        let viewModel = ReportCellViewModel(title: "Funcionários", value: { self.viewModel.workersTimeValue })
         let cell = ReportCellView(from: viewModel)
 
         return cell
     }()
 
     private lazy var allocatedEquipmentCell: ReportCellView = {
-        let viewModel = ReportCellViewModel(title: "Equipamentos alocados", value: viewModel.allocatedEquipments)
+        let viewModel = ReportCellViewModel(title: "Equipamentos alocados", value: { self.viewModel.allocatedEquipments })
         let cell = ReportCellView(from: viewModel)
 
         return cell
     }()
 
     private lazy var workedHoursCell: ReportCellView = {
-        let viewModel = ReportCellViewModel(title: "Horas trabalhadas", value: viewModel.workedHours)
+        let viewModel = ReportCellViewModel(title: "Tempo trabalhado", value: { self.viewModel.workedHours })
         let cell = ReportCellView(from: viewModel)
 
         return cell
     }()
 
     private lazy var productiveHoursCell: ReportCellView = {
-        let viewModel = ReportCellViewModel(title: "Horas produtivas", value: viewModel.productiveHours)
+        let viewModel = ReportCellViewModel(title: "Tempo produtivo", value: { self.viewModel.productiveHours })
         let cell = ReportCellView(from: viewModel)
 
         return cell
     }()
 
     private lazy var unproductiveHoursCell: ReportCellView = {
-        let viewModel = ReportCellViewModel(title: "Horas improdutivas", value: viewModel.unproductiveHours)
+        let viewModel = ReportCellViewModel(title: "Tempo impedido", value: { self.viewModel.unproductiveHours })
+        let cell = ReportCellView(from: viewModel)
+        cell.translatesAutoresizingMaskIntoConstraints = false
+
+        return cell
+    }()
+
+    private lazy var efficiencyCell: ReportCellView = {
+        let viewModel = ReportCellViewModel(title: "Coeficiente de eficiência", value: { self.viewModel.efficiency })
         let cell = ReportCellView(from: viewModel)
         cell.translatesAutoresizingMaskIntoConstraints = false
 
@@ -62,6 +70,15 @@ final class ReportContainerView: UIStackView {
         fatalError("init(coder:) has not been implemented")
     }
 
+    func reloadData() {
+        workersTimeCell.reloadData()
+        allocatedEquipmentCell.reloadData()
+        workedHoursCell.reloadData()
+        productiveHoursCell.reloadData()
+        unproductiveHoursCell.reloadData()
+        efficiencyCell.reloadData()
+    }
+
 
     private func setupStackView() {
         spacing = 5
@@ -77,5 +94,6 @@ final class ReportContainerView: UIStackView {
         addArrangedSubview(workedHoursCell)
         addArrangedSubview(productiveHoursCell)
         addArrangedSubview(unproductiveHoursCell)
+        addArrangedSubview(efficiencyCell)
     }
 }

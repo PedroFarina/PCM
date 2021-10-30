@@ -84,7 +84,7 @@ internal class DetailsViewController: UIViewController {
         button.layer.cornerRadius = 14
         button.setTitle("Parar", for: .normal)
         button.setTitleColor(.blackProt, for: .normal)
-        button.addTarget(self, action: #selector(includeTap(_:)), for: .touchUpInside)
+        button.addTarget(self, action: #selector(stopTap), for: .touchUpInside)
         return button
     }()
     
@@ -206,21 +206,6 @@ internal class DetailsViewController: UIViewController {
         label.textColor = .blackProt
         return label
     }()
-
-    //TODO: isso aqui é útil?
-    private var labels: [UILabel] = []
-    
-    private func labelGenerator () -> (leftLabel: UILabel, rightLabel: UILabel) {
-        let leftLabel = UILabel()
-        leftLabel.translatesAutoresizingMaskIntoConstraints = false
-        leftLabel.font = .preferredFont(forTextStyle: .body)
-        leftLabel.textAlignment = .left
-        let rightLabel = UILabel()
-        rightLabel.translatesAutoresizingMaskIntoConstraints = false
-        rightLabel.font = .preferredFont(forTextStyle: .body)
-        rightLabel.textAlignment = .right
-        return (leftLabel, rightLabel)
-    }
     
     private lazy var constraints: [NSLayoutConstraint] = {
         [
@@ -336,10 +321,28 @@ internal class DetailsViewController: UIViewController {
     @objc private func includeTap (_ sender: UIButton) {
         activity.timeElapsed += 6000
         addTimeLabel.text = activity.getTimeElapsedString()
+        reportContainerView.reloadData()
+    }
+
+    @objc private func stopTap() {
+        if stopButton.titleLabel?.text == "Parar" {
+            stopButton.setTitle("Continuar", for: .normal)
+        } else {
+            stopButton.setTitle("Parar", for: .normal)
+        }
     }
     
     @objc private func conclusionTap (_ sender: UIButton) {
-       
+        let alertController = UIAlertController(title: "Tem certeza?", message: "Essa ação fechará a tarefa", preferredStyle: .alert)
+        let yes = UIAlertAction(title: "Sim", style: .default) { action in
+            self.activity.state = .done
+            self.navigationController?.popViewController(animated: true)
+        }
+        let no = UIAlertAction(title: "Não", style: .destructive)
+
+        alertController.addAction(yes)
+        alertController.addAction(no)
+        self.present(alertController, animated: true)
     }
     
     @objc private func returnTap (_ sender: UIButton) {
@@ -350,6 +353,7 @@ internal class DetailsViewController: UIViewController {
         let vc = ImpedimentsViewController { impeditive in
             self.activity.impeditives.append(impeditive)
             self.tableView.reloadData()
+            self.reportContainerView.reloadData()
         }
         let nav = UINavigationController(rootViewController: vc)
         nav.modalPresentationStyle = .popover
@@ -377,9 +381,8 @@ internal class DetailsViewController: UIViewController {
     @objc private func qrSessionTap (_ : UIButton){
         let vc = SimpleQRViewController()
         vc.delegate = self
-        let nav = UINavigationController(rootViewController: vc)
-        nav.modalPresentationStyle = .fullScreen
-        self.present(nav, animated: true)
+        vc.modalPresentationStyle = .fullScreen
+        self.present(vc, animated: true)
     }
     
     @objc private func commentTap (_ sender: UIButton) {
@@ -415,11 +418,13 @@ extension DetailsViewController: SimpleQROutputDelegate {
     }
     
     func qrCodeFound(_ value: String) {
-        print(value)
+        let workingUnit = ModelController.createWorkingUnit(with: value, and: .person)
+        activity.addWorkingUnit(workingUnit, at: Date())
     }
     
     func viewWasDismissed() {
-        
+        tableView.reloadData()
+        reportContainerView.reloadData()
     }
 }
  

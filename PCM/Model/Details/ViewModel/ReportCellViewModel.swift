@@ -9,5 +9,5 @@ import Foundation
 
 struct ReportCellViewModel {
     let title: String
-    let value: String
+    let value: () -> String
 }

@@ -34,6 +34,7 @@
 		8D32D879272B5477005581BB /* CommentObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D32D878272B5477005581BB /* CommentObject.swift */; };
 		8D4E1321271C99E800709E62 /* ActivitiesTableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D4E1320271C99E800709E62 /* ActivitiesTableViewDelegate.swift */; };
 		8D4E1324271C9A2300709E62 /* ActivitiesTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D4E1323271C9A2300709E62 /* ActivitiesTableViewDataSource.swift */; };
+		8D608DCD272CBCC5009FB42C /* TimeInterval Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D608DCC272CBCC5009FB42C /* TimeInterval Extension.swift */; };
 		BD7AE380272B37D80048B8D3 /* ActivitiesViewControllerTableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD7AE37F272B37D80048B8D3 /* ActivitiesViewControllerTableViewDelegate.swift */; };
 		BD7AE385272B3F3C0048B8D3 /* ReportCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD7AE384272B3F3C0048B8D3 /* ReportCellView.swift */; };
 		BD7AE388272B40200048B8D3 /* ReportCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD7AE387272B40200048B8D3 /* ReportCellViewModel.swift */; };
@@ -71,6 +72,7 @@
 		8D32D878272B5477005581BB /* CommentObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentObject.swift; sourceTree = "<group>"; };
 		8D4E1320271C99E800709E62 /* ActivitiesTableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivitiesTableViewDelegate.swift; sourceTree = "<group>"; };
 		8D4E1323271C9A2300709E62 /* ActivitiesTableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivitiesTableViewDataSource.swift; sourceTree = "<group>"; };
+		8D608DCC272CBCC5009FB42C /* TimeInterval Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimeInterval Extension.swift"; sourceTree = "<group>"; };
 		BD7AE37F272B37D80048B8D3 /* ActivitiesViewControllerTableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivitiesViewControllerTableViewDelegate.swift; sourceTree = "<group>"; };
 		BD7AE384272B3F3C0048B8D3 /* ReportCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportCellView.swift; sourceTree = "<group>"; };
 		BD7AE387272B40200048B8D3 /* ReportCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportCellViewModel.swift; sourceTree = "<group>"; };
@@ -211,6 +213,7 @@
 				17E3CE692724F3F500C50648 /* Impediments */,
 				173CDB38271E5016003CE150 /* Details */,
 				8D4E1322271C9A1600709E62 /* Activities */,
+				8D608DCC272CBCC5009FB42C /* TimeInterval Extension.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -368,6 +371,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8D608DCD272CBCC5009FB42C /* TimeInterval Extension.swift in Sources */,
 				8D32D85E272B379F005581BB /* Activity.swift in Sources */,
 				8D32D86B272B3BA3005581BB /* ModelController.swift in Sources */,
 				8D32D860272B37BD005581BB /* WorkingUnit.swift in Sources */,
