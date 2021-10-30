@@ -10,27 +10,39 @@ import Foundation
 struct ReportContainerViewModel {
 
     private let activity: PCMActivity
+    private var peopleWorkingCount: Int {
+        activity.workingUnits.filter({ $0.category == .person }).count
+    }
+    private var allHours: TimeInterval {
+        Double(peopleWorkingCount) * activity.timeElapsed
+    }
+    private var unproductiveTimeCount: TimeInterval {
+        activity.impeditives.map({ $0.timeSpent }).reduce(0, +)
+    }
 
     var workersTimeValue: String {
-        "1"
+        String(peopleWorkingCount)
     }
 
     var allocatedEquipments: String {
         let equipments: Int = activity.workingUnits.filter { $0.category == .equipment }.count
-
         return String(equipments)
     }
 
     var workedHours: String {
-        "12"
+        String(allHours.getTimeElapsedString())
     }
 
     var productiveHours: String {
-        "123"
+        String((allHours - unproductiveTimeCount).getTimeElapsedString())
     }
 
     var unproductiveHours: String {
-        "1234"
+        String(unproductiveTimeCount.getTimeElapsedString())
+    }
+
+    var efficiency: String {
+        String(format: "%.2f", activity.calculateEfficiency())
     }
 
     init(activity: PCMActivity) {

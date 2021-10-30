@@ -39,7 +39,7 @@ internal final class ModelController {
                            state: .doing,
                            serviceValue: 5,
                            startedAt: generateDate(),
-                           timeElapsed: 7200,
+                           timeElapsed: 14400,
                            workingUnits: [], impeditives: generateImpeditives(), comments: generateComments()),
             ActivityObject(name: "Instalação de porcelanato no banheiro",
                            description: "Instalar o porcelanato no banheiro. A quantidade do serviço estabelecido é 45m.",
@@ -81,7 +81,7 @@ internal final class ModelController {
     }
     private static func generateImpeditives() -> [ImpeditiveObject] {
         var impeditiveObjects: [ImpeditiveObject] = []
-        for _ in 0 ... Int.random(in: 1 ... 7) {
+        for _ in 0 ... Int.random(in: 1 ... 2) {
             let category = categories.randomElement()!
             let subCategory = category.subcategories.randomElement()!
             impeditiveObjects.append(ImpeditiveObject(category: category,

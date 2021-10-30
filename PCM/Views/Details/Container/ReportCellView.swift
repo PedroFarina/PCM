@@ -29,7 +29,7 @@ final class ReportCellView: UIView {
         label.font = .preferredFont(forTextStyle: .body)
         label.adjustsFontForContentSizeCategory = true
         label.textColor = .blackProt
-        label.text = viewModel.value
+        label.text = viewModel.value()
 
         return label
     }()
@@ -76,5 +76,10 @@ final class ReportCellView: UIView {
     private func setupConstraints() {
         NSLayoutConstraint.activate(titleLabelConstraints)
         NSLayoutConstraint.activate(valueLabelConstraints)
+    }
+
+    internal func reloadData() {
+        titleLabel.text = viewModel.title
+        valueLabel.text = viewModel.value()
     }
 }

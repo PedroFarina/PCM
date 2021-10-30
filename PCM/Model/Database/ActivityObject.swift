@@ -40,23 +40,16 @@ internal class ActivityObject: PCMActivity {
     }
 
     func calculateEfficiency() -> Double {
-        return 0
+        let peopleCount = Double(workingUnits.filter({ $0.category == .person }).count)
+        let allHours = peopleCount * timeElapsed
+        let unproductiveHours = impeditives.map({ $0.timeSpent }).reduce(0, +)
+        let usefulHours = (allHours - unproductiveHours)/3600
+
+        return peopleCount * usefulHours / serviceValue
     }
 
     func getTimeElapsedString() -> String {
-        var timeRemaining = timeElapsed
-
-        let dayInSeconds: Double = 86400
-        let days = Int(timeRemaining/dayInSeconds)
-        timeRemaining -= Double(days * Int(dayInSeconds))
-
-        let hourInSeconds: Double = 3600
-        let hours = Int(timeRemaining/hourInSeconds)
-        timeRemaining -= Double(hours * Int(hourInSeconds))
-
-        let minuteInSeconds: Double = 60
-        let minutes = Int(timeRemaining/minuteInSeconds)
-        return "\(days)d \(hours)h \(minutes)m"
+        return timeElapsed.getTimeElapsedString()
     }
 
     func addWorkingUnit(_ workingUnit: PCMWorkingUnit, at date: Date = Date()) {

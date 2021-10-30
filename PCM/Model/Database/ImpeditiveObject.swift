@@ -17,14 +17,6 @@ internal struct ImpeditiveObject: PCMImpeditive {
     var registeredAt: Date
 
     private func getDurationString() -> String {
-        var timeRemaining = timeSpent
-
-        let hourInSeconds: Double = 3600
-        let hours = Int(timeRemaining/hourInSeconds)
-        timeRemaining -= Double(hours * Int(hourInSeconds))
-
-        let minuteInSeconds: Double = 60
-        let minutes = Int(timeRemaining/minuteInSeconds)
-        return "\(hours)h \(minutes)m"
+        return timeSpent.getTimeElapsedString()
     }
 }
