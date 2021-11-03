@@ -16,4 +16,5 @@ internal protocol PCMImpeditive: PCMActivityLogItem {
 internal protocol PCMImpeditiveCategory {
     var description: String { get }
     var subcategories: [String] { get }
+    var appliesToAll: Bool { get }
 }

@@ -8,38 +8,20 @@
 internal struct EquipmentCategory: PCMImpeditiveCategory {
     let description: String = "Equipamentos"
     let subcategories: [String] = ["Manutenção", "Combustível", "Operador", "Outros"]
+    let appliesToAll: Bool = false
 }
 internal struct WorkerCategory: PCMImpeditiveCategory {
     let description: String = "Mão de Obra"
     let subcategories: [String] = ["Treinamento", "Acidente de Trabalho", "Outros"]
+    let appliesToAll: Bool = false
 }
 internal struct MaterialCategory: PCMImpeditiveCategory {
     let description: String = "Material"
     let subcategories: [String] = ["Falta", "Erro de especificação", "Atraso na entrega", "Danificado", "Outros"]
+    let appliesToAll: Bool = true
 }
 internal struct NatureCategory: PCMImpeditiveCategory {
     let description: String = "Intempérie"
     let subcategories: [String] = ["Chuva", "Vento", "Raio", "Outros"]
-}
-
-enum ImpeditiveCategories: Int {
-    case equipmentCategory = 0
-    case workerCategory = 1
-    case materialCategory = 2
-    case natureCategory = 3
-}
-
-extension ImpeditiveCategories {
-    var categoryValue: PCMImpeditiveCategory {
-        switch self {
-        case .equipmentCategory:
-            return EquipmentCategory()
-        case .workerCategory:
-            return WorkerCategory()
-        case .materialCategory:
-            return MaterialCategory()
-        case .natureCategory:
-            return NatureCategory()
-        }
-    }
+    let appliesToAll: Bool = true
 }

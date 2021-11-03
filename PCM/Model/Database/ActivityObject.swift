@@ -42,7 +42,9 @@ internal class ActivityObject: PCMActivity {
     func calculateEfficiency() -> Double {
         let peopleCount = Double(workingUnits.filter({ $0.category == .person }).count)
         let allHours = peopleCount * timeElapsed
-        let unproductiveHours = impeditives.map({ $0.timeSpent }).reduce(0, +)
+        let unproductiveIndividualHours = impeditives.filter({ !$0.category.appliesToAll }).map({ $0.timeSpent }).reduce(0, +)
+        let unproductiveGroupedHours = impeditives.filter({ $0.category.appliesToAll }).map({ $0.timeSpent * peopleCount }).reduce(0, +)
+        let unproductiveHours = unproductiveIndividualHours + unproductiveGroupedHours
         let usefulHours = (allHours - unproductiveHours)/3600
 
         return peopleCount * usefulHours / serviceValue
