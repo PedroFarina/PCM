@@ -20,6 +20,16 @@ struct ReportContainerViewModel {
         activity.impeditives.map({ $0.timeSpent }).reduce(0, +)
     }
 
+    var startDate: String {
+        let df = DateFormatter()
+        df.dateFormat = "dd/MM"
+        return df.string(from: activity.startedAt)
+    }
+
+    var serviceValue: String {
+        String(activity.serviceValue)
+    }
+
     var workersTimeValue: String {
         String(peopleWorkingCount)
     }

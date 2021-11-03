@@ -17,14 +17,14 @@ internal class ImpedimentsViewController: UIViewController {
     
     private lazy var exitButton: UIBarButtonItem = {
         var exitButton = UIBarButtonItem()
-        exitButton = UIBarButtonItem(title: "Finalizar", style: UIBarButtonItem.Style.plain, target: self, action: #selector(exitTap(_:)))
+        exitButton = UIBarButtonItem(title: "Finalizar", style: UIBarButtonItem.Style.plain, target: self, action: #selector(concludeTap(_:)))
         exitButton.tintColor = .buttonColor
         return exitButton
     }()
     
     private lazy var cancelButton: UIBarButtonItem = {
         var exitButton = UIBarButtonItem()
-        exitButton = UIBarButtonItem(title: "Cancelar", style: UIBarButtonItem.Style.plain, target: self, action: #selector(exitTap(_:)))
+        exitButton = UIBarButtonItem(title: "Cancelar", style: UIBarButtonItem.Style.plain, target: self, action: #selector(exitTap))
         exitButton.tintColor = .buttonColor
         
         return exitButton
@@ -141,7 +141,7 @@ internal class ImpedimentsViewController: UIViewController {
         let appearance = UINavigationBarAppearance()
         appearance.configureWithOpaqueBackground()
         navigationController?.navigationBar.scrollEdgeAppearance = appearance
-        self.navigationItem.title = "Impedimentos"
+        self.navigationItem.title = "Improdutividade"
         
         navigationItem.rightBarButtonItem = exitButton
         navigationItem.leftBarButtonItem = cancelButton
@@ -163,7 +163,11 @@ internal class ImpedimentsViewController: UIViewController {
         debugPrint(datePicker.countDownDuration)
     }
 
-    @objc func exitTap(_: UIButton){
+    @objc func exitTap() {
+        self.dismiss(animated: true)
+    }
+
+    @objc func concludeTap(_: UIButton){
         guard let currentCategory = currentCategory else {
             return
         }
@@ -209,7 +213,7 @@ extension ImpedimentsViewController: UIPickerViewDelegate {
 
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         if pickerView.tag == 1 {
-            currentCategory = ImpeditiveCategories(rawValue: row)?.categoryValue
+            currentCategory = categories[row]
             pickerViewSubCategoria.reloadAllComponents()
             pickerViewSubCategoria.selectRow(0, inComponent: 0, animated: true)
         } else {

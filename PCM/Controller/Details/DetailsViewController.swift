@@ -23,7 +23,7 @@ internal class DetailsViewController: UIViewController {
     
     private lazy var conclusionButton: UIBarButtonItem = {
         var conclusionButton = UIBarButtonItem()
-        conclusionButton = UIBarButtonItem(title: "Concluir", style: UIBarButtonItem.Style.plain, target: self, action: #selector(conclusionTap(_:)))
+        conclusionButton = UIBarButtonItem(title: "Encerrar", style: UIBarButtonItem.Style.plain, target: self, action: #selector(conclusionTap(_:)))
         conclusionButton.tintColor = .buttonColor
         return conclusionButton
     }()
@@ -82,7 +82,7 @@ internal class DetailsViewController: UIViewController {
         button.translatesAutoresizingMaskIntoConstraints = false
         button.backgroundColor = .yellowProt
         button.layer.cornerRadius = 14
-        button.setTitle("Parar", for: .normal)
+        button.setTitle("Fim do Expediente", for: .normal)
         button.setTitleColor(.blackProt, for: .normal)
         button.addTarget(self, action: #selector(stopTap), for: .touchUpInside)
         return button
@@ -206,6 +206,10 @@ internal class DetailsViewController: UIViewController {
         label.textColor = .blackProt
         return label
     }()
+    private lazy var timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(fireTimer), userInfo: nil, repeats: true)
+    private var isCountingTime: Bool {
+        return stopButton.titleLabel?.text == "Fim do Expediente"
+    }
     
     private lazy var constraints: [NSLayoutConstraint] = {
         [
@@ -228,8 +232,7 @@ internal class DetailsViewController: UIViewController {
             
             infoText.topAnchor.constraint(equalTo: addTimeView.bottomAnchor, constant: 10),
             infoText.leadingAnchor.constraint(equalTo: infoContainer.leadingAnchor, constant: 10),
-            //TODO: trocar ordem da 145 com a 143 pra manter consistência
-            infoText.widthAnchor.constraint(equalToConstant: 345),
+            infoText.trailingAnchor.constraint(equalTo: infoContainer.trailingAnchor, constant: -10),
             
             commentButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -view.frame.height * 0.05),
             commentButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -15),
@@ -288,6 +291,19 @@ internal class DetailsViewController: UIViewController {
         view.addSubview(reportContainerView)
         view.addSubview(resumoView)
         checkUI()
+        timer.awakeFromNib()
+    }
+
+    @objc func fireTimer() {
+        if activity.state == .done {
+            timer.invalidate()
+            return
+        }
+        if isCountingTime {
+            activity.timeElapsed += 1
+            addTimeLabel.text = activity.getTimeElapsedString()
+            reportContainerView.reloadData()
+        }
     }
 
     func checkUI() {
@@ -325,10 +341,10 @@ internal class DetailsViewController: UIViewController {
     }
 
     @objc private func stopTap() {
-        if stopButton.titleLabel?.text == "Parar" {
-            stopButton.setTitle("Continuar", for: .normal)
+        if stopButton.titleLabel?.text == "Fim do Expediente" {
+            stopButton.setTitle("Começo do Expediente", for: .normal)
         } else {
-            stopButton.setTitle("Parar", for: .normal)
+            stopButton.setTitle("Fim do Expediente", for: .normal)
         }
     }
     
@@ -363,7 +379,7 @@ internal class DetailsViewController: UIViewController {
     @objc private func turnTap(_ sender: UIButton){
         tableView.isHidden.toggle()
         if tableView.isHidden == true{
-            titleTable.text = "Relatório"
+            titleTable.text = "Resumo de atividades"
             resumoView.isHidden = false
             reportContainerView.isHidden = false
             hourFuncMeioOficialView.isHidden = false

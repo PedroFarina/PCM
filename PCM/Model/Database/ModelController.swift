@@ -112,10 +112,10 @@ internal final class ModelController {
         WorkingUnitObject(category: category, description: description)
     }
     internal static func createComment(with description: String) -> CommentObject {
-        CommentObject(description: description, registeredAt: generateDate())
+        CommentObject(description: description, registeredAt: Date())
     }
     internal static func createImpeditive(with category: PCMImpeditiveCategory, and subcategory: String, for time: TimeInterval) -> PCMImpeditive {
-        ImpeditiveObject(category: category, subcategory: subcategory, timeSpent: time, registeredAt: generateDate())
+        ImpeditiveObject(category: category, subcategory: subcategory, timeSpent: time, registeredAt: Date())
     }
 
 }

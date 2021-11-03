@@ -12,6 +12,20 @@ final class ReportContainerView: UIStackView {
 
     private let viewModel: ReportContainerViewModel
 
+    private lazy var dateTimeCell: ReportCellView = {
+        let viewModel = ReportCellViewModel(title: "Data de Inicio", value: { self.viewModel.startDate })
+        let cell = ReportCellView(from: viewModel)
+
+        return cell
+    }()
+
+    private lazy var serviceValueCell: ReportCellView = {
+        let viewModel = ReportCellViewModel(title: "Quantidade de serviço", value: { self.viewModel.serviceValue })
+        let cell = ReportCellView(from: viewModel)
+
+        return cell
+    }()
+
     private lazy var workersTimeCell: ReportCellView = {
         let viewModel = ReportCellViewModel(title: "Funcionários", value: { self.viewModel.workersTimeValue })
         let cell = ReportCellView(from: viewModel)
@@ -41,7 +55,7 @@ final class ReportContainerView: UIStackView {
     }()
 
     private lazy var unproductiveHoursCell: ReportCellView = {
-        let viewModel = ReportCellViewModel(title: "Tempo impedido", value: { self.viewModel.unproductiveHours })
+        let viewModel = ReportCellViewModel(title: "Tempo improdutivo", value: { self.viewModel.unproductiveHours })
         let cell = ReportCellView(from: viewModel)
         cell.translatesAutoresizingMaskIntoConstraints = false
 
@@ -71,6 +85,8 @@ final class ReportContainerView: UIStackView {
     }
 
     func reloadData() {
+        dateTimeCell.reloadData()
+        serviceValueCell.reloadData()
         workersTimeCell.reloadData()
         allocatedEquipmentCell.reloadData()
         workedHoursCell.reloadData()
@@ -89,6 +105,8 @@ final class ReportContainerView: UIStackView {
     }
 
     private func setupViewHierarchy() {
+        addArrangedSubview(dateTimeCell)
+        addArrangedSubview(serviceValueCell)
         addArrangedSubview(workersTimeCell)
         addArrangedSubview(allocatedEquipmentCell)
         addArrangedSubview(workedHoursCell)

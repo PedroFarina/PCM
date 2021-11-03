@@ -32,7 +32,7 @@ extension TimeInterval {
         if hours > 0 {
             return hoursString + minutesString
         }
-        if minutes > 0 {
+        if (minutes > 0) || timeRemaining > 0 {
             return minutesString
         }
         return "0d0h0m"
