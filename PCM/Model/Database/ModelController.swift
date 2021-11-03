@@ -74,7 +74,8 @@ internal final class ModelController {
             let randomizer = Int.random(in: 0...100)
             let category: WorkingUnitCategory = randomizer % 2 == 1 ? .person: .equipment
             let desc = category == .person ? names.randomElement()! : equipments.randomElement()!
-            let workingUnitObject = WorkingUnitObject(category: category, description: desc)
+            let subcategory: WorkingUnitSubcategory = Int.random(in: 0...100) % 2 == 1 ? .official: .nonOfficial
+            let workingUnitObject = WorkingUnitObject(category: category, subcategory: subcategory, title: "", description: desc)
             workingUnitObjects.append(workingUnitObject)
         }
         return workingUnitObjects
@@ -108,8 +109,8 @@ internal final class ModelController {
     internal static func getImpeditiveCategories() -> [PCMImpeditiveCategory] {
         return []
     }
-    internal static func createWorkingUnit(with description: String, and category: WorkingUnitCategory) -> PCMWorkingUnit {
-        WorkingUnitObject(category: category, description: description)
+    internal static func createWorkingUnit(description: String, category: WorkingUnitCategory, subcategory: WorkingUnitSubcategory, title: String ) -> PCMWorkingUnit {
+        WorkingUnitObject(category: category, subcategory: subcategory, title: title, description: description)
     }
     internal static func createComment(with description: String) -> CommentObject {
         CommentObject(description: description, registeredAt: Date())

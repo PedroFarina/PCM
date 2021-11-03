@@ -146,7 +146,7 @@ internal class DetailsViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .preferredFont(forTextStyle: .body)
         label.adjustsFontForContentSizeCategory = true
-        label.text = activity.description
+        label.text = activity.name
         label.lineBreakMode = NSLineBreakMode.byWordWrapping
         label.numberOfLines = 3
         label.textColor = .blackProt
@@ -272,7 +272,6 @@ internal class DetailsViewController: UIViewController {
         let appearance = UINavigationBarAppearance()
         appearance.configureWithOpaqueBackground()
         navigationController?.navigationBar.scrollEdgeAppearance = appearance
-        self.navigationItem.title = activity.name
         navigationController?.navigationBar.tintColor = .buttonColor
         navigationItem.rightBarButtonItem = conclusionButton
         
@@ -434,7 +433,11 @@ extension DetailsViewController: SimpleQROutputDelegate {
     }
     
     func qrCodeFound(_ value: String) {
-        let workingUnit = ModelController.createWorkingUnit(with: value, and: .person)
+        let cut = value.split(separator: ",").map({ String($0) })
+        guard let category = WorkingUnitCategory(rawValue: cut[0]), let subcategory = WorkingUnitSubcategory(rawValue: cut[1]) else {
+            return
+        }
+        let workingUnit = ModelController.createWorkingUnit(description: cut[2], category: category, subcategory: subcategory, title: cut[3])
         activity.addWorkingUnit(workingUnit, at: Date())
     }
     

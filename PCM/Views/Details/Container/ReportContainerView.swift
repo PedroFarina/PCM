@@ -13,7 +13,7 @@ final class ReportContainerView: UIStackView {
     private let viewModel: ReportContainerViewModel
 
     private lazy var dateTimeCell: ReportCellView = {
-        let viewModel = ReportCellViewModel(title: "Data de Inicio", value: { self.viewModel.startDate })
+        let viewModel = ReportCellViewModel(title: "Data de início prevista", value: { self.viewModel.startDate })
         let cell = ReportCellView(from: viewModel)
 
         return cell
@@ -26,8 +26,15 @@ final class ReportContainerView: UIStackView {
         return cell
     }()
 
-    private lazy var workersTimeCell: ReportCellView = {
-        let viewModel = ReportCellViewModel(title: "Funcionários", value: { self.viewModel.workersTimeValue })
+    private lazy var officialWorkersCell: ReportCellView = {
+        let viewModel = ReportCellViewModel(title: "Funcionários oficiais", value: { self.viewModel.officialWorkersCountValue })
+        let cell = ReportCellView(from: viewModel)
+
+        return cell
+    }()
+
+    private lazy var nonOfficialWorkersCell: ReportCellView = {
+        let viewModel = ReportCellViewModel(title: "Funcionários meio oficiais", value: { self.viewModel.nonOfficialWorkersCountValue })
         let cell = ReportCellView(from: viewModel)
 
         return cell
@@ -87,7 +94,8 @@ final class ReportContainerView: UIStackView {
     func reloadData() {
         dateTimeCell.reloadData()
         serviceValueCell.reloadData()
-        workersTimeCell.reloadData()
+        nonOfficialWorkersCell.reloadData()
+        officialWorkersCell.reloadData()
         allocatedEquipmentCell.reloadData()
         workedHoursCell.reloadData()
         productiveHoursCell.reloadData()
@@ -107,7 +115,8 @@ final class ReportContainerView: UIStackView {
     private func setupViewHierarchy() {
         addArrangedSubview(dateTimeCell)
         addArrangedSubview(serviceValueCell)
-        addArrangedSubview(workersTimeCell)
+        addArrangedSubview(officialWorkersCell)
+        addArrangedSubview(nonOfficialWorkersCell)
         addArrangedSubview(allocatedEquipmentCell)
         addArrangedSubview(workedHoursCell)
         addArrangedSubview(productiveHoursCell)

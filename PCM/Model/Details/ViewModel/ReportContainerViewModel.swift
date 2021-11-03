@@ -33,8 +33,12 @@ struct ReportContainerViewModel {
         String(Int(activity.serviceValue))
     }
 
-    var workersTimeValue: String {
-        String(peopleWorkingCount)
+    var officialWorkersCountValue: String {
+        String(activity.workingUnits.filter({ $0.category == .person && $0.subcategory == .official }).count)
+    }
+
+    var nonOfficialWorkersCountValue: String {
+        String(activity.workingUnits.filter({ $0.category == .person && $0.subcategory == .nonOfficial }).count)
     }
 
     var allocatedEquipments: String {

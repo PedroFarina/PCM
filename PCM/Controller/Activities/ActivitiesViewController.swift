@@ -130,7 +130,11 @@ internal class ActivitiesViewController: UIViewController, SimpleQROutputDelegat
     }
 
     func qrCodeFound(_ value: String) {
-        let workingUnit = ModelController.createWorkingUnit(with: value, and: .person)
+        let cut = value.split(separator: ",").map({ String($0) })
+        guard let category = WorkingUnitCategory(rawValue: cut[0]), let subcategory = WorkingUnitSubcategory(rawValue: cut[1]) else {
+            return
+        }
+        let workingUnit = ModelController.createWorkingUnit(description: cut[2], category: category, subcategory: subcategory, title: cut[3])
         selectedActivity?.addWorkingUnit(workingUnit, at: Date())
     }
 
