@@ -146,7 +146,7 @@ internal class DetailsViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .preferredFont(forTextStyle: .body)
         label.adjustsFontForContentSizeCategory = true
-        label.text = activity.name
+        label.text = activity.description
         label.lineBreakMode = NSLineBreakMode.byWordWrapping
         label.numberOfLines = 3
         label.textColor = .blackProt
@@ -348,7 +348,7 @@ internal class DetailsViewController: UIViewController {
     }
     
     @objc private func conclusionTap (_ sender: UIButton) {
-        let alertController = UIAlertController(title: "Tem certeza?", message: "Essa ação fechará a tarefa", preferredStyle: .alert)
+        let alertController = UIAlertController(title: "Tem certeza?", message: "Essa ação fechará a tarefa e não pode ser desfeita.", preferredStyle: .alert)
         let yes = UIAlertAction(title: "Sim", style: .default) { action in
             self.activity.state = .done
             self.navigationController?.popViewController(animated: true)

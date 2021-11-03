@@ -8,7 +8,7 @@
 import UIKit
 
 internal class ActivitiesTableViewDataSource: NSObject, UITableViewDataSource {
-    private var filter: PCMActivityState = .doing
+    private var filter: PCMActivityState = .todo
     private var activities: [PCMActivity] = ModelController.getMockedActivities()
     private var filteredActivities: [PCMActivity] {
         activities.filter({ $0.state == filter })

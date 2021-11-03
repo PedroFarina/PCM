@@ -55,13 +55,12 @@ internal class ActivitiesViewController: UIViewController, SimpleQROutputDelegat
         let items = ["Liberados", "Em execução", "Concluídos"]
         segmentedControlCustom = UISegmentedControl(items: items)
         segmentedControlCustom.translatesAutoresizingMaskIntoConstraints = false
-        segmentedControlCustom.selectedSegmentIndex = 1
+        segmentedControlCustom.selectedSegmentIndex = 0
         let xPostion:CGFloat = 10
         let yPostion:CGFloat = 150
         let elementWidth:CGFloat = 300
         let elementHeight:CGFloat = 30
         segmentedControlCustom.frame = CGRect(x: xPostion, y: yPostion, width: elementWidth, height: elementHeight)
-        segmentedControlCustom.selectedSegmentIndex = 1
         segmentedControlCustom.backgroundColor = .segmentedColor
         segmentedControlCustom.addTarget(self, action: #selector(self.segmentedValueChanged(_:)), for: .valueChanged)
         return segmentedControlCustom
