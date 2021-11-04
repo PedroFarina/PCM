@@ -17,11 +17,28 @@ struct ReportContainerViewModel {
         Double(peopleWorkingCount) * activity.timeElapsed
     }
     private var unproductiveTimeCount: TimeInterval {
-        activity.impeditives.map({ $0.timeSpent }).reduce(0, +)
+        let impeditives = activity.impeditives
+        let unproductiveIndividualHours = impeditives.filter({ !$0.category.appliesToAll }).map({ $0.timeSpent }).reduce(0, +)
+        let unproductiveGroupedHours = impeditives.filter({ $0.category.appliesToAll }).map({ $0.timeSpent * Double(peopleWorkingCount) }).reduce(0, +)
+        return unproductiveIndividualHours + unproductiveGroupedHours
     }
 
-    var workersTimeValue: String {
-        String(peopleWorkingCount)
+    var startDate: String {
+        let df = DateFormatter()
+        df.dateFormat = "dd/MM"
+        return df.string(from: activity.startedAt)
+    }
+
+    var serviceValue: String {
+        String(Int(activity.serviceValue))
+    }
+
+    var officialWorkersCountValue: String {
+        String(activity.workingUnits.filter({ $0.category == .person && $0.subcategory == .official }).count)
+    }
+
+    var nonOfficialWorkersCountValue: String {
+        String(activity.workingUnits.filter({ $0.category == .person && $0.subcategory == .nonOfficial }).count)
     }
 
     var allocatedEquipments: String {

@@ -20,40 +20,58 @@ internal final class ModelController {
 
     internal static func getMockedActivities() -> [PCMActivity] {
         let objects = [
-            ActivityObject(name: "Chão do Banheiro",
-                           description: "Concluir o chão do banheiro. A quantidade do serviço estabelecida é de 4m.",
+            ActivityObject(name: "Escavação - TQ1004",
+                           description: "Escavação - TQ1004",
                            state: .todo,
                            serviceValue: 5,
                            startedAt: generateDate(),
                            timeElapsed: 0,
                            workingUnits: [], impeditives: [], comments: []),
-            ActivityObject(name: "Chão da Cozinha",
-                           description: "Concluir o chão da cozinha. A quantidade do serviço estabelecida é de 7m.",
-                           state: .doing,
-                           serviceValue: 7,
+            ActivityObject(name: "Contenção praça de bombas",
+                           description: "Contenção praça de bombas",
+                           state: .todo,
+                           serviceValue: 5,
                            startedAt: generateDate(),
                            timeElapsed: 0,
                            workingUnits: [], impeditives: [], comments: []),
-            ActivityObject(name: "Construção de pilar",
-                           description: "Cimentar o pilar da cozinha. A quantidade do serviço estabelecide é de 5m.",
+            ActivityObject(name: "Escavação - TQ1002",
+                           description: "Escavação - TQ1002",
+                           state: .doing,
+                           serviceValue: 7,
+                           startedAt: generateDate(),
+                           timeElapsed: 15783,
+                           workingUnits: [], impeditives: generateImpeditives(), comments: generateComments()),
+            ActivityObject(name: "Escavação - TQ1003",
+                           description: "Escavação - TQ1003",
+                           state: .doing,
+                           serviceValue: 7,
+                           startedAt: generateDate(),
+                           timeElapsed: 8430,
+                           workingUnits: [], impeditives: generateImpeditives(), comments: generateComments()),
+            ActivityObject(name: "Terraplenagem geral",
+                           description: "Terraplenagem geral",
                            state: .doing,
                            serviceValue: 5,
                            startedAt: generateDate(),
                            timeElapsed: 14400,
                            workingUnits: [], impeditives: generateImpeditives(), comments: generateComments()),
-            ActivityObject(name: "Instalação de porcelanato no banheiro",
-                           description: "Instalar o porcelanato no banheiro. A quantidade do serviço estabelecido é 45m.",
+            ActivityObject(name: "Escavação - TQ1001",
+                           description: "Escavação - TQ1001",
                            state: .done,
                            serviceValue: 45,
                            startedAt: generateDate(),
                            timeElapsed: 12454,
                            workingUnits: [], impeditives: generateImpeditives(), comments: generateComments())
         ]
-        let workingUnits = generateWorkingUnits()
-        for unit in workingUnits {
-            objects[2].addWorkingUnit(unit, at: generateDate())
+        for object in objects {
+            if object.state != .todo {
+                let workingUnits = generateWorkingUnits()
+                for unit in workingUnits {
+                    object.addWorkingUnit(unit)
+                }
+                object.removeWorkingUnit(workingUnits[0])
+            }
         }
-        objects[2].removeWorkingUnit(workingUnits[1])
         return objects
     }
 
@@ -74,7 +92,8 @@ internal final class ModelController {
             let randomizer = Int.random(in: 0...100)
             let category: WorkingUnitCategory = randomizer % 2 == 1 ? .person: .equipment
             let desc = category == .person ? names.randomElement()! : equipments.randomElement()!
-            let workingUnitObject = WorkingUnitObject(category: category, description: desc)
+            let subcategory: WorkingUnitSubcategory = Int.random(in: 0...100) % 2 == 1 ? .official: .nonOfficial
+            let workingUnitObject = WorkingUnitObject(category: category, subcategory: subcategory, title: "", description: desc)
             workingUnitObjects.append(workingUnitObject)
         }
         return workingUnitObjects
@@ -108,14 +127,14 @@ internal final class ModelController {
     internal static func getImpeditiveCategories() -> [PCMImpeditiveCategory] {
         return []
     }
-    internal static func createWorkingUnit(with description: String, and category: WorkingUnitCategory) -> PCMWorkingUnit {
-        WorkingUnitObject(category: category, description: description)
+    internal static func createWorkingUnit(description: String, category: WorkingUnitCategory, subcategory: WorkingUnitSubcategory, title: String ) -> PCMWorkingUnit {
+        WorkingUnitObject(category: category, subcategory: subcategory, title: title, description: description)
     }
     internal static func createComment(with description: String) -> CommentObject {
-        CommentObject(description: description, registeredAt: generateDate())
+        CommentObject(description: description, registeredAt: Date())
     }
     internal static func createImpeditive(with category: PCMImpeditiveCategory, and subcategory: String, for time: TimeInterval) -> PCMImpeditive {
-        ImpeditiveObject(category: category, subcategory: subcategory, timeSpent: time, registeredAt: generateDate())
+        ImpeditiveObject(category: category, subcategory: subcategory, timeSpent: time, registeredAt: Date())
     }
 
 }

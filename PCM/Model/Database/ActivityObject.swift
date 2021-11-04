@@ -42,7 +42,9 @@ internal class ActivityObject: PCMActivity {
     func calculateEfficiency() -> Double {
         let peopleCount = Double(workingUnits.filter({ $0.category == .person }).count)
         let allHours = peopleCount * timeElapsed
-        let unproductiveHours = impeditives.map({ $0.timeSpent }).reduce(0, +)
+        let unproductiveIndividualHours = impeditives.filter({ !$0.category.appliesToAll }).map({ $0.timeSpent }).reduce(0, +)
+        let unproductiveGroupedHours = impeditives.filter({ $0.category.appliesToAll }).map({ $0.timeSpent * peopleCount }).reduce(0, +)
+        let unproductiveHours = unproductiveIndividualHours + unproductiveGroupedHours
         let usefulHours = (allHours - unproductiveHours)/3600
 
         return peopleCount * usefulHours / serviceValue
@@ -64,6 +66,22 @@ internal class ActivityObject: PCMActivity {
             workingUnits.remove(at: index)
             let comment = ModelController.createComment(with: "\(workingUnit.description) foi removido da tarefa.")
             comments.append(comment)
+        }
+    }
+
+    private func removeWorkingUnit(at index: Int) {
+        let workingUnit = workingUnits.remove(at: index)
+        let comment = ModelController.createComment(with: "\(workingUnit.description) foi removido da tarefa.")
+        comments.append(comment)
+    }
+
+    func qrCodeFoundWorkingUnit(_ workingUnit: PCMWorkingUnit) {
+        if let array = workingUnits as? [WorkingUnitObject], let object = workingUnit as? WorkingUnitObject {
+            if let index = array.firstIndex(of: object) {
+                removeWorkingUnit(at: index)
+            } else {
+                addWorkingUnit(workingUnit)
+            }
         }
     }
 }

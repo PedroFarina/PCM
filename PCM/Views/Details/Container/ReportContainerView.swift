@@ -12,8 +12,29 @@ final class ReportContainerView: UIStackView {
 
     private let viewModel: ReportContainerViewModel
 
-    private lazy var workersTimeCell: ReportCellView = {
-        let viewModel = ReportCellViewModel(title: "Funcionários", value: { self.viewModel.workersTimeValue })
+    private lazy var dateTimeCell: ReportCellView = {
+        let viewModel = ReportCellViewModel(title: "Data de início prevista", value: { self.viewModel.startDate })
+        let cell = ReportCellView(from: viewModel)
+
+        return cell
+    }()
+
+    private lazy var serviceValueCell: ReportCellView = {
+        let viewModel = ReportCellViewModel(title: "Quantidade de serviço", value: { self.viewModel.serviceValue })
+        let cell = ReportCellView(from: viewModel)
+
+        return cell
+    }()
+
+    private lazy var officialWorkersCell: ReportCellView = {
+        let viewModel = ReportCellViewModel(title: "Funcionários oficiais", value: { self.viewModel.officialWorkersCountValue })
+        let cell = ReportCellView(from: viewModel)
+
+        return cell
+    }()
+
+    private lazy var nonOfficialWorkersCell: ReportCellView = {
+        let viewModel = ReportCellViewModel(title: "Funcionários meio oficiais", value: { self.viewModel.nonOfficialWorkersCountValue })
         let cell = ReportCellView(from: viewModel)
 
         return cell
@@ -41,7 +62,7 @@ final class ReportContainerView: UIStackView {
     }()
 
     private lazy var unproductiveHoursCell: ReportCellView = {
-        let viewModel = ReportCellViewModel(title: "Tempo impedido", value: { self.viewModel.unproductiveHours })
+        let viewModel = ReportCellViewModel(title: "Tempo improdutivo", value: { self.viewModel.unproductiveHours })
         let cell = ReportCellView(from: viewModel)
         cell.translatesAutoresizingMaskIntoConstraints = false
 
@@ -71,7 +92,10 @@ final class ReportContainerView: UIStackView {
     }
 
     func reloadData() {
-        workersTimeCell.reloadData()
+        dateTimeCell.reloadData()
+        serviceValueCell.reloadData()
+        nonOfficialWorkersCell.reloadData()
+        officialWorkersCell.reloadData()
         allocatedEquipmentCell.reloadData()
         workedHoursCell.reloadData()
         productiveHoursCell.reloadData()
@@ -89,7 +113,10 @@ final class ReportContainerView: UIStackView {
     }
 
     private func setupViewHierarchy() {
-        addArrangedSubview(workersTimeCell)
+        addArrangedSubview(dateTimeCell)
+        addArrangedSubview(serviceValueCell)
+        addArrangedSubview(officialWorkersCell)
+        addArrangedSubview(nonOfficialWorkersCell)
         addArrangedSubview(allocatedEquipmentCell)
         addArrangedSubview(workedHoursCell)
         addArrangedSubview(productiveHoursCell)

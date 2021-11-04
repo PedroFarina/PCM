@@ -35,6 +35,7 @@ internal class ActivitiesViewController: UIViewController, SimpleQROutputDelegat
             self.tableViewDataSource.filterBy(.doing)
             self.selectedActivity = activity
             let qrVC = SimpleQRViewController()
+            qrVC.delegate = self
             self.present(qrVC, animated: true)
         }
 
@@ -55,13 +56,12 @@ internal class ActivitiesViewController: UIViewController, SimpleQROutputDelegat
         let items = ["Liberados", "Em execução", "Concluídos"]
         segmentedControlCustom = UISegmentedControl(items: items)
         segmentedControlCustom.translatesAutoresizingMaskIntoConstraints = false
-        segmentedControlCustom.selectedSegmentIndex = 1
+        segmentedControlCustom.selectedSegmentIndex = 0
         let xPostion:CGFloat = 10
         let yPostion:CGFloat = 150
         let elementWidth:CGFloat = 300
         let elementHeight:CGFloat = 30
         segmentedControlCustom.frame = CGRect(x: xPostion, y: yPostion, width: elementWidth, height: elementHeight)
-        segmentedControlCustom.selectedSegmentIndex = 1
         segmentedControlCustom.backgroundColor = .segmentedColor
         segmentedControlCustom.addTarget(self, action: #selector(self.segmentedValueChanged(_:)), for: .valueChanged)
         return segmentedControlCustom
@@ -130,8 +130,15 @@ internal class ActivitiesViewController: UIViewController, SimpleQROutputDelegat
     }
 
     func qrCodeFound(_ value: String) {
-        let workingUnit = ModelController.createWorkingUnit(with: value, and: .person)
-        selectedActivity?.addWorkingUnit(workingUnit, at: Date())
+        let cut = value.split(separator: ",").map({ String($0) })
+
+        guard cut.count == 4,
+              let category = WorkingUnitCategory(rawValue: cut[0]),
+              let subcategory = WorkingUnitSubcategory(rawValue: cut[1]) else {
+            return
+        }
+        let workingUnit = ModelController.createWorkingUnit(description: cut[2], category: category, subcategory: subcategory, title: cut[3])
+        selectedActivity?.qrCodeFoundWorkingUnit(workingUnit)
     }
 
     func viewWasDismissed() {
