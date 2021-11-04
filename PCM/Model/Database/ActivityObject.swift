@@ -68,4 +68,20 @@ internal class ActivityObject: PCMActivity {
             comments.append(comment)
         }
     }
+
+    private func removeWorkingUnit(at index: Int) {
+        let workingUnit = workingUnits.remove(at: index)
+        let comment = ModelController.createComment(with: "\(workingUnit.description) foi removido da tarefa.")
+        comments.append(comment)
+    }
+
+    func qrCodeFoundWorkingUnit(_ workingUnit: PCMWorkingUnit) {
+        if let array = workingUnits as? [WorkingUnitObject], let object = workingUnit as? WorkingUnitObject {
+            if let index = array.firstIndex(of: object) {
+                removeWorkingUnit(at: index)
+            } else {
+                addWorkingUnit(workingUnit)
+            }
+        }
+    }
 }

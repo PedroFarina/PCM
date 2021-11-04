@@ -35,6 +35,7 @@ internal class ActivitiesViewController: UIViewController, SimpleQROutputDelegat
             self.tableViewDataSource.filterBy(.doing)
             self.selectedActivity = activity
             let qrVC = SimpleQRViewController()
+            qrVC.delegate = self
             self.present(qrVC, animated: true)
         }
 
@@ -137,7 +138,7 @@ internal class ActivitiesViewController: UIViewController, SimpleQROutputDelegat
             return
         }
         let workingUnit = ModelController.createWorkingUnit(description: cut[2], category: category, subcategory: subcategory, title: cut[3])
-        selectedActivity?.addWorkingUnit(workingUnit, at: Date())
+        selectedActivity?.qrCodeFoundWorkingUnit(workingUnit)
     }
 
     func viewWasDismissed() {

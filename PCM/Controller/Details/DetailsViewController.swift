@@ -440,7 +440,7 @@ extension DetailsViewController: SimpleQROutputDelegate {
             return
         }
         let workingUnit = ModelController.createWorkingUnit(description: cut[2], category: category, subcategory: subcategory, title: cut[3])
-        activity.addWorkingUnit(workingUnit, at: Date())
+        activity.qrCodeFoundWorkingUnit(workingUnit)
     }
     
     func viewWasDismissed() {

@@ -29,6 +29,7 @@ internal protocol PCMActivity: AnyObject {
     func calculateEfficiency() -> Double
     func getTimeElapsedString() -> String
 
+    func qrCodeFoundWorkingUnit(_ workingUnit: PCMWorkingUnit)
     func addWorkingUnit(_ workingUnit: PCMWorkingUnit, at date: Date)
     func removeWorkingUnit(_ workingUnit: PCMWorkingUnit)
 }
