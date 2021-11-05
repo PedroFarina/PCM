@@ -82,7 +82,7 @@ internal class DetailsViewController: UIViewController {
         button.translatesAutoresizingMaskIntoConstraints = false
         button.backgroundColor = .yellowProt
         button.layer.cornerRadius = 14
-        button.setTitle("Fim do Expediente", for: .normal)
+        button.setTitle("Começo do Expediente", for: .normal)
         button.setTitleColor(.blackProt, for: .normal)
         button.addTarget(self, action: #selector(stopTap), for: .touchUpInside)
         return button
@@ -114,10 +114,17 @@ internal class DetailsViewController: UIViewController {
         return containerView
     }()
 
+    private var reportScrollView: UIScrollView = {
+        let scrollView = UIScrollView()
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        scrollView.isHidden = true
+
+        return scrollView
+    }()
+
     private lazy var reportContainerView: ReportContainerView = {
         let viewModel = ReportContainerViewModel(activity: activity)
         let view = ReportContainerView(viewModel: viewModel)
-        view.isHidden = true
         view.translatesAutoresizingMaskIntoConstraints = false
 
         return view
@@ -162,50 +169,7 @@ internal class DetailsViewController: UIViewController {
         label.textColor = .blackProt
         return label
     }()
-    
-    private var resumoView: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = .preferredFont(forTextStyle: .headline)
-        label.adjustsFontForContentSizeCategory = true
-        label.text = "Resumo"
-        label.isHidden = true
-        label.textColor = .blackProt
-        return label
-    }()
 
-    private var funcMeioOficialView: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = .preferredFont(forTextStyle: .body)
-        label.adjustsFontForContentSizeCategory = true
-        label.text = "Funcionários meio-oficiais: "
-        label.isHidden = true
-        label.textColor = .blackProt
-        return label
-    }()
-    
-    private var hourFuncMeioOficialView: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = .preferredFont(forTextStyle: .body)
-        label.adjustsFontForContentSizeCategory = true
-        label.text = "2h40min"
-        label.isHidden = true
-        label.textColor = .blackProt
-        return label
-    }()
-    
-    private var hourFuncOficialView: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = .preferredFont(forTextStyle: .body)
-        label.adjustsFontForContentSizeCategory = true
-        label.text = "1h30min"
-        label.isHidden = true
-        label.textColor = .blackProt
-        return label
-    }()
     private lazy var timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(fireTimer), userInfo: nil, repeats: true)
     private var isCountingTime: Bool {
         return stopButton.titleLabel?.text == "Fim do Expediente"
@@ -252,17 +216,21 @@ internal class DetailsViewController: UIViewController {
             tableView.topAnchor.constraint(equalTo: titleTable.bottomAnchor, constant: -20),
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15),
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -15),
-            tableView.bottomAnchor.constraint(equalTo: stopButton.topAnchor, constant: -view.frame.height * 0.07),
+            tableView.bottomAnchor.constraint(equalTo: stopButton.topAnchor, constant: -20),
             
             stopButton.heightAnchor.constraint(equalToConstant: 56),
             stopButton.widthAnchor.constraint(equalToConstant: 240),
             stopButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             stopButton.bottomAnchor.constraint(equalTo: commentButton.topAnchor, constant: -view.frame.height * 0.04),
-            
-            reportContainerView.topAnchor.constraint(equalTo: infoContainer.bottomAnchor, constant: 50),
-            reportContainerView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15),
-            reportContainerView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -15),
-            reportContainerView.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+
+            reportScrollView.topAnchor.constraint(equalTo: titleTable.bottomAnchor, constant: 20),
+            reportScrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15),
+            reportScrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -15),
+            reportScrollView.bottomAnchor.constraint(equalTo: stopButton.topAnchor, constant: -20),
+
+            reportContainerView.topAnchor.constraint(equalTo: reportScrollView.topAnchor),
+            reportContainerView.widthAnchor.constraint(equalTo: reportScrollView.widthAnchor),
+            reportContainerView.bottomAnchor.constraint(equalTo: reportScrollView.bottomAnchor)
         ]
     }()
     
@@ -287,8 +255,8 @@ internal class DetailsViewController: UIViewController {
         view.addSubview(tableView)
         view.addSubview(stopButton)
         view.addSubview(turnButton)
-        view.addSubview(reportContainerView)
-        view.addSubview(resumoView)
+        view.addSubview(reportScrollView)
+        reportScrollView.addSubview(reportContainerView)
         checkUI()
         timer.awakeFromNib()
     }
@@ -379,17 +347,11 @@ internal class DetailsViewController: UIViewController {
         tableView.isHidden.toggle()
         if tableView.isHidden == true{
             titleTable.text = "Resumo de atividades"
-            resumoView.isHidden = false
-            reportContainerView.isHidden = false
-            hourFuncMeioOficialView.isHidden = false
-            funcMeioOficialView.isHidden = false
+            reportScrollView.isHidden = false
         }
         else {
             titleTable.text = "Registro de atividades"
-            resumoView.isHidden = true
-            hourFuncMeioOficialView.isHidden = true
-            funcMeioOficialView.isHidden = true
-            reportContainerView.isHidden = true
+            reportScrollView.isHidden = true
         }
     }
 

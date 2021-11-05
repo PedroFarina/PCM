@@ -545,7 +545,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 4;
-				DEVELOPMENT_TEAM = 6YYZ79V57N;
+				DEVELOPMENT_TEAM = BVZY57RJZG;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = PCM/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "Precisamos de acesso a câmera para identificar funcionários e equipamentos via código QR.";
@@ -575,7 +575,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 4;
-				DEVELOPMENT_TEAM = 6YYZ79V57N;
+				DEVELOPMENT_TEAM = BVZY57RJZG;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = PCM/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "Precisamos de acesso a câmera para identificar funcionários e equipamentos via código QR.";

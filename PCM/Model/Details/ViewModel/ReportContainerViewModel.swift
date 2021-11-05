@@ -9,7 +9,7 @@ import Foundation
 
 struct ReportContainerViewModel {
 
-    private let activity: PCMActivity
+    internal let activity: PCMActivity
     private var peopleWorkingCount: Int {
         activity.workingUnits.filter({ $0.category == .person }).count
     }
