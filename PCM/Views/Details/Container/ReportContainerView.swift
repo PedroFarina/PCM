@@ -11,71 +11,25 @@ import UIKit
 final class ReportContainerView: UIStackView {
 
     private let viewModel: ReportContainerViewModel
+    private var cells: [ReportCellView] = []
 
-    private lazy var dateTimeCell: ReportCellView = {
-        let viewModel = ReportCellViewModel(title: "Data de início prevista", value: { self.viewModel.startDate })
-        let cell = ReportCellView(from: viewModel)
+    private lazy var dateTimeCell: ReportCellView = makeReportCellWith(title: "Data de inicio prevista", value: { self.viewModel.serviceValue })
 
-        return cell
-    }()
+    private lazy var serviceValueCell: ReportCellView = makeReportCellWith(title: "Quantidade de serviço", value: { self.viewModel.serviceValue })
 
-    private lazy var serviceValueCell: ReportCellView = {
-        let viewModel = ReportCellViewModel(title: "Quantidade de serviço", value: { self.viewModel.serviceValue })
-        let cell = ReportCellView(from: viewModel)
+    private lazy var officialWorkersCell: ReportCellView = makeReportCellWith(title: "Funcionários oficiais", value: { self.viewModel.officialWorkersCountValue })
 
-        return cell
-    }()
+    private lazy var nonOfficialWorkersCell: ReportCellView = makeReportCellWith(title: "Funcionários meio oficiais", value: { self.viewModel.nonOfficialWorkersCountValue })
 
-    private lazy var officialWorkersCell: ReportCellView = {
-        let viewModel = ReportCellViewModel(title: "Funcionários oficiais", value: { self.viewModel.officialWorkersCountValue })
-        let cell = ReportCellView(from: viewModel)
+    private lazy var allocatedEquipmentCell: ReportCellView = makeReportCellWith(title: "Equipamentos alocados", value: { self.viewModel.allocatedEquipments })
 
-        return cell
-    }()
+    private lazy var workedHoursCell: ReportCellView = makeReportCellWith(title: "Tempo total trabalhado", value: { self.viewModel.workedHours })
 
-    private lazy var nonOfficialWorkersCell: ReportCellView = {
-        let viewModel = ReportCellViewModel(title: "Funcionários meio oficiais", value: { self.viewModel.nonOfficialWorkersCountValue })
-        let cell = ReportCellView(from: viewModel)
+    private lazy var productiveHoursCell: ReportCellView = makeReportCellWith(title: "Tempo total produtivo", value: { self.viewModel.productiveHours })
 
-        return cell
-    }()
+    private lazy var unproductiveHoursCell: ReportCellView = makeReportCellWith(title: "Tempo total improdutivo", value: { self.viewModel.unproductiveHours })
 
-    private lazy var allocatedEquipmentCell: ReportCellView = {
-        let viewModel = ReportCellViewModel(title: "Equipamentos alocados", value: { self.viewModel.allocatedEquipments })
-        let cell = ReportCellView(from: viewModel)
-
-        return cell
-    }()
-
-    private lazy var workedHoursCell: ReportCellView = {
-        let viewModel = ReportCellViewModel(title: "Tempo trabalhado", value: { self.viewModel.workedHours })
-        let cell = ReportCellView(from: viewModel)
-
-        return cell
-    }()
-
-    private lazy var productiveHoursCell: ReportCellView = {
-        let viewModel = ReportCellViewModel(title: "Tempo produtivo", value: { self.viewModel.productiveHours })
-        let cell = ReportCellView(from: viewModel)
-
-        return cell
-    }()
-
-    private lazy var unproductiveHoursCell: ReportCellView = {
-        let viewModel = ReportCellViewModel(title: "Tempo improdutivo", value: { self.viewModel.unproductiveHours })
-        let cell = ReportCellView(from: viewModel)
-        cell.translatesAutoresizingMaskIntoConstraints = false
-
-        return cell
-    }()
-
-    private lazy var efficiencyCell: ReportCellView = {
-        let viewModel = ReportCellViewModel(title: "Coeficiente de eficiência", value: { self.viewModel.efficiency })
-        let cell = ReportCellView(from: viewModel)
-        cell.translatesAutoresizingMaskIntoConstraints = false
-
-        return cell
-    }()
+    private lazy var efficiencyCell: ReportCellView = makeReportCellWith(title: "Coeficiente de eficiência geral", value: { self.viewModel.efficiency })
 
     init(viewModel: ReportContainerViewModel, frame: CGRect = .zero) {
         self.viewModel = viewModel
@@ -83,7 +37,7 @@ final class ReportContainerView: UIStackView {
         super.init(frame: frame)
 
         setupStackView()
-        setupViewHierarchy()
+        makeViewHierarchy()
     }
 
     @available(*, unavailable)
@@ -92,15 +46,7 @@ final class ReportContainerView: UIStackView {
     }
 
     func reloadData() {
-        dateTimeCell.reloadData()
-        serviceValueCell.reloadData()
-        nonOfficialWorkersCell.reloadData()
-        officialWorkersCell.reloadData()
-        allocatedEquipmentCell.reloadData()
-        workedHoursCell.reloadData()
-        productiveHoursCell.reloadData()
-        unproductiveHoursCell.reloadData()
-        efficiencyCell.reloadData()
+        makeViewHierarchy()
     }
 
 
@@ -112,15 +58,52 @@ final class ReportContainerView: UIStackView {
         layer.cornerRadius = 4
     }
 
-    private func setupViewHierarchy() {
-        addArrangedSubview(dateTimeCell)
-        addArrangedSubview(serviceValueCell)
-        addArrangedSubview(officialWorkersCell)
-        addArrangedSubview(nonOfficialWorkersCell)
-        addArrangedSubview(allocatedEquipmentCell)
-        addArrangedSubview(workedHoursCell)
-        addArrangedSubview(productiveHoursCell)
-        addArrangedSubview(unproductiveHoursCell)
-        addArrangedSubview(efficiencyCell)
+    private func makeViewHierarchy() {
+        cells.forEach({ $0.removeFromSuperview() })
+        cells.removeAll()
+        cells.append(dateTimeCell)
+        cells.append(serviceValueCell)
+        cells.append(officialWorkersCell)
+        cells.append(nonOfficialWorkersCell)
+        cells.append(allocatedEquipmentCell)
+
+        let groupedUnits = Dictionary(grouping: viewModel.activity.workingUnits, by: { $0.description })
+        let sortedUnits = groupedUnits.sorted(by: { $0.key < $1.key })
+        for grouping in sortedUnits {
+            let quantityCell = makeReportCellWith(title: "Quantidade [\(grouping.key)]",
+                                                  value: { String(grouping.value.count) })
+            cells.append(quantityCell)
+            let efficiencyCell = makeReportCellWith(title: "Eficiência [\(grouping.key)]",
+                                                    value: { self.calculateEfficiencyFor(activity: self.viewModel.activity, and: grouping.value) })
+            cells.append(efficiencyCell)
+        }
+
+        cells.append(workedHoursCell)
+        cells.append(productiveHoursCell)
+        cells.append(unproductiveHoursCell)
+        cells.append(efficiencyCell)
+
+        for cell in cells {
+            addArrangedSubview(cell)
+        }
+    }
+
+    private func makeReportCellWith(title: String, value: @escaping () -> String) -> ReportCellView {
+        let viewModel = ReportCellViewModel(title: title, value: value)
+        let cell = ReportCellView(from: viewModel)
+
+        return cell
+    }
+
+    /// This should not exist, but I'm lazy and just want to end the app at this point
+    private func calculateEfficiencyFor(activity: PCMActivity, and workingUnits: [PCMWorkingUnit]) -> String {
+        let peopleCount = Double(workingUnits.count)
+        let allHours = peopleCount * activity.timeElapsed
+        let unproductiveIndividualHours = activity.impeditives.filter({ !$0.category.appliesToAll }).map({ $0.timeSpent }).reduce(0, +)
+        let unproductiveGroupedHours = activity.impeditives.filter({ $0.category.appliesToAll }).map({ $0.timeSpent * peopleCount }).reduce(0, +)
+        let unproductiveHours = unproductiveIndividualHours + unproductiveGroupedHours
+        let usefulHours = (allHours - unproductiveHours)/3600
+
+        return String(format: "%.2f", (peopleCount * usefulHours / activity.serviceValue))
     }
 }
