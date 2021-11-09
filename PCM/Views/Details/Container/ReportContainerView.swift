@@ -13,7 +13,7 @@ final class ReportContainerView: UIStackView {
     private let viewModel: ReportContainerViewModel
     private var cells: [ReportCellView] = []
 
-    private lazy var dateTimeCell: ReportCellView = makeReportCellWith(title: "Data de inicio prevista", value: { self.viewModel.serviceValue })
+    private lazy var dateTimeCell: ReportCellView = makeReportCellWith(title: "Data de inicio prevista", value: { self.viewModel.startDate })
 
     private lazy var serviceValueCell: ReportCellView = makeReportCellWith(title: "Quantidade de serviço", value: { self.viewModel.serviceValue })
 
