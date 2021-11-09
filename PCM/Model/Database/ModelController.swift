@@ -40,88 +40,61 @@ internal final class ModelController {
                            serviceValue: 7,
                            startedAt: generateDate(),
                            timeElapsed: 15783,
-                           workingUnits: [], impeditives: generateImpeditives(), comments: generateComments()),
+                           workingUnits: [], impeditives: [], comments: []),
             ActivityObject(name: "Escavação - TQ1003",
                            description: "Escavação - TQ1003",
                            state: .doing,
                            serviceValue: 7,
                            startedAt: generateDate(),
                            timeElapsed: 8430,
-                           workingUnits: [], impeditives: generateImpeditives(), comments: generateComments()),
+                           workingUnits: [], impeditives: [], comments: []),
             ActivityObject(name: "Terraplenagem geral",
                            description: "Terraplenagem geral",
                            state: .doing,
                            serviceValue: 5,
                            startedAt: generateDate(),
                            timeElapsed: 14400,
-                           workingUnits: [], impeditives: generateImpeditives(), comments: generateComments()),
+                           workingUnits: [], impeditives: [], comments: []),
             ActivityObject(name: "Escavação - TQ1001",
                            description: "Escavação - TQ1001",
                            state: .done,
                            serviceValue: 45,
                            startedAt: generateDate(),
                            timeElapsed: 12454,
-                           workingUnits: [], impeditives: generateImpeditives(), comments: generateComments())
+                           workingUnits: [], impeditives: [], comments: [])
         ]
-        for object in objects {
-            if object.state != .todo {
-                let workingUnits = generateWorkingUnits()
-                for unit in workingUnits {
-                    object.addWorkingUnit(unit)
-                }
-                object.removeWorkingUnit(workingUnits[0])
+        for i in 2 ..< objects.count {
+            let category: WorkingUnitCategory
+            if i == 4 {
+                category = .equipment
+            } else {
+                category = .person
+            }
+            for workingUnit in generateWorkingUnits(category) {
+                objects[i].addWorkingUnit(workingUnit)
             }
         }
         return objects
     }
 
-    private static let names: [String] = [
-        "Carpinteiro",
-        "Marcineiro",
-        "Pedreiro",
-        "Servente"
-    ]
+    private static let name: String = "Servente"
     private static let equipments: [String] = [
-        "Broca",
-        "Caminhão",
-        "Escavadeira"
+        "Pá carregadeira",
+        "Rolo compactador"
     ]
-    private static func generateWorkingUnits() -> [WorkingUnitObject] {
-        var workingUnitObjects: [WorkingUnitObject] = []
-        for _ in 0 ... Int.random(in: 1 ... 15) {
-            let randomizer = Int.random(in: 0...100)
-            let category: WorkingUnitCategory = randomizer % 2 == 1 ? .person: .equipment
-            let desc = category == .person ? names.randomElement()! : equipments.randomElement()!
-            let subcategory: WorkingUnitSubcategory = Int.random(in: 0...100) % 2 == 1 ? .official: .nonOfficial
-            let workingUnitObject = WorkingUnitObject(category: category, subcategory: subcategory, title: "", description: desc)
-            workingUnitObjects.append(workingUnitObject)
+    private static func generateWorkingUnits(_ category: WorkingUnitCategory) -> [WorkingUnitObject] {
+        if category == .person {
+            let subcategory: WorkingUnitSubcategory = .official
+            let workingUnitObject = WorkingUnitObject(category: category, subcategory: subcategory, title: "Funcionario", description: name)
+            return [workingUnitObject]
+        } else {
+            let subcategory: WorkingUnitSubcategory = .none
+            var workingUnits: [WorkingUnitObject] = []
+            for equipment in equipments {
+                workingUnits.append(WorkingUnitObject(category: category, subcategory: subcategory, title: "Empresa", description: equipment))
+            }
+            return workingUnits
         }
-        return workingUnitObjects
-    }
-    private static func generateImpeditives() -> [ImpeditiveObject] {
-        var impeditiveObjects: [ImpeditiveObject] = []
-        for _ in 0 ... Int.random(in: 1 ... 2) {
-            let category = categories.randomElement()!
-            let subCategory = category.subcategories.randomElement()!
-            impeditiveObjects.append(ImpeditiveObject(category: category,
-                                                      subcategory: subCategory,
-                                                      timeSpent: .random(in: 0 ... 6000),
-                                                      registeredAt: generateDate()))
-        }
-        return impeditiveObjects
-    }
-
-    private static let comments: [String] = [
-        "Hoje o dia foi muito quente",
-        "João estava com muito sono",
-        "O dia esfriou de repente"
-    ]
-    private static func generateComments() -> [CommentObject] {
-        var commentObjects: [CommentObject] = []
-        for _ in 0 ... Int.random(in: 0 ... 3) {
-            commentObjects.append(CommentObject(description: comments.randomElement()!, registeredAt: generateDate()))
-        }
-        return commentObjects
     }
 
     internal static func getImpeditiveCategories() -> [PCMImpeditiveCategory] {

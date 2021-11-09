@@ -13,6 +13,9 @@ struct ReportContainerViewModel {
     private var peopleWorkingCount: Int {
         activity.workingUnits.filter({ $0.category == .person }).count
     }
+    private var workingEquipmentCount: Int {
+        activity.workingUnits.filter { $0.category == .equipment }.count
+    }
     private var allHours: TimeInterval {
         Double(peopleWorkingCount) * activity.timeElapsed
     }
@@ -25,12 +28,12 @@ struct ReportContainerViewModel {
 
     var startDate: String {
         let df = DateFormatter()
-        df.dateFormat = "dd/MM"
+        df.dateFormat = "dd/MM/yy"
         return df.string(from: activity.startedAt)
     }
 
     var serviceValue: String {
-        String(Int(activity.serviceValue))
+        String(Int(activity.serviceValue)) + " m³"
     }
 
     var officialWorkersCountValue: String {
@@ -42,8 +45,7 @@ struct ReportContainerViewModel {
     }
 
     var allocatedEquipments: String {
-        let equipments: Int = activity.workingUnits.filter { $0.category == .equipment }.count
-        return String(equipments)
+        return String(workingEquipmentCount)
     }
 
     var workedHours: String {

@@ -12,10 +12,9 @@ internal class LoginViewController: UIViewController {
     
     private lazy var tap = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(_:)))
     
-    private var logoImage: UIView = {
-        let logoImage = UIView()
+    private var logoImage: UIImageView = {
+        let logoImage = UIImageView(image: UIImage(named: "PCM Icon"))
         logoImage.translatesAutoresizingMaskIntoConstraints = false
-        logoImage.backgroundColor = .systemGray3
         logoImage.layer.cornerRadius = 20
         return logoImage
     }()

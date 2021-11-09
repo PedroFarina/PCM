@@ -84,6 +84,7 @@ final class ReportContainerView: UIStackView {
         cells.append(efficiencyCell)
 
         for cell in cells {
+            cell.reloadData()
             addArrangedSubview(cell)
         }
     }
