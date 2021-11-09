@@ -153,7 +153,7 @@ internal class DetailsViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .preferredFont(forTextStyle: .body)
         label.adjustsFontForContentSizeCategory = true
-        label.text = activity.description
+        label.text = "\(activity.description)\n\(activity.serviceValue) m³"
         label.lineBreakMode = NSLineBreakMode.byWordWrapping
         label.numberOfLines = 3
         label.textColor = .blackProt
